@@ -1,0 +1,32 @@
+=========
+OTP Nitro
+=========
+
+About
+-----
+``OTP Nitro`` is a secure `One Time Pad`_ implementation to use on computers or
+as assistant on manual operations.
+
+Installation
+------------
+Compile::
+
+	make
+	
+Install::
+
+	make install
+
+
+Usage
+-----
+
+Features
+--------
+
+License
+-------
+``OTP Nitro`` is released under the _GPLv3 license.
+
+.. _`One Time Pad`: https://en.wikipedia.org/wiki/One-time_pad
+.. _GPLv3: http://www.gnu.org/licenses/gpl-3.0.txt
