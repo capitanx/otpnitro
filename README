@@ -20,13 +20,45 @@ Install::
 
 Usage
 -----
+* Generate OTP pages::
+	
+	C:\> .\otpnitro.exe -g -r TST
+	OTP Nitro 0.1
+	-------------
+	[I] Generating OTP: TST. OK 
+
+* Encrypt message::
+
+	C:\> otpnitro.exe -e -s CPX -r TST -m "ESTO ES UNA PRUEBA"
+	OTP Nitro 0.1
+	-------------
+	[I] Encrypted msg:
+	
+	CPX DE TST 11
+	RHJQG AKZQV RUMKV IYHJY YQYVT
+
+* Decrypt message::
+
+	C:\> otpnitro.exe -d -p 11 -s CPX -r TST -m "RHJQG AKZQV RUMKV IYHJY YQYVT"
+	OTP Nitro 0.1
+	-------------
+	[I] Decrypt msg
+	CPX DE TST 11
+	DECRYPTED: ESTO ES UNA PRUEBA
+
+* Burn a page::
+
+	C:\> otpnitro.exe -b -p 11 -r TST
+	OTP Nitro 0.1
+	-------------
+	[I] Burn page 11. OK
 
 Features
 --------
 
 License
 -------
-``OTP Nitro`` is released under the _GPLv3 license.
+``OTP Nitro`` is released under the GPLv3_ license.
 
 .. _`One Time Pad`: https://en.wikipedia.org/wiki/One-time_pad
 .. _GPLv3: http://www.gnu.org/licenses/gpl-3.0.txt
