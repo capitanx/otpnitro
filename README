@@ -55,6 +55,15 @@ Usage
 
 Features
 --------
+* Generate pages
+* Encrypt messages
+* Decrypt messages
+* Burn pages (secure delete)
+
+TODO
+----
+* Automatic file parse
+* Print pages
 
 License
 -------
