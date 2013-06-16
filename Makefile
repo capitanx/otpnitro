@@ -17,17 +17,22 @@ VERSION = 0.1
 
 ifdef SystemRoot
 	RM = del /Q
+	LIBNAME = lib\\otpnitro.dll
 else
 	RM = rm -f
+	LIBNAME = lib/otpnitro.so
 endif
 
 CPPFLAGS = -O3 -Wall -Wextra -pedantic -I.
 MODULES  = rand.o page.o crypto.o text.o
 
-all: $(MODULES) otpnitro
+all: $(MODULES) otpnitro otpnitro-lib
 
 otpnitro:
 	$(CC)  $(CPPFLAGS) $(MODULES) otpnitro.cpp -o otpnitro
 
+otpnitro-lib:
+	$(CC)  $(CPPFLAGS) -shared $(MODULES) -o $(LIBNAME)
+
 clean:
-	$(RM) $(MODULES) otpnitro otpnitro.exe
+	$(RM) $(MODULES) otpnitro otpnitro.exe $(LIBNAME)
