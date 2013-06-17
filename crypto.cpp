@@ -1,3 +1,5 @@
+#include <algorithm>
+
 #include "crypto.h"
 #include "otpnitro.h"
 
@@ -13,6 +15,8 @@ void Crypto::replaceAll(std::string& str, const std::string& from, const std::st
 }
 
 string Crypto::encrypt(string in, string out) {
+    	// To upper :-)
+	transform(in.begin(), in.end(), in.begin(), ::toupper);
 
 	// Replace spaces to XX char
 	this->replaceAll(in," ","XX");
@@ -33,6 +37,8 @@ string Crypto::encrypt(string in, string out) {
 }
 
 string Crypto::decrypt(string crypted, string out) {
+	// To upper
+    	transform(crypted.begin(), crypted.end(), crypted.begin(), ::toupper);
 
 	// Decrypted modulo sum(26) from in - otp
 	string decrypted;

@@ -1,4 +1,6 @@
 #include <stdlib.h>
+#include <algorithm>
+
 #include "text.h"
 #include "otpnitro.h"
 
@@ -39,6 +41,9 @@ void Text::print() {
 }
 
 void Text::parse(string text) {
+
+    	transform(text.begin(), text.end(), text.begin(), ::toupper);
+
 	unsigned pos1 = text.find(0x0A);
 	unsigned pos2 = text.find(0x0A,pos1+1);
 	string   head = text.substr(0,pos1);		// Get HEAD
