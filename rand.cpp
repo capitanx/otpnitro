@@ -1,17 +1,32 @@
 #include <rand.h>
+#include "otpnitro.h"
+
+#ifdef DEBUG
+# include <iostream>
+#endif
 
 Random::Random() {
-    	seed = time(NULL) * getpid() + clock() * -1000000000;
-	srand(seed);
+	srand(this->genSeed());
+#ifdef DEBUG
+	cout << "Seed: " << seed << endl;
+#endif
 }
 
-void Random::setSeed(int a) {
+void Random::setSeed(float a) {
 	seed = a;
 	srand(seed);
+#ifdef DEBUG
+	cout << "Seed: " << seed << endl;
+#endif
 }
 
 int  Random::getSeed() {
     	return(seed);
+}
+
+float Random::genSeed() {
+    	seed = time(NULL) * getpid() + clock() * MAGIC_K;
+	return(seed);
 }
 
 char Random::getChar() {
@@ -19,7 +34,14 @@ char Random::getChar() {
 }
 
 char Random::getLetter() {
-    	return (char)(0x41 + (rand() % 26));
+    	// TY @MarioVilas for ur help here :-)
+    	char rnd = '0';
+
+	// Ugly GCC hack, sorry :(
+    	while(rnd < 0x41 || rnd > 0x5A)
+		rnd = rand();
+
+    	return rnd;
 }
 
 int  Random::getNumber(int a) {

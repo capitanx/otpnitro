@@ -26,6 +26,7 @@ else
 endif
 
 CPPFLAGS = -O3 -Wall -Wextra -pedantic -I. -L.
+#CPPFLAGS += -DDEBUG
 MODULES  = rand.o page.o crypto.o text.o
 
 all: $(MODULES) otpnitro-lib otpnitro

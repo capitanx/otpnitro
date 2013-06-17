@@ -87,7 +87,7 @@ int main(int argc, char **argv) {
 
 		// Generate OTP for ID
 		cout << "[I] Generating OTP: " << id;
-		page->generate("TST");
+		page->generate(id);
 		cout << ". OK" << endl << endl;
 
 		delete page;

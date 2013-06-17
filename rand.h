@@ -12,10 +12,11 @@ class Random {
 
 	public:
 		Random();
-		void setSeed(int);
-		int  getSeed();
-		char getChar();
-		char getLetter();
-		int  getNumber(int);
+		void  setSeed(float);
+		int   getSeed();
+		float genSeed();
+		char  getChar();
+		char  getLetter();
+		int   getNumber(int);
 };
 
