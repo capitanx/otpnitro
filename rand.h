@@ -1,12 +1,11 @@
-#include <iostream>
 #include <stdlib.h>
 #include <time.h>
 using namespace std;
 
-//#ifdef __WINDOWS__
-#include <process.h>
+#ifdef WIN32
+# include <process.h>
 # define getpid _getpid
-//#endif
+#endif
 
 class Random {
 	float seed;

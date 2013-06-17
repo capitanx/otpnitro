@@ -65,8 +65,14 @@ int	Page::next(string id) {
 				break;
 			}
 		}
-	        closedir(pDIR);
-	}
+	} else
+		return -1;
+
+	closedir(pDIR);
+
+	if (filename.length() == 0)
+		return -1;
+
 	unsigned pos = filename.find(".");
 	return atoi(filename.substr(0,pos).c_str());
 }
@@ -121,3 +127,25 @@ bool	Page::generate(string id) {
 	return true;
 }
 
+string	Page::list() {
+	string files;
+
+	DIR *pDIR;
+	struct dirent *entry;
+	string path = REL_PATH;
+//	TODO: add support for list pages for a id
+//	path.append("/").append(id);
+	if( (pDIR = opendir(path.c_str())) != NULL ){
+		while((entry = readdir(pDIR)) != NULL){
+			if( (strcmp(entry->d_name, ".") != 0) && (strcmp(entry->d_name, "..") != 0) && (strcmp(entry->d_name, ".dummy") != 0) ) {
+				files.append(entry->d_name);
+				files.append("\n");
+				break;
+			}
+		}
+	} else
+            return "";
+
+	closedir(pDIR);
+	return(files);
+}

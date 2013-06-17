@@ -5,7 +5,6 @@
 #include "text.h"
 #include "otpnitro.h"
 
-
 int main(int argc, char **argv) {
 
     	// Header
@@ -15,11 +14,11 @@ int main(int argc, char **argv) {
 
 	// Arguments
 	char c;
-	bool gen = false, enc = false, dec = false, brn = false;
+	bool gen = false, enc = false, dec = false, brn = false, lst = false;
 	string send, id, msg, file;
 	int pnum = 0;
 
-	while ( (c = getopt(argc, argv, "h?gedbs:r:m:p:f:")) != -1) {
+	while ( (c = getopt(argc, argv, "h?gledbs:r:m:p:f:")) != -1) {
 	    switch (c) {
 		case 'g':
 			// Generate OTP
@@ -36,6 +35,10 @@ int main(int argc, char **argv) {
 		case 'b':
 			// Burn page
 			brn = true;
+		break;
+		case 'l':
+			// List available pages
+			lst = true;
 		break;
 		case 's':
 			// sender
@@ -63,6 +66,7 @@ int main(int argc, char **argv) {
 			printf("\n"
 				"Modes:\n"			\
 				"\t-g	Write pages	[-r]\n"	\
+				"\t-l	List  pages	\n"	\
 				"\t-b	Burn  page	[-r -p]\n"	\
 				"\t-e	Encrypt		[-s -r -m]\n"		\
 				"\t-d	Decrypt		[-s -r -m -p] [-f]\n"	\
@@ -84,7 +88,7 @@ int main(int argc, char **argv) {
 		// Generate OTP for ID
 		cout << "[I] Generating OTP: " << id;
 		page->generate("TST");
-		cout << ". OK" << endl;
+		cout << ". OK" << endl << endl;
 
 		delete page;
 		exit(0);
@@ -98,6 +102,11 @@ int main(int argc, char **argv) {
 
 		// Get a usable page
 		pnum = page->next(id);
+		if (pnum == -1) {
+			cout << "[E] Not found pages for: " << id << endl;
+			cout << "[I] You can generate them with: otpnitro -g -r " << id << endl << endl;
+			exit(1);
+		}
 
 		// Read page X from RECV ID
 		string out = page->read(pnum,id);
@@ -125,12 +134,19 @@ int main(int argc, char **argv) {
 		// Read page X from RECV ID
 		string out = page->read(pnum,id);
 
+		if (out.length() == 0) {
+			cout << "[E] The page " << pnum << " for " << id << " dont exist." << endl;
+			cout << "[I] You can check if you recieve the " << id << " pages, or if it was burned." << endl;
+			cout << "[I] Check: otpnitro -l" << endl << endl;
+			exit(1);
+		}
+
 		// Crypto
 		crypto->replaceAll(msg," ","");
 		string decrypted = crypto->decrypt(msg,out);
 
 		cout << send << " DE " << id << " " << pnum << endl;
-		cout << "DECRYPTED: " << decrypted << endl;
+		cout << "DECRYPTED: "  << decrypted << endl << endl;
 
 		delete page;
 		delete crypto;
@@ -142,9 +158,20 @@ int main(int argc, char **argv) {
 
 	    	Page   * page   = new Page;
 	    	if (page->burn(pnum,id))
-			cout << ". OK"   << endl;
+			cout << ". OK"   << endl << endl;
 		else
-			cout << ". FAIL" << endl;
+			cout << ". FAIL" << endl << endl;
+		delete page;
+	    	exit(0);
+	}
+
+	if (lst) {
+	    	Page   * page   = new Page;
+
+		cout << "[I] Available pages:" << endl;
+		cout << page->list();
+		cout << endl;
+
 		delete page;
 	    	exit(0);
 	}

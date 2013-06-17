@@ -1,15 +1,6 @@
-#include <iostream>
 #include <fstream>
-#include <string>
-#include <direct.h>
-
-#include<stdio.h>
-#include<cstdlib>
-#include<iostream>
-#include<string.h>
-#include<fstream>
-#include<dirent.h>
-
+#include <string.h>
+#include <dirent.h>
 
 #include "rand.h"
 #include "otpnitro.h"
@@ -26,5 +17,6 @@ class Page {
 		bool   burn(int,string);
 		string read(int, string);
 		string get();
+		string list();
 };
 
