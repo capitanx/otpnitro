@@ -95,7 +95,7 @@ int main(int argc, char **argv) {
 	}
 
 	if (enc) {
-	    	cout << "[I] Encrypted msg:" << endl << endl;
+	    	cout << "[I] Encrypted msg:" << endl;
 
 	    	Page   * page   = new Page;
 		Crypto * crypto = new Crypto;
@@ -126,7 +126,7 @@ int main(int argc, char **argv) {
 	}
 
 	if (dec) {
-	    	cout << "[I] Decrypt msg" << endl;
+	    	cout << "[I] Decrypted msg:" << endl;
 
 	    	Page   * page   = new Page;
 		Crypto * crypto = new Crypto;
@@ -145,8 +145,8 @@ int main(int argc, char **argv) {
 		crypto->replaceAll(msg," ","");
 		string decrypted = crypto->decrypt(msg,out);
 
-		cout << send << " DE " << id << " " << pnum << endl;
-		cout << "DECRYPTED: "  << decrypted << endl << endl;
+		cout << send << " DE " << id << " " << pnum << " = ";
+		cout << decrypted << " = " << endl << endl;
 
 		delete page;
 		delete crypto;

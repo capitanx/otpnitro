@@ -25,7 +25,7 @@ void Text::create(int page, string from, string to, string msg) {
 void Text::print() {
 
 	// Print Header
-	cout << this->to << " DE " << this->from << " " << this->page << endl;
+	cout << this->to << " DE " << this->from << " " << this->page << " = ";
 
 	// Add spacing and print chars
 	int a = 0;
@@ -37,7 +37,7 @@ void Text::print() {
 		cout << this->msg[i];
 		a++;
 	}
-	cout << endl << endl;
+	cout << " = " << endl << endl;
 }
 
 void Text::parse(string text) {
