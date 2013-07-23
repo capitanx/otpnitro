@@ -33,18 +33,15 @@ Usage
 	OTP Nitro 0.1
 	-------------
 	[I] Encrypted msg:
-	
-	CPX DE TST 11
-	RHJQG AKZQV RUMKV IYHJY YQYVT
+	CPX DE TST 11 = RHJQG AKZQV RUMKV IYHJY YQYVT =
 
 * Decrypt message::
 
 	C:\> otpnitro.exe -d -p 11 -s CPX -r TST -m "RHJQG AKZQV RUMKV IYHJY YQYVT"
 	OTP Nitro 0.1
 	-------------
-	[I] Decrypt msg
-	CPX DE TST 11
-	DECRYPTED: ESTO ES UNA PRUEBA
+	[I] Decrypted msg:
+	CPX DE TST 11 = ESTO ES UNA PRUEBA =
 
 * Burn a page::
 
