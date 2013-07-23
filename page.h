@@ -2,6 +2,10 @@
 #include <string.h>
 #include <dirent.h>
 
+#ifdef __unix__
+# include <sys/stat.h>
+#endif
+
 #include "rand.h"
 #include "otpnitro.h"
 

@@ -1,5 +1,11 @@
 #include <stdlib.h>
 #include <time.h>
+
+#ifdef __unix__
+# include <sys/types.h>
+# include <unistd.h>
+#endif
+
 using namespace std;
 
 #ifdef WIN32

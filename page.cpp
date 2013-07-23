@@ -1,4 +1,5 @@
 #include <iostream>
+
 #include "page.h"
 #include "otpnitro.h"
 
@@ -14,7 +15,7 @@ string	Page::dirPath(string id) {
 
 string	Page::filePath(int page, string id) {
     	char pagetxt[10];
-	itoa(page,pagetxt,10);
+	sprintf(pagetxt,"%i",page);
 
 	string filepath  = REL_PATH;
 	filepath.append(id).append("/").append(pagetxt).append(".dat");
@@ -81,7 +82,11 @@ int	Page::next(string id) {
 bool	Page::write(int page, string id, string ciphertext) {
 
 	// Create OTP folder for ID
+#ifdef __unix__
+	mkdir(dirPath(id).c_str(), S_IRWXU|S_IRGRP|S_IXGRP);
+#else
 	mkdir(dirPath(id).c_str());
+#endif
 
 	// Write PAGE
 	ofstream fpage;
@@ -118,6 +123,13 @@ string	Page::get() {
 }
 
 bool	Page::generate(string id) {
+
+#ifdef	__unix__
+	mkdir(REL_PATH, S_IRWXU|S_IRGRP|S_IXGRP);
+#else
+	mkdir(REL_PATH);
+#endif
+
 	for (int pagenum = 0; pagenum < MAX_PAGES; pagenum++) {
 		clock_t goal = 1 + clock();
 		while (goal > clock());

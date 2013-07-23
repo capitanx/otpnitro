@@ -13,7 +13,7 @@ int main(int argc, char **argv) {
 		cout << "ERROR: You must enter a valid argument, see -h" << endl << endl;
 
 	// Arguments
-	char c;
+	signed char c;
 	bool gen = false, enc = false, dec = false, brn = false, lst = false;
 	string send, id, msg, file;
 	int pnum = 0;

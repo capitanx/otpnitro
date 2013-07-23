@@ -18,11 +18,11 @@ VERSION = 0.1
 ifdef SystemRoot
 	RM = del /Q
 	LIBNAME = otpnitro.dll
-	INSTALL = mkdir "%ProgramFiles%\otpnitro" & copy /E otpnitro.exe "%ProgramFiles%\otpnitro" & copy /E otpnitro.dll "%ProgramFiles%\otpnitro" & copy /E PAGES "%ProgramFiles%\otpnitro"
+	INSTALL = mkdir "%ProgramFiles%\otpnitro" & copy /E otpnitro.exe "%ProgramFiles%\otpnitro" & copy /E otpnitro.dll "%ProgramFiles%\otpnitro"
 else
 	RM = rm -f
-	LIBNAME = otpnitro.so
-	INSTALL = cp -f otpnitro /usr/bin && cp -f otpnitro.so /usr/lib && mkdir -p /usr/share/PAGES
+	LIBNAME = libotpnitro.so
+	INSTALL = cp -f otpnitro /usr/bin && cp -f libotpnitro.so /usr/lib
 endif
 
 CPPFLAGS = -O3 -Wall -Wextra -pedantic -I. -L.
@@ -35,7 +35,7 @@ otpnitro:
 	$(CC)  $(CPPFLAGS) otpnitro.cpp -o otpnitro -lotpnitro
 
 otpnitro-lib:
-	$(CC)  $(CPPFLAGS) -shared $(MODULES) -o $(LIBNAME)
+	$(CC)  $(CPPFLAGS) -fPIC -shared $(MODULES) -o $(LIBNAME)
 
 install:
 	$(INSTALL)
