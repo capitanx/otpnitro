@@ -36,6 +36,9 @@ all: $(MODULES) otpnitro-lib otpnitro
 otpnitro:
 	$(CC)  $(CPPFLAGS) otpnitro.cpp  $(EXTRAS) -o otpnitro -lotpnitro
 
+prngtest:
+	$(CC)  $(CPPFLAGS) prngtest.cpp  $(EXTRAS) -o prngtest -lotpnitro
+
 otpnitro-lib:
 	$(CC)  $(CPPFLAGS) -fPIC -shared $(EXTRAS) $(MODULES) -o $(LIBNAME)
 

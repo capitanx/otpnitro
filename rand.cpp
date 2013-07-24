@@ -25,7 +25,7 @@ int  Random::getSeed() {
 }
 
 float Random::genSeed() {
-    	seed = time(NULL) * getpid() + clock() * MAGIC_K;
+    	seed = time(0) * getpid() + clock() * MAGIC_K;
 	return(seed);
 }
 

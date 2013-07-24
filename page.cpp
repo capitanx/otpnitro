@@ -59,8 +59,8 @@ int	Page::next(string id) {
 	struct dirent *entry;
 	string path = REL_PATH;
 	path.append("/").append(id);
-	if( (pDIR = opendir(path.c_str())) != NULL ){
-		while((entry = readdir(pDIR)) != NULL){
+	if( (pDIR = opendir(path.c_str())) != 0 ){
+		while((entry = readdir(pDIR)) != 0 ){
 			if( (strcmp(entry->d_name, ".") != 0) && (strcmp(entry->d_name, "..") != 0) ) {
 				filename = entry->d_name;
 				break;
@@ -147,8 +147,8 @@ string	Page::list() {
 	string path = REL_PATH;
 //	TODO: add support for list pages for a id
 //	path.append("/").append(id);
-	if( (pDIR = opendir(path.c_str())) != NULL ){
-		while((entry = readdir(pDIR)) != NULL){
+	if( (pDIR = opendir(path.c_str())) != 0 ){
+		while((entry = readdir(pDIR)) != 0 ){
 			if( (strcmp(entry->d_name, ".") != 0) && (strcmp(entry->d_name, "..") != 0) && (strcmp(entry->d_name, ".dummy") != 0) ) {
 				files.append(entry->d_name);
 				files.append("\n");
