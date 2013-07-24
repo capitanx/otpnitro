@@ -145,8 +145,11 @@ int main(int argc, char **argv) {
 		crypto->replaceAll(msg," ","");
 		string decrypted = crypto->decrypt(msg,out);
 
-		cout << send << " DE " << id << " " << pnum << " = ";
-		cout << decrypted << " = " << endl << endl;
+		// Print MSG
+		Text * txt = new Text;
+		txt->create(pnum,send,id,decrypted);
+		txt->print();
+		delete txt;
 
 		delete page;
 		delete crypto;

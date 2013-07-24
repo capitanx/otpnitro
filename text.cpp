@@ -44,28 +44,28 @@ void Text::parse(string text) {
 
     	transform(text.begin(), text.end(), text.begin(), ::toupper);
 
-	unsigned pos1 = text.find(0x0A);
-	unsigned pos2 = text.find(0x0A,pos1+1);
-	string   head = text.substr(0,pos1);		// Get HEAD
+	unsigned pos1 = text.find('=');
+	unsigned pos2 = text.find('=',pos1+1);
+	string   head = text.substr(0,pos1-1);		// Get HEAD
 	string    msg = text.substr(pos1+1,pos2-pos1-1);// Get MSG
 
-	// WINDOWS newline chop
-	if (head[head.length()-1] == 0x0D)
-		head[head.length()-1] = 0x00;
-
-	if (msg[msg.length()-1] == 0x0D)
-		msg[msg.length()-1]   = 0x00;
-
 	// Parse HEAD elements
-	pos1 = head.find(" ");
+	pos1 = head.find(' ');
+	string to = head.substr(0,pos1);
+
 	pos2 = head.find(" ",pos1+1);
-	this->to = head.substr(0,pos1);
 	pos1 = head.find(" ",pos2+1);
-	this->from = head.substr(pos2+1,pos1-pos2-1);
+	string from = head.substr(pos2+1,pos1-pos2-1);
+
 	pos1 = head.find(" ",pos2+1);
-	this->page = atoi(head.substr(pos1+1).c_str());
+	int page = atoi(head.substr(pos1+1).c_str());
 
 	// Remove spaces on msg
 	this->replaceAll(msg," ","");
-	this->msg = msg;
+
+
+	cout << "FROM: " << from << endl;
+	cout << "TO:   " << to   << endl;
+	cout << "PAGE: " << page << endl;
+	cout << "MSG:  " << msg  << endl;
 }
