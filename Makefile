@@ -16,12 +16,14 @@ PACKAGE = otpnitro
 VERSION = 0.1
 
 ifdef SystemRoot
-	RM = del /Q
+	RM = del /Q otpnitro.exe otpnitro.wixobj otpnitro.wixpdb otpnitro.msi
 	LIBNAME = otpnitro.dll
-	INSTALL = mkdir "%ProgramFiles%\otpnitro" & copy /E otpnitro.exe "%ProgramFiles%\otpnitro" & copy /E otpnitro.dll "%ProgramFiles%\otpnitro"
+	EXTRAS  = -static-libgcc -static-libstdc++
+	INSTALL = candle otpnitro.wxs & light otpnitro.wixobj
 else
-	RM = rm -f
+	RM = rm -f otpnitro
 	LIBNAME = libotpnitro.so
+	EXTRAS  =
 	INSTALL = cp -f otpnitro /usr/bin && cp -f libotpnitro.so /usr/lib
 endif
 
@@ -32,13 +34,13 @@ MODULES  = rand.o page.o crypto.o text.o
 all: $(MODULES) otpnitro-lib otpnitro
 
 otpnitro:
-	$(CC)  $(CPPFLAGS) otpnitro.cpp -o otpnitro -lotpnitro
+	$(CC)  $(CPPFLAGS) otpnitro.cpp  $(EXTRAS) -o otpnitro -lotpnitro
 
 otpnitro-lib:
-	$(CC)  $(CPPFLAGS) -fPIC -shared $(MODULES) -o $(LIBNAME)
+	$(CC)  $(CPPFLAGS) -fPIC -shared $(EXTRAS) $(MODULES) -o $(LIBNAME)
 
 install:
 	$(INSTALL)
 
 clean:
-	$(RM) $(MODULES) otpnitro otpnitro.exe $(LIBNAME)
+	$(RM) $(MODULES) $(LIBNAME)
