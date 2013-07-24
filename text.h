@@ -11,7 +11,7 @@ class Text {
 
 		void replaceAll(string&, const string&, const string&);
 		void create(int,string,string,string);
-		void print();
+		void print(int);
 		void parse(string);
 };
 

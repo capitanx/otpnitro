@@ -117,7 +117,7 @@ int main(int argc, char **argv) {
 		// Print page
 		Text * txt = new Text;
 		txt->create(pnum,id,send,encrypted);
-		txt->print();
+		txt->print(1);
 
 		delete txt;
 		delete page;
@@ -152,7 +152,7 @@ int main(int argc, char **argv) {
 		txt->msg = crypto->decrypt(txt->msg,out);
 
 		// Print MSG
-		txt->print();
+		txt->print(0);
 
 		delete txt;
 		delete page;

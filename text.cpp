@@ -22,7 +22,7 @@ void Text::create(int page, string from, string to, string msg) {
 	this->msg  = msg;
 }
 
-void Text::print() {
+void Text::print(int spa) {
 
 	// Print Header
 	cout << this->to << " DE " << this->from << " " << this->page << " = ";
@@ -30,7 +30,7 @@ void Text::print() {
 	// Add spacing and print chars
 	int a = 0;
 	for (unsigned int i = 0; i<this->msg.length(); i++) {
-		if (a == 5) {
+		if (a == 5 && spa == 1) {
 			a=0;
 			cout << " ";
 		}
