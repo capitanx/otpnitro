@@ -43,6 +43,14 @@ Usage
 	[I] Decrypted msg:
 	CPX DE TST 11 = ESTO ES UNA PRUEBA =
 
+* Decrypt formated message::
+
+	C:\> otpnitro.exe -d -f "CPX DE TST 11 = RHJQG AKZQV RUMKV IYHJY YQYVT ="
+	OTP Nitro 0.1
+	-------------
+	[I] Decrypted msg:
+	CPX DE TST 11 = ESTO ES UNA PRUEBA =
+
 * Burn a page::
 
 	C:\> otpnitro.exe -b -p 11 -r TST

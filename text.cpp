@@ -63,9 +63,8 @@ void Text::parse(string text) {
 	// Remove spaces on msg
 	this->replaceAll(msg," ","");
 
-
-	cout << "FROM: " << from << endl;
-	cout << "TO:   " << to   << endl;
-	cout << "PAGE: " << page << endl;
-	cout << "MSG:  " << msg  << endl;
+	this->from = from;
+	this->to   = to;
+	this->page = page;
+	this->msg  = msg;
 }

@@ -76,7 +76,7 @@ int main(int argc, char **argv) {
 				"\t-r	<recv id>\n"		\
 				"\t-p	<page num>\n"		\
 				"\t-m	<\"message text\">\n"	\
-				"\t-f	<crypted file>\n\n");
+				"\t-f	<\"crypted format\">\n\n");
 		exit(1);
 		break;
 	    }
@@ -128,11 +128,17 @@ int main(int argc, char **argv) {
 	if (dec) {
 	    	cout << "[I] Decrypted msg:" << endl;
 
-	    	Page   * page   = new Page;
+		Page   * page   = new Page;
 		Crypto * crypto = new Crypto;
+		Text   * txt    = new Text;
+
+		if (file.length() > 0)
+			txt->parse(file);
+		else
+			txt->create(pnum,id,send,msg);
 
 		// Read page X from RECV ID
-		string out = page->read(pnum,id);
+		string out = page->read(txt->page,txt->from);
 
 		if (out.length() == 0) {
 			cout << "[E] The page " << pnum << " for " << id << " dont exist." << endl;
@@ -142,15 +148,13 @@ int main(int argc, char **argv) {
 		}
 
 		// Crypto
-		crypto->replaceAll(msg," ","");
-		string decrypted = crypto->decrypt(msg,out);
+		crypto->replaceAll(txt->msg," ","");
+		txt->msg = crypto->decrypt(txt->msg,out);
 
 		// Print MSG
-		Text * txt = new Text;
-		txt->create(pnum,send,id,decrypted);
 		txt->print();
-		delete txt;
 
+		delete txt;
 		delete page;
 		delete crypto;
 	   	exit(0);
