@@ -4,7 +4,8 @@
 #include "text.h"
 #include "otpnitro.h"
 
-void   Text::replaceAll(std::string& str, const std::string& from, const std::string& to) {
+void   Text::replaceAll(std::string& str, const std::string& from, const std::string& to)
+{
 	if(from.empty())
 		return;
 
@@ -15,15 +16,16 @@ void   Text::replaceAll(std::string& str, const std::string& from, const std::st
 	}
 }
 
-void Text::create(int page, string from, string to, string msg) {
+void Text::create(int page, string from, string to, string msg)
+{
 	this->page = page;
 	this->from = from;
 	this->to   = to;
 	this->msg  = msg;
 }
 
-void Text::print(int spa) {
-
+void Text::print(int spa)
+{
 	// Print Header
 	cout << this->to << " DE " << this->from << " " << this->page << " = ";
 
@@ -40,9 +42,9 @@ void Text::print(int spa) {
 	cout << " = " << endl << endl;
 }
 
-void Text::parse(string text) {
-
-    	transform(text.begin(), text.end(), text.begin(), ::toupper);
+void Text::parse(string text)
+{
+	transform(text.begin(), text.end(), text.begin(), ::toupper);
 
 	unsigned pos1 = text.find('=');
 	unsigned pos2 = text.find('=',pos1+1);

@@ -5,12 +5,12 @@
 #include "text.h"
 #include "otpnitro.h"
 
-int main(int argc, char **argv) {
-
-    	// Header
-    	cout << "OTP Nitro " << VERSION << endl << "-------------" << endl;
+int main(int argc, char **argv)
+{
+	// Header
+	cout << "OTP Nitro " << VERSION << endl << "-------------" << endl;
 	if (argc == 1)
-		cout << "ERROR: You must enter a valid argument, see -h" << endl << endl;
+	cout << "ERROR: You must enter a valid argument, see -h" << endl << endl;
 
 	// Arguments
 	signed char c;
@@ -83,7 +83,7 @@ int main(int argc, char **argv) {
 	}
 
 	if (gen) {
-	    	Page   * page   = new Page;
+		Page   * page   = new Page;
 
 		// Generate OTP for ID
 		cout << "[I] Generating OTP: " << id;
@@ -95,9 +95,9 @@ int main(int argc, char **argv) {
 	}
 
 	if (enc) {
-	    	cout << "[I] Encrypted msg:" << endl;
+		cout << "[I] Encrypted msg:" << endl;
 
-	    	Page   * page   = new Page;
+		Page   * page   = new Page;
 		Crypto * crypto = new Crypto;
 
 		// Get a usable page
@@ -122,11 +122,11 @@ int main(int argc, char **argv) {
 		delete txt;
 		delete page;
 		delete crypto;
-	    	exit(0);
+		exit(0);
 	}
 
 	if (dec) {
-	    	cout << "[I] Decrypted msg:" << endl;
+		cout << "[I] Decrypted msg:" << endl;
 
 		Page   * page   = new Page;
 		Crypto * crypto = new Crypto;
@@ -161,26 +161,26 @@ int main(int argc, char **argv) {
 	}
 
 	if (brn) {
-	    	cout << "[I] Burn page " << pnum;
+		cout << "[I] Burn page " << pnum;
 
-	    	Page   * page   = new Page;
-	    	if (page->burn(pnum,id))
-			cout << ". OK"   << endl << endl;
+		Page   * page   = new Page;
+		if (page->burn(pnum,id))
+		cout << ". OK"   << endl << endl;
 		else
-			cout << ". FAIL" << endl << endl;
+		cout << ". FAIL" << endl << endl;
 		delete page;
-	    	exit(0);
+		exit(0);
 	}
 
 	if (lst) {
-	    	Page   * page   = new Page;
+		Page   * page   = new Page;
 
 		cout << "[I] Available pages:" << endl;
 		cout << page->list();
 		cout << endl;
 
 		delete page;
-	    	exit(0);
+		exit(0);
 	}
 
 	return(0);

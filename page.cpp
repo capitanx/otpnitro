@@ -6,15 +6,17 @@
 using namespace std;
 
 
-string	Page::dirPath(string id) {
+string	Page::dirPath(string id)
+{
 	string dirpath = REL_PATH;
 	dirpath.append(id);
 
 	return(dirpath);
 }
 
-string	Page::filePath(int page, string id) {
-    	char pagetxt[10];
+string	Page::filePath(int page, string id)
+{
+	char pagetxt[10];
 	sprintf(pagetxt,"%i",page);
 
 	string filepath  = REL_PATH;
@@ -23,7 +25,8 @@ string	Page::filePath(int page, string id) {
 	return(filepath);
 }
 
-bool	Page::burn(int page, string id) {
+bool	Page::burn(int page, string id)
+{
 	// Open file
 	ifstream ifpage;
 	ifpage.open(filePath(page, id).c_str());
@@ -43,7 +46,7 @@ bool	Page::burn(int page, string id) {
 	ofstream ofpage;
 	ofpage.open(filePath(page, id).c_str());
 	for (int a=0; a<size; a++)
-		ofpage.put(0x00);
+	ofpage.put(0x00);
 	ofpage.close();
 
 	// Remove file
@@ -53,8 +56,9 @@ bool	Page::burn(int page, string id) {
 
 }
 
-int	Page::next(string id) {
-    	string filename;
+int	Page::next(string id)
+{
+	string filename;
 	DIR *pDIR;
 	struct dirent *entry;
 	string path = REL_PATH;
@@ -79,8 +83,8 @@ int	Page::next(string id) {
 }
 
 
-bool	Page::write(int page, string id, string ciphertext) {
-
+bool	Page::write(int page, string id, string ciphertext)
+{
 	// Create OTP folder for ID
 #ifdef __unix__
 	mkdir(dirPath(id).c_str(), S_IRWXU|S_IRGRP|S_IXGRP);
@@ -93,26 +97,27 @@ bool	Page::write(int page, string id, string ciphertext) {
 	fpage.open(filePath(page, id).c_str());
 	fpage << ciphertext;
 	fpage.close();
-	
+
 	return true;
 }
 
-string	Page::read(int page, string id) {
-
+string	Page::read(int page, string id)
+{
 	// Read PAGE
 	ifstream fpage;
 	fpage.open(filePath(page, id).c_str());
 
 	string ciphertext( (std::istreambuf_iterator<char>(fpage) ),
-		           (std::istreambuf_iterator<char>()    ) );
+					   (std::istreambuf_iterator<char>()    ) );
 
 	fpage.close();
 
 	return(ciphertext);
 }
 
-string	Page::get() {
-    	string ciphtext;
+string	Page::get()
+{
+	string ciphtext;
 	Random * rnd = new Random;
 
 	for (int ltr = 0; ltr < (MAX_CHARS); ltr++)
@@ -122,8 +127,8 @@ string	Page::get() {
 	return ciphtext;
 }
 
-bool	Page::generate(string id) {
-
+bool	Page::generate(string id)
+{
 #ifdef	__unix__
 	mkdir(REL_PATH, S_IRWXU|S_IRGRP|S_IXGRP);
 #else
@@ -139,7 +144,8 @@ bool	Page::generate(string id) {
 	return true;
 }
 
-string	Page::list() {
+string	Page::list()
+{
 	string files;
 
 	DIR *pDIR;
@@ -156,7 +162,7 @@ string	Page::list() {
 			}
 		}
 	} else
-            return "";
+		return "";
 
 	closedir(pDIR);
 	return(files);

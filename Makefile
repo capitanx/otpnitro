@@ -31,6 +31,10 @@ CPPFLAGS = -O3 -Wall -Wextra -pedantic -I. -L.
 #CPPFLAGS += -DDEBUG
 MODULES  = rand.o page.o crypto.o text.o
 
+Debug: all
+
+Release: all
+
 all: $(MODULES) otpnitro-lib otpnitro
 
 otpnitro:
