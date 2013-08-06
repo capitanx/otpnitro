@@ -1,11 +1,11 @@
-#include <rand.h>
+#include "rand.h"
 #include "otpnitro.h"
 
 #ifdef DEBUG
 # include <iostream>
 #endif
 
-Random::Random()
+Rand::Rand()
 {
 	srand(this->genSeed());
 #ifdef DEBUG
@@ -13,7 +13,7 @@ Random::Random()
 #endif
 }
 
-void Random::setSeed(float a)
+void Rand::setSeed(float a)
 {
 	seed = a;
 	srand(seed);
@@ -22,23 +22,23 @@ void Random::setSeed(float a)
 #endif
 }
 
-int  Random::getSeed()
+int  Rand::getSeed()
 {
 	return(seed);
 }
 
-float Random::genSeed()
+float Rand::genSeed()
 {
 	seed = time(0) * getpid() + clock() * MAGIC_K;
 	return(seed);
 }
 
-char Random::getChar()
+char Rand::getChar()
 {
 	return rand() % 256;
 }
 
-char Random::getLetter()
+char Rand::getLetter()
 {
 	// TY @MarioVilas for ur help here :-)
 	char rnd = '0';
@@ -50,7 +50,7 @@ char Random::getLetter()
 	return rnd;
 }
 
-int  Random::getNumber(int a)
+int  Rand::getNumber(int a)
 {
 	return rand() % a+1;
 }

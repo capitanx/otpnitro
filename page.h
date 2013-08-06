@@ -1,6 +1,9 @@
 #include <fstream>
 #include <string.h>
-#include <dirent.h>
+
+#ifndef _MSC_VER
+# include <dirent.h>
+#endif
 
 #ifdef __unix__
 # include <sys/stat.h>

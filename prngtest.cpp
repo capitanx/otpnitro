@@ -9,7 +9,7 @@ using namespace std;
 int main()
 {
     	int i=0;
-	Random * rnd = new Random;
+	Rand * rnd = new Rand;
 
 	cout << "[*] Generating " << LOOPCNT << " chars...\t\tchars.txt" << endl;
 	ofstream fchar ("chars.txt");

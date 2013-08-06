@@ -13,11 +13,11 @@ using namespace std;
 # define getpid _getpid
 #endif
 
-class Random {
+class Rand {
 	float seed;
 
 	public:
-		Random();
+		Rand();
 		void  setSeed(float);
 		int   getSeed();
 		float genSeed();

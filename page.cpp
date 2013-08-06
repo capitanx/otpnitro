@@ -118,7 +118,7 @@ string	Page::read(int page, string id)
 string	Page::get()
 {
 	string ciphtext;
-	Random * rnd = new Random;
+	Rand * rnd = new Rand;
 
 	for (int ltr = 0; ltr < (MAX_CHARS); ltr++)
 		ciphtext.append(1,rnd->getLetter());
