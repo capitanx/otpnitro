@@ -6,7 +6,7 @@
 # include <unistd.h>
 #endif
 
-using namespace std;
+//using namespace std;
 
 #ifdef WIN32
 # include <process.h>
@@ -18,6 +18,7 @@ class Rand {
 
 	public:
 		Rand();
+		unsigned long getTicks();
 		void  setSeed(float);
 		int   getSeed();
 		float genSeed();

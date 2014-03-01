@@ -11,7 +11,7 @@
 # [...]
 #
 
-CC = g++
+CXX = clang++
 PACKAGE = otpnitro
 VERSION = 0.1
 
@@ -27,7 +27,7 @@ else
 	INSTALL = cp -f otpnitro /usr/bin && cp -f libotpnitro.so /usr/lib
 endif
 
-CPPFLAGS = -O3 -Wall -Wextra -pedantic -I. -L.
+CPPFLAGS = -O3 -Wall -Wextra -pedantic -I. -fPIC
 #CPPFLAGS += -DDEBUG
 MODULES  = rand.o page.o crypto.o text.o
 
@@ -38,13 +38,13 @@ Release: all
 all: $(MODULES) otpnitro-lib otpnitro
 
 otpnitro:
-	$(CC)  $(CPPFLAGS) otpnitro.cpp  $(EXTRAS) -o otpnitro -lotpnitro
+	$(CXX)  $(CPPFLAGS) -L. otpnitro.cpp  $(EXTRAS) -o otpnitro -lotpnitro
 
 prngtest:
-	$(CC)  $(CPPFLAGS) prngtest.cpp  $(EXTRAS) -o prngtest -lotpnitro
+	$(CXX)  $(CPPFLAGS) -L. prngtest.cpp  $(EXTRAS) -o prngtest -lotpnitro
 
 otpnitro-lib:
-	$(CC)  $(CPPFLAGS) -fPIC -shared $(EXTRAS) $(MODULES) -o $(LIBNAME)
+	$(CXX)  $(CPPFLAGS) -shared $(EXTRAS) $(MODULES) -o $(LIBNAME)
 
 install:
 	$(INSTALL)

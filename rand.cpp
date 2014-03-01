@@ -1,15 +1,38 @@
 #include "rand.h"
 #include "otpnitro.h"
 
+#include <sys/time.h>
 #ifdef DEBUG
 # include <iostream>
 #endif
 
 Rand::Rand()
 {
-	srand(this->genSeed());
+srand(this->genSeed());
 #ifdef DEBUG
 	cout << "Seed: " << seed << endl;
+#endif
+}
+
+unsigned long Rand::getTicks()
+{
+// TODO: Find a cpu time/ticks asm inline for ARMv6 and ARMv7
+#ifdef __arm__
+	struct timeval usecs;
+	gettimeofday(&usecs, NULL);
+
+	return usecs.tv_usec;
+#else
+	unsigned long tsc;
+	__asm__ __volatile__(
+			"rdtscp;"
+			"shl $32, %%rdx;"
+			"or %%rdx, %%rax"
+			: "=a"(tsc)
+			:
+			: "%rcx", "%rdx"
+	);
+	return tsc;
 #endif
 }
 
@@ -29,7 +52,9 @@ int  Rand::getSeed()
 
 float Rand::genSeed()
 {
-	seed = time(0) * getpid() + clock() * MAGIC_K;
+	struct timeval usecs;
+	gettimeofday(&usecs, NULL);
+	seed = (usecs.tv_usec + getpid()) * Rand::getTicks();
 	return(seed);
 }
 
@@ -45,7 +70,7 @@ char Rand::getLetter()
 
 	// Ugly GCC hack, sorry :(
 	while(rnd < 0x41 || rnd > 0x5A)
-	rnd = rand();
+		rnd = rand();
 
 	return rnd;
 }
