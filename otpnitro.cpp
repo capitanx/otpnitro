@@ -45,7 +45,7 @@ int main(int argc, char **argv)
 			send = optarg;
 		break;
 		case 'r':
-			// recv id
+			// book - recv id
 			id   = optarg;
 		break;
 		case 'm':
@@ -73,7 +73,7 @@ int main(int argc, char **argv)
 				"\n"				\
 				"Opts:\n"			\
 				"\t-s	<sender>\n"		\
-				"\t-r	<recv id>\n"		\
+				"\t-r	<code book>\n"		\
 				"\t-p	<page num>\n"		\
 				"\t-m	<\"message text\">\n"	\
 				"\t-f	<\"crypted format\">\n\n");
@@ -108,7 +108,7 @@ int main(int argc, char **argv)
 			exit(1);
 		}
 
-		// Read page X from RECV ID
+		// Read page X from Book (RECV ID)
 		string out = page->read(pnum,id);
 
 		// Crypto
@@ -137,7 +137,7 @@ int main(int argc, char **argv)
 		else
 			txt->create(pnum,id,send,msg);
 
-		// Read page X from RECV ID
+		// Read page X from Book (RECV ID)
 		string out = page->read(txt->page,txt->from);
 
 		if (out.length() == 0) {
