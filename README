@@ -20,7 +20,7 @@ Install::
 
 Usage
 -----
-* Generate OTP pages::
+* Generate OTP pages on the "TST" book::
 	
 	C:\> .\otpnitro.exe -g -r TST
 	OTP Nitro 0.1
