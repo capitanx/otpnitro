@@ -8,7 +8,7 @@
 
 Rand::Rand()
 {
-srand(this->genSeed());
+	srand(this->genSeed());
 #ifdef DEBUG
 	cout << "Seed: " << seed << endl;
 #endif

@@ -1,0 +1,18 @@
+description "OTPNitro GUI\377";
+
+optimize_speed;
+
+uses
+	CtrlLib;
+
+link(WIN32) "-L\"C:\\Program Files\\otpnitro\" -lotpnitro";
+
+link(!WIN32) "-L/usr/lib -Wl,--gc-sections -lotpnitro";
+
+file
+	otpnitrogui.h,
+	main.cpp;
+
+mainconfig
+	"" = "GUI SSE2";
+
