@@ -158,7 +158,7 @@ string	Page::list()
 			if( (strcmp(entry->d_name, ".") != 0) && (strcmp(entry->d_name, "..") != 0) && (strcmp(entry->d_name, ".dummy") != 0) ) {
 				files.append(entry->d_name);
 				files.append("\n");
-				break;
+				continue;
 			}
 		}
 	} else

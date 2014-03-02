@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <algorithm>
+#include <sstream>
 
 #include "text.h"
 #include "otpnitro.h"
@@ -24,22 +25,26 @@ void Text::create(int page, string from, string to, string msg)
 	this->msg  = msg;
 }
 
-void Text::print(int spa)
+string Text::print(int spa)
 {
+	std::stringstream sout;
+
 	// Print Header
-	cout << this->to << " DE " << this->from << " " << this->page << " = ";
+	sout << this->to << " DE " << this->from << " " << this->page << " = ";
 
 	// Add spacing and print chars
 	int a = 0;
 	for (unsigned int i = 0; i<this->msg.length(); i++) {
 		if (a == 5 && spa == 1) {
 			a=0;
-			cout << " ";
+			sout << " ";
 		}
-		cout << this->msg[i];
+		sout << this->msg[i];
 		a++;
 	}
-	cout << " = " << endl << endl;
+	sout << " = " << endl << endl;
+
+	return sout.str();
 }
 
 void Text::parse(string text)

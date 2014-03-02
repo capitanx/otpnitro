@@ -25,7 +25,7 @@ struct bookGenDialog : public TopWindow {
     	{
     		Page * page = new Page;
     		page->generate(id.ToString());
-    		delete page;
+    		delete page;    		
     		Close();
     	}
 	}
@@ -52,16 +52,30 @@ struct bookGenDialog : public TopWindow {
 struct otpWindow : TopWindow {
 
     MenuBar		menu;
+    Label		lbBook;
+    DropList	book;
     Label		lbFrom;
-    DropList	from;
-    Label		lbTo;
-    EditString	to;
+    EditString	from;
     Label		lbPage;
-    EditIntSpin	page;
+    EditIntSpin	pagen;
     Option		format;
     DocEdit		text;
     
     bookGenDialog dlg;
+    
+    void refreshBooks()
+    {
+        Page  * page  = new Page;
+        
+        std::istringstream f(page->list().c_str());
+    	std::string line;
+    	
+    	book.ClearList();
+    	while (std::getline(f, line))
+    		book.Add(line.c_str());
+        
+		delete page;
+    }
     
     void Exit()
     {
@@ -71,29 +85,115 @@ struct otpWindow : TopWindow {
     
     void Help()
     {
+		//TODO: Create a help dialog (html??)
         PromptOK("OTP Nitro HELP");
     }
 
 	void About()
     {
+        //TODO: Create a about dialog
         PromptOK("OTP Nitro ABOUT");
     }
 
 	void Crypt()
     {
-        PromptOK("CRYPT");
+        Page   * page   = new Page;
+        Crypto * crypto = new Crypto;
+        
+        string id  = book.Get().ToString();
+        string msg = text.Get();
+        string snt = from.GetText().ToString();
+        
+        // Get a usable page
+        int pnum = page->next(id);
+        if (pnum == -1) {
+            PromptOK("Not found pages in book");
+            return;
+        }
+        
+        // Set page num to selector
+        pagen.SetData(pnum);
+        
+        // Read page X from Book (RECV ID)
+        string out = page->read(pnum,id);
+        
+        // Crypto
+        string encrypted = crypto->encrypt(msg,out);
+        
+        // Print page
+        Text * txt = new Text;
+        txt->create(pnum,id,snt,encrypted);
+        text.Set(txt->print(1));
+
+        delete txt;
+        delete page;
+        delete crypto;
+        
+        //TODO: If the user dont burn the page, put the number in red on statusbar
+        if(PromptOKCancel("Do you want to burn this page now? (recommended)"))
+        {
+        	if (!page->burn(pnum,id))
+            	PromptOK("Error burning this page.");
+        }
     }
 
 	void Decrypt()
     {
-        PromptOK("DECRYPT");
+        Page   * page   = new Page;
+        Crypto * crypto = new Crypto;
+        Text   * txt    = new Text;
+        
+        string msg  = text.Get().ToString();
+        string id   = book.Get().ToString();
+        string snt  = from.GetText().ToString();
+	    int    pnum = pagen.GetData();
+	    
+	    // Auto-Check if the msg is formated
+	    if (( format.Get() != 1 ) && ( msg.find("=") != std::string::npos ))
+	        if(PromptOKCancel("Is a formated msg? (XXX DE YYY N = AAAA =)"))
+	        {
+	            format.Set(1);
+	            from.Enable(0);
+        		book.Enable(0);
+        		pagen.Enable(0);
+	        }
+        
+		// Decrypts the msg formated / plain
+        if (format.Get() == 1)
+            txt->parse(msg);
+        else
+            txt->create(pnum,id,snt,msg);
+
+        // Read page X from Book (RECV ID)
+        string out = page->read(txt->page,txt->from);
+
+        if (out.length() == 0) {
+            PromptOK("The page don't exist."); 
+            return;
+        }
+
+        // Crypto
+        crypto->replaceAll(txt->msg," ","");
+        txt->msg = crypto->decrypt(txt->msg,out);
+
+        // Print MSG
+        text.Set(txt->print(0));
+
+        delete txt;
+        delete page;
+        delete crypto;
+        
+        //TODO: If the user dont burn the page, put the number in red on statusbar
+        if(PromptOKCancel("Do you want to burn this page now? (recommended)"))
+        {
+        	if (!page->burn(pnum,id))
+            	PromptOK("Error burning this page.");
+        }
     }
     
     void List()
     {
-        Page   * page   = new Page;
-		PromptOK(page->list().c_str());
-		delete page;
+		refreshBooks();
     }
     
     void Generate()
@@ -104,6 +204,7 @@ struct otpWindow : TopWindow {
     
     void Burn()
     {
+        //TODO: Create a page burn dialog
         PromptOK("BURN");
     }
     
@@ -111,12 +212,12 @@ struct otpWindow : TopWindow {
     {
         if (format.GetData() == 0) {
         	from.Enable(1);
-        	to.Enable(1);
-        	page.Enable(1);
+        	book.Enable(1);
+        	pagen.Enable(1);
         } else {
             from.Enable(0);
-        	to.Enable(0);
-        	page.Enable(0);
+        	book.Enable(0);
+        	pagen.Enable(0);
         }
     }
     
@@ -133,7 +234,7 @@ struct otpWindow : TopWindow {
     
     void booksMenu(Bar& bar)
     {
-        bar.Add("List books",    THISBACK(List));
+        bar.Add("Refresh  books",THISBACK(List));
         bar.Add("Generate book", THISBACK(Generate));
         bar.Add("Burn page",     THISBACK(Burn));
     }
@@ -161,22 +262,24 @@ struct otpWindow : TopWindow {
         menu.Set(THISBACK(MainMenu));
         
         *this
-        	<< lbFrom.LeftPos( 10, 50).TopPos(10, 25)
-        	<< from.LeftPos(   60, 50).TopPos(10, 25)
-        	<< lbTo.LeftPos(  150, 50).TopPos(10, 25)
-        	<< to.LeftPos(    180, 50).TopPos(10, 25)
-        	<< lbPage.LeftPos(270, 50).TopPos(10, 25)
-        	<< page.LeftPos(  310, 50).TopPos(10, 25)
+        	<< lbBook.LeftPos( 10, 50).TopPos(10, 25)
+        	<< book.LeftPos(   60, 50).TopPos(10, 25)
+        	<< lbFrom.LeftPos(130, 50).TopPos(10, 25)
+        	<< from.LeftPos(  180, 50).TopPos(10, 25)
+        	<< lbPage.LeftPos(250, 50).TopPos(10, 25)
+        	<< pagen.LeftPos( 300, 50).TopPos(10, 25)
         	<< format.LeftPos(400,100).TopPos(10, 25)
-            << text.LeftPos(   0, 600).TopPos(50, 300)
+            << text.LeftPos(    0,600).TopPos(50, 300)
         ;
         
-        lbTo.SetText("TO:");
-        lbFrom.SetText("BOOK:");
+        lbFrom.SetText("FROM:");
+        lbBook.SetText("BOOK:");
         lbPage.SetText("PAGE:");
         format.SetLabel("Formated msg");
         
         format <<= THISBACK(FormatOpt);
+
+		refreshBooks();
     }
 };
 

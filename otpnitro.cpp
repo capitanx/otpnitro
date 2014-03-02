@@ -103,7 +103,7 @@ int main(int argc, char **argv)
 		// Get a usable page
 		pnum = page->next(id);
 		if (pnum == -1) {
-			cout << "[E] Not found pages for: " << id << endl;
+			cout << "[E] Not found pages in book: " << id << endl;
 			cout << "[I] You can generate them with: otpnitro -g -r " << id << endl << endl;
 			exit(1);
 		}
@@ -117,7 +117,7 @@ int main(int argc, char **argv)
 		// Print page
 		Text * txt = new Text;
 		txt->create(pnum,id,send,encrypted);
-		txt->print(1);
+		cout << txt->print(1);
 
 		delete txt;
 		delete page;
@@ -141,8 +141,8 @@ int main(int argc, char **argv)
 		string out = page->read(txt->page,txt->from);
 
 		if (out.length() == 0) {
-			cout << "[E] The page " << pnum << " for " << id << " dont exist." << endl;
-			cout << "[I] You can check if you recieve the " << id << " pages, or if it was burned." << endl;
+			cout << "[E] The page " << pnum << " in the book " << id << " dont exist." << endl;
+			cout << "[I] You can check if you recieved the " << id << " book, or if it was burned." << endl;
 			cout << "[I] Check: otpnitro -l" << endl << endl;
 			exit(1);
 		}
@@ -152,7 +152,7 @@ int main(int argc, char **argv)
 		txt->msg = crypto->decrypt(txt->msg,out);
 
 		// Print MSG
-		txt->print(0);
+		cout << txt->print(0);
 
 		delete txt;
 		delete page;
@@ -175,7 +175,7 @@ int main(int argc, char **argv)
 	if (lst) {
 		Page   * page   = new Page;
 
-		cout << "[I] Available pages:" << endl;
+		cout << "[I] Available books:" << endl;
 		cout << page->list();
 		cout << endl;
 
