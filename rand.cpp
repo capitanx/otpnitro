@@ -14,7 +14,7 @@ srand(this->genSeed());
 #endif
 }
 
-unsigned long Rand::getTicks()
+uint64_t Rand::getTicks()
 {
 // TODO: Find a cpu time/ticks asm inline for ARMv6 and ARMv7
 #ifdef __arm__
@@ -23,7 +23,7 @@ unsigned long Rand::getTicks()
 
 	return usecs.tv_usec;
 #else
-	unsigned long tsc;
+	uint64_t tsc;
 	__asm__ __volatile__(
 			"rdtscp;"
 			"shl $32, %%rdx;"
@@ -45,7 +45,7 @@ void Rand::setSeed(float a)
 #endif
 }
 
-int  Rand::getSeed()
+float Rand::getSeed()
 {
 	return(seed);
 }
@@ -54,7 +54,7 @@ float Rand::genSeed()
 {
 	struct timeval usecs;
 	gettimeofday(&usecs, NULL);
-	seed = (usecs.tv_usec + getpid()) * Rand::getTicks();
+	seed = (usecs.tv_usec + getpid()) ^ (int(Rand::getTicks()) / 100000);
 	return(seed);
 }
 

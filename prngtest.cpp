@@ -10,6 +10,11 @@ int main()
 {
     	int i=0;
 	Rand * rnd = new Rand;
+	cout << "[*] Generating 100 seeds...\t\tseeds.txt" << endl;
+	ofstream fseed ("seeds.txt");
+	for (i=0; i<100; i++)
+		fseed   << rnd->genSeed() << endl;
+	fseed.close();
 
 	cout << "[*] Generating " << LOOPCNT << " chars...\t\tchars.txt" << endl;
 	ofstream fchar ("chars.txt");
