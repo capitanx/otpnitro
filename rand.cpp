@@ -14,7 +14,7 @@ srand(this->genSeed());
 #endif
 }
 
-uint64_t Rand::getTicks()
+uint32_t Rand::getTicks()
 {
 // TODO: Find a cpu time/ticks asm inline for ARMv6 and ARMv7
 #ifdef __arm__
@@ -23,7 +23,7 @@ uint64_t Rand::getTicks()
 
 	return usecs.tv_usec;
 #else
-	uint64_t tsc;
+	uint32_t tsc;
 	__asm__ __volatile__(
 			"rdtscp;"
 			"shl $32, %%rdx;"

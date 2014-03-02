@@ -12,6 +12,7 @@
 #
 
 CXX = clang++
+#CXX = g++
 PACKAGE = otpnitro
 VERSION = 0.1
 

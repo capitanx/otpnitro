@@ -18,7 +18,7 @@ class Rand {
 
 	public:
 		Rand();
-		uint64_t getTicks();
+		uint32_t getTicks();
 		void  setSeed(float);
 		float getSeed();
 		float genSeed();
