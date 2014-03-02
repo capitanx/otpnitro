@@ -9,6 +9,46 @@
 
 using namespace Upp;
 
+struct bookGenDialog : public TopWindow {
+
+	Button		btnGen;
+	Button		btnCancel;
+	EditString	bookId;
+	Label		txtBookGen;
+
+	void DoGen() {
+    	WString id = bookId.GetText();
+
+    	if(id.GetCount() == 0)
+    		PromptOK("Please, this field cannot be empty.");
+    	else
+    	{
+    		Page * page = new Page;
+    		page->generate(id.ToString());
+    		delete page;
+    		Close();
+    	}
+	}
+	
+	void DoClose() {
+    	Close();
+	}
+
+	typedef bookGenDialog CLASSNAME;
+
+	bookGenDialog() {
+    	SetRect(0, 0, 200, 100);
+    	
+    	Add(txtBookGen.SetLabel("Enter Book name (ID):").LeftPos( 10,150).TopPos(10, 25));
+    	Add(bookId.LeftPos(                                       10,180).TopPos(30, 25));
+    	Add(btnCancel.SetLabel( "Cancel").LeftPos(                60, 60).TopPos(65, 25));
+    	Add(btnGen.SetLabel(    "Generate").LeftPos(             130, 60).TopPos(65, 25));
+    	
+    	btnGen    <<= THISBACK(DoGen);
+    	btnCancel <<= THISBACK(DoClose);
+    }
+};
+
 struct otpWindow : TopWindow {
 
     MenuBar		menu;
@@ -20,6 +60,8 @@ struct otpWindow : TopWindow {
     EditIntSpin	page;
     Option		format;
     DocEdit		text;
+    
+    bookGenDialog dlg;
     
     void Exit()
     {
@@ -55,8 +97,9 @@ struct otpWindow : TopWindow {
     }
     
     void Generate()
-    {
-        PromptOK("GENERATE");
+    {	
+		if(!dlg.IsOpen())
+			dlg.Open(this);
     }
     
     void Burn()
@@ -88,11 +131,11 @@ struct otpWindow : TopWindow {
         bar.Add("Decrypt", THISBACK(Decrypt));
     }
     
-    void pagesMenu(Bar& bar)
+    void booksMenu(Bar& bar)
     {
-        bar.Add("List",     THISBACK(List));
-        bar.Add("Generate", THISBACK(Generate));
-        bar.Add("Burn",     THISBACK(Burn));
+        bar.Add("List books",    THISBACK(List));
+        bar.Add("Generate book", THISBACK(Generate));
+        bar.Add("Burn page",     THISBACK(Burn));
     }
     
     void helpMenu(Bar& bar)
@@ -106,7 +149,7 @@ struct otpWindow : TopWindow {
     {
         bar.Add("File",   THISBACK(editMenu));
         bar.Add("Crypto", THISBACK(cryptoMenu));
-        bar.Add("Pages",  THISBACK(pagesMenu));
+        bar.Add("Books",  THISBACK(booksMenu));
         bar.Add("Help",   THISBACK(helpMenu));
     }
 
