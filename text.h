@@ -5,7 +5,7 @@ using namespace std;
 class Text {
 	public:
 		string	msg;
-		string	to;
+		string	book;
 		string	from;
 		int		page;
 

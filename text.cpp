@@ -17,11 +17,11 @@ void   Text::replaceAll(std::string& str, const std::string& from, const std::st
 	}
 }
 
-void Text::create(int page, string from, string to, string msg)
+void Text::create(int page, string book, string from, string msg)
 {
 	this->page = page;
 	this->from = from;
-	this->to   = to;
+	this->book = book;
 	this->msg  = msg;
 }
 
@@ -30,7 +30,7 @@ string Text::print(int spa)
 	std::stringstream sout;
 
 	// Print Header
-	sout << this->to << " DE " << this->from << " " << this->page << " = ";
+	sout << this->book << " DE " << this->from << " " << this->page << " = ";
 
 	// Add spacing and print chars
 	int a = 0;
@@ -58,7 +58,7 @@ void Text::parse(string text)
 
 	// Parse HEAD elements
 	pos1 = head.find(' ');
-	string to = head.substr(0,pos1);
+	string book = head.substr(0,pos1);
 
 	pos2 = head.find(" ",pos1+1);
 	pos1 = head.find(" ",pos2+1);
@@ -71,7 +71,7 @@ void Text::parse(string text)
 	this->replaceAll(msg," ","");
 
 	this->from = from;
-	this->to   = to;
+	this->book = book;
 	this->page = page;
 	this->msg  = msg;
 }

@@ -138,7 +138,7 @@ int main(int argc, char **argv)
 			txt->create(pnum,id,send,msg);
 
 		// Read page X from Book (RECV ID)
-		string out = page->read(txt->page,txt->from);
+		string out = page->read(txt->page,txt->book);
 
 		if (out.length() == 0) {
 			cout << "[E] The page " << pnum << " in the book " << id << " dont exist." << endl;
