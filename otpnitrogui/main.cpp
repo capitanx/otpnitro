@@ -44,10 +44,10 @@ struct bookGenDialog : public TopWindow {
 	bookGenDialog() {
     	SetRect(0, 0, 200, 100);
     	
-    	Add(txtBookGen.SetLabel("Enter Book name (ID):").LeftPos( 10,150).TopPos(10, 25));
+    	Add(txtBookGen.SetLabel("Enter Book name (ID):").LeftPos( 10,180).TopPos(10, 25));
     	Add(bookId.LeftPos(                                       10,180).TopPos(30, 25));
-    	Add(btnCancel.SetLabel( "Cancel").LeftPos(                60, 60).TopPos(65, 25));
-    	Add(btnGen.SetLabel(    "Generate").LeftPos(             130, 60).TopPos(65, 25));
+    	Add(btnCancel.SetLabel( "Cancel").LeftPos(                35, 75).TopPos(65, 25));
+    	Add(btnGen.SetLabel(    "Generate").LeftPos(             115, 75).TopPos(65, 25));
     	
     	btnGen    <<= THISBACK(DoGen);
     	btnCancel <<= THISBACK(DoClose);
@@ -423,13 +423,13 @@ struct otpWindow : TopWindow {
         menu.Set(THISBACK(MainMenu));
         
         *this
-        	<< lbBook.LeftPos( 10, 50).TopPos(10, 25)
-        	<< book.LeftPos(   60, 50).TopPos(10, 25)
-        	<< lbFrom.LeftPos(130, 50).TopPos(10, 25)
-        	<< from.LeftPos(  180, 50).TopPos(10, 25)
-        	<< lbPage.LeftPos(250, 50).TopPos(10, 25)
-        	<< pagen.LeftPos( 300, 50).TopPos(10, 25)
-        	<< format.LeftPos(400,105).TopPos(10, 25)
+        	<< lbBook.LeftPos( 10, 60).TopPos(10, 25)
+        	<< book.LeftPos(   65, 60).TopPos(10, 25)
+        	<< lbFrom.LeftPos(135, 60).TopPos(10, 25)
+        	<< from.LeftPos(  185, 60).TopPos(10, 25)
+        	<< lbPage.LeftPos(255, 60).TopPos(10, 25)
+        	<< pagen.LeftPos( 305, 60).TopPos(10, 25)
+        	<< format.LeftPos(400,195).TopPos(10, 25)
             << text.LeftPos(    0,600).TopPos(50, 300)
         ;
         
