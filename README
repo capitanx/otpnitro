@@ -67,72 +67,90 @@ GUI Usage
 ---------
 
 1. Introduction
-OTPNITRO is a secure One Time Pad implementation to use on computers or as assistant on manual operation.
+
+	OTPNITRO is a secure One Time Pad implementation to use on computers or as assistant on manual operation.
 
 
 2. Concepts
-In this chapter we describe the basic concepts to use in this app.
 
-2.1 Books
-The cypher data is stored on books, every book have "pages" where the data is generated. The books usually have very short names, from 3 to 5 characters.
+	In this chapter we describe the basic concepts to use in this app.
 
-2.2 Pages
-The pages store the cypher to crypt and decrypt, every page is unique and after use it you must burn the used page.
+	2.1 Books
 
-2.3 From field
-The recipient is anyone who have the same book than you used to crypt the message and you must identify yourself as sender in the from field. The IDs usually have very short names, from 3 to 5 characters.
+	The cypher data is stored on books, every book have "pages" where the data is generated. The books usually have very short names, from 3 to 5 characters.
 
-2.4 Formatted message
-To have a send/receive standar format, please use this one::
+	2.2 Pages
 
-	<BOOK> DE <FROM> <PAGE> = <MESSAGE> =
+	The pages store the cypher to crypt and decrypt, every page is unique and after use it you must burn the used page.
 
-Example::
+	2.3 From field
 
-	TST DE CPX 2 = QSZBO IGFIY NVTVY BFXCB KROAP =
+	The recipient is anyone who have the same book than you used to crypt the message and you must identify yourself as sender in the from field. The IDs usually have very short names, from 3 to 5 characters.
+
+	2.4 Formatted message
+
+	To have a send/receive standar format, please use this one::
+
+		<BOOK> DE <FROM> <PAGE> = <MESSAGE> =
+
+	Example::
+
+		TST DE CPX 2 = QSZBO IGFIY NVTVY BFXCB KROAP =
 
 
 3. Operations
-In this chapter we describe the basic operations.
 
-3.1 Generate a book
-The first operation is generate a book, to do this, please use the menu: Books -> Generate Book or press CTRL + G keys.
+	In this chapter we describe the basic operations.
 
-3.2 Crypt
-To crypt a message you must provide a valid book in the selector, an arbitrary ID in the form field and a message unformated to crypt. The page will be selected automatically.
-Later you must use the menu: Crypto -> Crypt or press CTRL + E keys.
+	3.1 Generate a book
 
-3.3 Decrypt
-To decrypt a message you can provide a formatted message, in this case you only must select the "Formatted msg" option. If you dont have the format, you can enter all fields manually.
-Later you must use the menu: Crypto -> Decrypt or press CTRL + D keys.
+	The first operation is generate a book, to do this, please use the menu: Books -> Generate Book or press CTRL + G keys.
 
-3.4 Burn page
-It is recommended to burn the page after use, but if you want to do this manually  (or later) you can use the menu: Crypto -> Burn page or press CTRL + B keys.
+	3.2 Crypt
 
-3.5 Refresh books
-If you modify or delete any book in the filesystem you must refresh the books in the app. To do that you can use the menu: Crypto -> Refresh books or press CTRL + R keys.
+	To crypt a message you must provide a valid book in the selector, an arbitrary ID in the form field and a message unformated to crypt. The page will be selected automatically.
+	Later you must use the menu: Crypto -> Crypt or press CTRL + E keys.
+
+	3.3 Decrypt
+
+	To decrypt a message you can provide a formatted message, in this case you only must select the "Formatted msg" option. If you dont have the format, you can enter all fields manually.
+	Later you must use the menu: Crypto -> Decrypt or press CTRL + D keys.
+
+	3.4 Burn page
+
+	It is recommended to burn the page after use, but if you want to do this manually  (or later) you can use the menu: Crypto -> Burn page or press CTRL + B keys.
+
+	3.5 Refresh books
+
+	If you modify or delete any book in the filesystem you must refresh the books in the app. To do that you can use the menu: Crypto -> Refresh books or press CTRL + R keys.
 
 
 4. Internals
-In this chapter we describe internal operations, know bugs or missing features.
 
-4.1 Book storing
-At this moment the books will be stored in the execution path under the "PAGES" folder, in next updates we must provide an configuration file to specify a fixed path.
+	In this chapter we describe internal operations, know bugs or missing features.
 
-4.2 Project URL
-For more information, updates, etc. you can visit the project homepage.
+	4.1 Book storing
+
+	At this moment the books will be stored in the execution path under the "PAGES" folder, in next updates we must provide an configuration file to specify a fixed path.
+
+	4.2 Project URL
+
+	For more information, updates, etc. you can visit the project homepage.
 
 
 5. License
-This program is under the GPLv3 license.
+
+	This program is under the GPLv3 license.
 
 
 6. Authors
-@capi_x <capi_x@haibane.org>
+
+	@capi_x <capi_x@haibane.org>
 
 
 7. Acknowledges
-@Mario_vilas - Thanks for crypto and GUI testing.
+
+	@Mario_vilas - Thanks for crypto and GUI testing.
 
 
 Features
