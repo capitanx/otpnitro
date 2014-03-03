@@ -20,18 +20,17 @@ unsigned long Rand::getTicks()
 #ifdef __arm__
 	struct timeval usecs;
 	gettimeofday(&usecs, NULL);
-
 	return usecs.tv_usec;
 #else
+	unsigned int hi,lo;
 	unsigned long tsc;
-	__asm__ __volatile__(
-			"rdtsc;"
-			"shl $32, %%rdx;"
-			"or %%rdx, %%rax"
-			: "=a"(tsc)
-			:
-			: "%rcx", "%rdx"
-	);
+	asm volatile (
+			"cpuid \n"
+			"rdtsc"
+			: "=a"(lo), "=d"(hi)
+			: "a"(0)
+			: "%ebx", "%ecx");
+	tsc = ((unsigned long)lo) | (((unsigned long)hi) << 32);
 	return tsc;
 #endif
 }
