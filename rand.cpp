@@ -25,7 +25,7 @@ unsigned long Rand::getTicks()
 #else
 	unsigned long tsc;
 	__asm__ __volatile__(
-			"rdtscp;"
+			"rdtsc;"
 			"shl $32, %%rdx;"
 			"or %%rdx, %%rax"
 			: "=a"(tsc)
