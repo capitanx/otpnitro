@@ -1,0 +1,26 @@
+5556 ICON "otpnitro.ico"
+
+1 VERSIONINFO
+FILEVERSION     0,1,1,1
+PRODUCTVERSION  0,1,1,1
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "080904E4"
+    BEGIN
+      VALUE "CompanyName", "Haibane.org"
+      VALUE "FileDescription", "OTPNitro"
+      VALUE "FileVersion", "0.1"
+      VALUE "InternalName", "OTPNitro"
+      VALUE "LegalCopyright", "OTPNitro 2013-2014 (c) capi_x <capi_x@haibane.org>"
+      VALUE "OriginalFilename", "otpnitrogui.exe"
+      VALUE "ProductName", "OTPNitro"
+      VALUE "ProductVersion", "1.0"
+    END
+  END
+
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x809, 1252
+  END
+END

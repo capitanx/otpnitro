@@ -11,6 +11,7 @@ link(!WIN32) "-L/usr/lib -Wl,--gc-sections -lotpnitro";
 
 file
 	otpnitrogui.h,
+	otpnitrogui.rc,
 	icons.iml,
 	help.tpp,
 	main.cpp;
