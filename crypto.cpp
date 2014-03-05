@@ -20,20 +20,35 @@ string Crypto::encrypt(string in, string out)
 	// To upper :-)
 	transform(in.begin(), in.end(), in.begin(), ::toupper);
 
-	// Replace spaces to XX char
-	this->replaceAll(in," ","XX");
+	// Replace spaces to JQ char
+	this->replaceAll(in," ","JQ");
+	
+	// Remove newlines
+	this->replaceAll(in,"\n","");
+	this->replaceAll(in,"\r","");
 	string crypted;
 
 	// Add padding to complete the spacing
 	if (in.length() % SPACING != 0) {
 		int extra = SPACING - in.length() % SPACING;
 		for (int i = 0; i < extra; i++)
-			in.append(1,'X');
+		{
+			if ((extra - i) > 1) {
+				in.append(1,'J');
+				i++;
+				in.append(1,'Q');
+			} else {
+				in.append(1,'X');
+			}
+		}
 	}
 
 	// Crypted modulo sum(26) from in + otp
 	for (unsigned int i = 0; i<in.length(); i++)
-		crypted.append(1,(char)(((in[i] + out[i] + 1) % 26) + 0x41));
+		if (in[i] <= 0x5A && in[i] >= 0x41)
+			crypted.append(1,(char)(((in[i] + out[i] + 1) % 26) + 0x41));
+		else
+			crypted.append(1,(char)((('X' + out[i] + 1) % 26) + 0x41));
 
 	return crypted;
 }
@@ -48,8 +63,8 @@ string Crypto::decrypt(string crypted, string out)
 	for (unsigned int i = 0; i<crypted.length(); i++)
 		decrypted.append(1,(char)(((crypted[i] - out[i] - 1 + 26) % 26) + 0x41));
 
-	// Replace "XX" to spaces
-	this->replaceAll(decrypted, "XX", " ");
+	// Replace "JQ" to spaces
+	this->replaceAll(decrypted, "JQ", " ");
 
 	return decrypted;
 }

@@ -69,6 +69,8 @@ void Text::parse(string text)
 
 	// Remove spaces on msg
 	this->replaceAll(msg," ","");
+	this->replaceAll(msg,"\r","");
+	this->replaceAll(msg,"\n","");
 
 	this->from = from;
 	this->book = book;
