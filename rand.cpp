@@ -53,7 +53,7 @@ float Rand::genSeed()
 {
 	struct timeval usecs;
 	gettimeofday(&usecs, NULL);
-	seed = (usecs.tv_usec + getpid()) ^ (int(Rand::getTicks()) / 100000);
+	seed = (float)( (usecs.tv_usec + getpid()) ^ (int(Rand::getTicks()) << 16) / 10000 );
 	return(seed);
 }
 
