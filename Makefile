@@ -16,6 +16,9 @@ CXX = clang++
 PACKAGE = otpnitro
 VERSION = 0.1
 
+CPPFLAGS = -O3 -Wall -Wextra -pedantic -I.
+#CPPFLAGS += -DDEBUG
+
 ifdef SystemRoot
 	RM = del /Q otpnitro.exe otpnitro.wixobj otpnitro.wixpdb otpnitro.msi
 	LIBNAME = otpnitro.dll
@@ -25,11 +28,10 @@ else
 	RM = rm -f otpnitro
 	LIBNAME = libotpnitro.so
 	EXTRAS  =
+	CPPFLAGS += -fPIC
 	INSTALL = cp -f otpnitro /usr/bin && cp -f libotpnitro.so /usr/lib
 endif
 
-CPPFLAGS = -O3 -Wall -Wextra -pedantic -I. -fPIC
-#CPPFLAGS += -DDEBUG
 MODULES  = rand.o page.o crypto.o text.o
 
 Debug: all

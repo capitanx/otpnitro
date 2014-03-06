@@ -30,7 +30,7 @@ unsigned long Rand::getTicks()
 			: "=a"(lo), "=d"(hi)
 			: "a"(0)
 			: "%ebx", "%ecx");
-	tsc = ((unsigned long)lo) | (((unsigned long)hi) << 32);
+	tsc = (unsigned long)lo;
 	return tsc;
 #endif
 }
