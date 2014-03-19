@@ -30,7 +30,7 @@ struct bookGenDialog : public TopWindow {
     	{
     		Page * page = new Page;
     		page->generate(id.ToString());
-    		delete page;    		
+    		delete page;
     		Close();
     	}
 	}
@@ -127,8 +127,60 @@ struct aboutDialog : public TopWindow {
     	Add(logo.SetImage(icons::main_icon_48).LeftPos(280,58).TopPos( 15,58));
     	Add(text.LeftPos(                              20,380).TopPos(30,280));
 
-		text.SetData("_____[6 OTP[5/ NITRO]]__v0.1&&Is a secure One Time Pad implementation to use on computers or as assistant on manual operations.&&This project is licensed under the [^http://www.gnu.org/licenses/gpl-3.0.html^ GPLv3] license. More information in the [^https://code.haibane.org/crypto/otpnitro^ project page].&&2013-2014 (c) [^mailto:capi_x@haibane.org^ capi\_x@haibane.org]");
+		text.SetData("_____[6 OTP[5/ NITRO]]__v0.1&&Is a secure One Time Pad implementation to use on computers or as assistant on manual operations.&&This project is licensed under the [^http://www.gnu.org/licenses/gpl-3.0.html^ GPLv3] license. More information in the [^https://code.haibane.org/crypto/otpnitro^ project page].&&2013-2014 (c) [^mailto:capi_x@haibane.org^ capi_x@haibane.org]");
     }
+};
+
+struct encodeDialog : public TopWindow {
+	
+	Button	btnEncode, btnDecode;
+	Label	lbEncode,  lbDecode;
+	DocEdit	encode,    decode;
+
+	void DoEncode() {
+		Text * txt = new Text;
+		
+		string msgEnc = txt->encodeB26((unsigned char *)decode.Get().Begin(),(long)decode.Get().GetCount());
+        encode.Set(msgEnc);
+        
+        delete txt;
+	}
+	
+	void DoDecode() {
+		Text * txt = new Text;
+		
+		int decLen = encode.Get().GetCount() / 2;
+		unsigned char * msgDec = new unsigned char[decLen];
+		
+		txt->decodeB26( msgDec, encode.Get().ToString() );
+		string msgDecStr((char *)msgDec, decLen);
+		decode.Set(msgDecStr);
+
+        delete txt;
+        delete[] msgDec;
+	}
+
+	void DoClose() {
+    	Close();
+	}
+
+	typedef encodeDialog CLASSNAME;
+
+	encodeDialog() {
+    	SetRect(0, 0, 800, 400);
+    	
+    	Add(btnEncode.SetLabel("Encode").LeftPos( 20,380).TopPos(340,40));
+    	Add(btnDecode.SetLabel("Decode").LeftPos(400,380).TopPos(340,40));
+    	
+    	Add(lbDecode.SetLabel("Decoded data:").LeftPos( 20,380).TopPos(20,20));
+    	Add(lbEncode.SetLabel("Encoded data:").LeftPos(400,380).TopPos(20,20));
+    	
+    	Add(decode.LeftPos( 20,380).TopPos(40,280));
+    	Add(encode.LeftPos(400,380).TopPos(40,280));
+    	
+    	btnEncode <<= THISBACK(DoEncode);
+    	btnDecode <<= THISBACK(DoDecode);
+	}
 };
 
 struct otpWindow : TopWindow {
@@ -146,6 +198,7 @@ struct otpWindow : TopWindow {
     bookGenDialog	dlgBook;
     aboutDialog		dlgAbout;
     burnDialog		dlgBurn;
+    encodeDialog	dlgEncode;
     
     void refreshBooks()
     {
@@ -318,6 +371,17 @@ struct otpWindow : TopWindow {
         delete crypto;
     }
     
+    void Encode()
+    {	
+		if(!dlgEncode.IsOpen()) {
+			
+			dlgEncode.encode.Clear();
+			dlgEncode.decode.Clear();
+			
+			dlgEncode.Open(this);
+		}
+    }
+    
     void List()
     {
 		refreshBooks();
@@ -389,8 +453,9 @@ struct otpWindow : TopWindow {
     
     void cryptoMenu(Bar& bar)
     {
-        bar.Add("Crypt",   THISBACK(Crypt)).Image(icons::crypt).Key(K_CTRL_E);
-        bar.Add("Decrypt", THISBACK(Decrypt)).Image(icons::decrypt).Key(K_CTRL_D);
+        bar.Add("Crypt",    THISBACK(Crypt)).Image(icons::crypt).Key(K_CTRL_E);
+        bar.Add("Decrypt",  THISBACK(Decrypt)).Image(icons::decrypt).Key(K_CTRL_D);
+        bar.Add("Encode",   THISBACK(Encode)).Image(icons::encode).Key(K_CTRL_N);
     }
     
     void booksMenu(Bar& bar)
@@ -446,6 +511,8 @@ struct otpWindow : TopWindow {
 		dlgBurn.Title("Burn page");
 		dlgAbout.Icon(icons::main_icon_16);
 		dlgAbout.Title("About");
+		dlgEncode.Icon(icons::encode);
+		dlgEncode.Title("Encode and Decode text");
 		refreshBooks();
     }
 };

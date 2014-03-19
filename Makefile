@@ -17,6 +17,8 @@ PACKAGE = otpnitro
 VERSION = 0.1
 
 CPPFLAGS = -O3 -Wall -Wextra -pedantic -I.
+#CPPFLAGS += -ggdb
+#CPPFLAGS += --analyze
 #CPPFLAGS += -DDEBUG
 
 ifdef SystemRoot
@@ -54,3 +56,6 @@ install:
 
 clean:
 	$(RM) $(MODULES) $(LIBNAME)
+
+scan-build:
+	scan-build -v -o /tmp/otpnitro gmake

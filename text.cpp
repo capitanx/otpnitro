@@ -77,3 +77,30 @@ void Text::parse(string text)
 	this->page = page;
 	this->msg  = msg;
 }
+
+string Text::encodeB26(unsigned char * text, long len)
+{
+	string output;
+
+	for(int i = 0; i<len; i++) {
+		output.push_back(int(text[i] / 26) + 0x41);
+		output.push_back((text[i] % 26)    + 0x41);
+	}
+
+	return output;
+}
+
+void Text::decodeB26(unsigned char * output, string text)
+{
+	unsigned char current = 0x00;
+
+	int a = 0;
+	for(unsigned long i = 1; i<text.length(); i+=2) {
+		current =  int((int(text[i-1]) - 0x41) * 26);
+		current += int((text[i] - 0x41) % 26);
+		output[a] = current;
+		a++;
+	}
+
+	return;
+}
