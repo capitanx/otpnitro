@@ -34,7 +34,7 @@ else
 	INSTALL = cp -f otpnitro /usr/bin && cp -f libotpnitro.so /usr/lib
 endif
 
-MODULES  = rand.o page.o crypto.o text.o
+MODULES  = rand.o page.o crypto.o text.o config.o
 
 Debug: all
 

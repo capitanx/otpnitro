@@ -15,15 +15,20 @@
 using namespace std;
 
 class Page {
+		char	REL_PATH[MAX_PATH];
+		int		MAX_CHARS;
+		int		MAX_PAGES;
     	string	dirPath(string);
     	string	filePath(int, string);
+
 	public:
-		bool   generate(string);
-		bool   write(int, string, string);
-		int    next(string);
-		bool   burn(int,string);
-		string read(int, string);
-		string get();
-		string list();
+				Page(void);
+		bool	generate(string);
+		bool	write(int, string, string);
+		int		next(string);
+		bool	burn(int,string);
+		string	read(int, string);
+		string	get();
+		string	list();
 };
 

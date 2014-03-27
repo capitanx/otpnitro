@@ -1,10 +1,18 @@
 #include <iostream>
 
 #include "page.h"
+#include "config.h"
 #include "otpnitro.h"
 
 using namespace std;
 
+Page::Page(void)
+{
+	Config * cfg = new Config;
+	strncpy(REL_PATH, cfg->getPath(), MAX_PATH - 1);
+	MAX_PAGES	= cfg->getPages();
+	MAX_CHARS	= cfg->getChars();
+}
 
 string	Page::dirPath(string id)
 {

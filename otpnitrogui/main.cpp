@@ -10,6 +10,7 @@
 #include "../crypto.h"
 #include "../page.h"
 #include "../text.h"
+#include "../config.h"
 #include "../otpnitro.h"
 
 using namespace Upp;
@@ -183,6 +184,64 @@ struct encodeDialog : public TopWindow {
 	}
 };
 
+struct settingsDialog : public TopWindow {
+	
+	Button		btnSave, btnCancel;
+	Label		lbPath,  lbPages,  lbChars;
+	EditString	esPath;
+	EditIntSpin	esPages, esChars;
+
+	void DoSave() {
+		Config * cfg = new Config;
+		
+		std::string path = esPath.GetText().ToString();
+    	cfg->setPath((char *)path.c_str());
+    	cfg->setPages(esPages.GetData());
+    	cfg->setChars(esChars.GetData());
+    	
+    	cfg->saveConfig();
+
+		delete cfg;
+		
+		PromptOK("Settings updated");
+		
+		Close();
+	}
+	
+	void DoCancel() {
+    	Close();
+	}
+
+	typedef settingsDialog CLASSNAME;
+
+	settingsDialog() {
+    	SetRect(0, 0, 320, 270);
+    	
+    	Add(lbPath.SetLabel("Books path").LeftPos(         20,280).TopPos(10,40));
+    	Add(lbPages.SetLabel("Max pages per book").LeftPos(20,280).TopPos(70,40));
+    	Add(lbChars.SetLabel("Max chars per page").LeftPos(20,280).TopPos(130,40));
+    	
+    	Add(esPath.LeftPos( 20,280).TopPos( 50,20));
+    	Add(esPages.LeftPos(20,280).TopPos(110,20));
+    	Add(esChars.LeftPos(20,280).TopPos(170,20));
+    	
+    	Add(btnSave.SetLabel("Save").LeftPos(     80,60).TopPos(220,25));
+    	Add(btnCancel.SetLabel("Cancel").LeftPos(160,60).TopPos(220,25));
+    	
+    	btnSave   <<= THISBACK(DoSave);
+    	btnCancel <<= THISBACK(DoCancel);
+    	
+    	
+    	Config * cfg = new Config;
+    	
+    	esPath.SetText(cfg->getPath());
+    	esPages.SetData(cfg->getPages());
+    	esChars.SetData(cfg->getChars());
+    	
+    	delete cfg;
+	}
+};
+
 struct otpWindow : TopWindow {
 
     MenuBar		menu;
@@ -199,6 +258,7 @@ struct otpWindow : TopWindow {
     aboutDialog		dlgAbout;
     burnDialog		dlgBurn;
     encodeDialog	dlgEncode;
+    settingsDialog	dlgSettings;
     
     void refreshBooks()
     {
@@ -428,6 +488,12 @@ struct otpWindow : TopWindow {
         file.Close();
     }
     
+    void Settings()
+    {
+        if(!dlgSettings.IsOpen())
+			dlgSettings.Open(this);
+    }
+    
 	void FormatOpt()
     {
         if (format.GetData() == 0) {
@@ -443,12 +509,14 @@ struct otpWindow : TopWindow {
     
     void editMenu(Bar& bar)
     {
-        bar.Add("Clear", THISBACK(Clear)).Image(icons::clear).Key(K_CTRL_K);
+        bar.Add("Clear",    THISBACK(Clear)).Image(icons::clear).Key(K_CTRL_K);
         bar.Separator();
-        bar.Add("Open", THISBACK(Open)).Image(icons::open).Key(K_CTRL_O);
-		bar.Add("Save", THISBACK(Save)).Image(icons::save).Key(K_CTRL_S);
+        bar.Add("Open",     THISBACK(Open)).Image(icons::open).Key(K_CTRL_O);
+		bar.Add("Save",     THISBACK(Save)).Image(icons::save).Key(K_CTRL_S);
 		bar.Separator();
-        bar.Add("Exit", THISBACK(Exit)).Image(icons::exit).Key(K_CTRL_Q);
+		bar.Add("Settings", THISBACK(Settings)).Image(icons::config).Key(K_CTRL_T);
+		bar.Separator();
+        bar.Add("Exit",     THISBACK(Exit)).Image(icons::exit).Key(K_CTRL_Q);
     }
     
     void cryptoMenu(Bar& bar)
@@ -513,6 +581,8 @@ struct otpWindow : TopWindow {
 		dlgAbout.Title("About");
 		dlgEncode.Icon(icons::encode);
 		dlgEncode.Title("Encode and Decode text");
+		dlgSettings.Icon(icons::config);
+		dlgSettings.Title("Settings");
 		refreshBooks();
     }
 };
