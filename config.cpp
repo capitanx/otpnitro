@@ -16,10 +16,14 @@ Config::Config(void)
 	// Unix and windows path
 #ifdef __unix__
 	string cfgPath = getenv("HOME");
-	cfgPath.append("/.otpnitro/otpnitro.ini");
+	cfgPath.append("/.otpnitro");
+	mkdir(cfgPath.c_str(), S_IRWXU|S_IRGRP|S_IXGRP);
+	cfgPath.append("/otpnitro.ini");
 #else
 	string cfgPath = getenv("APPDATA");
-	cfgPath.append("\\otpnitro\\otpnitro.ini");
+	cfgPath.append("\\otpnitro");
+	mkdir(cfgPath.c_str());
+	cfgPath.append("\\otpnitro.ini");
 #endif
 
 	// Open file
