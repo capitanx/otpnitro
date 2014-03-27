@@ -5,7 +5,7 @@ OTP Nitro
 
 About
 -----
-	``OTP Nitro`` is a secure `One Time Pad`_ implementation to use on computers or as assistant on manual operations.
+``OTP Nitro`` is a secure `One Time Pad`_ implementation to use on computers or as assistant on manual operations.
 
 
 CLI Usage
@@ -53,13 +53,11 @@ GUI Usage
 ---------
 
 1. Introduction
-
-	OTPNITRO is a secure One Time Pad implementation to use on computers or as assistant on manual operation.
+OTPNITRO is a secure One Time Pad implementation to use on computers or as assistant on manual operation.
 
 
 2. Concepts
-
-	In this chapter we describe the basic concepts to use in this app.
+In this chapter we describe the basic concepts to use in this app.
 
 	2.1 Books
 
@@ -85,8 +83,7 @@ GUI Usage
 
 
 3. Operations
-
-	In this chapter we describe the basic operations.
+In this chapter we describe the basic operations.
 
 	3.1 Generate a book
 
@@ -112,8 +109,7 @@ GUI Usage
 
 
 4. Internals
-
-	In this chapter we describe internal operations, know bugs or missing features.
+In this chapter we describe internal operations, know bugs or missing features.
 
 	4.1 Settings
 
@@ -137,17 +133,14 @@ GUI Usage
 
 
 5. License
-
-	This program is under the GPLv3 license.
+This program is under the GPLv3 license.
 
 
 6. Authors
-
 * `@capi_x`_ <capi_x@haibane.org>
 
 
 7. Acknowledges
-
 * `@Mario_vilas`_ - Thanks for crypto and GUI testing.
 * `@sha0coder`_   - Thanks for CLI and GUI testing.
 
@@ -167,32 +160,31 @@ Install::
 
 GUI compile guide 
 -----------------
+First you must install the `U++ enviroment`_. Once installed you must add the otpnitrogui project. (Windows users also must install MinGW_)
 
-	First you must install the `U++ enviroment`_. Once installed you must add the otpnitrogui project. (Windows users also must install MinGW_)
+.. image:: http://www.haibane.org/files/otp00.png
 
-	.. image:: http://www.haibane.org/files/otp00.png
+Next you must put the otpnitro path in the package textbox.
 
-	Next you must put the otpnitro path in the package textbox.
+.. image:: http://www.haibane.org/files/otp01.png
 
-	.. image:: http://www.haibane.org/files/otp01.png
+Click on the output mode button.
 
-	Click on the output mode button.
+.. image:: http://www.haibane.org/files/otp02.png
 
-	.. image:: http://www.haibane.org/files/otp02.png
+Fill all settings as in the image.
 
-	Fill all settings as in the image.
+.. image:: http://www.haibane.org/files/otp03.png
 
-	.. image:: http://www.haibane.org/files/otp03.png
+Next select "Build methods" menu
 
-	Next select "Build methods" menu
+.. image:: http://www.haibane.org/files/otp04.png
 
-	.. image:: http://www.haibane.org/files/otp04.png
+Again fill all options and add the otpnitro path to "lib directories"
 
-	Again fill all options and add the otpnitro path to "lib directories"
+.. image:: http://www.haibane.org/files/otp05.png
 
-	.. image:: http://www.haibane.org/files/otp05.png
-
-	Ok, you can build all now pressing the F7 key. 
+Ok, you can build all now pressing the F7 key. 
 
 
 Features
@@ -207,7 +199,7 @@ Features
 
 TODO
 ----
-* Automatic file parse
+* Automatic file parse daemon
 * Print pages
 
 
