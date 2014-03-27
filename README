@@ -2,20 +2,10 @@
 OTP Nitro
 =========
 
+
 About
 -----
-``OTP Nitro`` is a secure `One Time Pad`_ implementation to use on computers or
-as assistant on manual operations.
-
-CLI Installation
-----------------
-Compile::
-
-	make
-	
-Install::
-
-	make install
+	``OTP Nitro`` is a secure `One Time Pad`_ implementation to use on computers or as assistant on manual operations.
 
 
 CLI Usage
@@ -58,10 +48,6 @@ CLI Usage
 	-------------
 	[I] Burn page 11. OK
 
-
-GUI Installation
-----------------
-* WIP
 
 GUI Usage
 ---------
@@ -129,13 +115,25 @@ GUI Usage
 
 	In this chapter we describe internal operations, know bugs or missing features.
 
-	4.1 Book storing
+	4.1 Settings
 
-	At this moment the books will be stored in the execution path under the "PAGES" folder, in next updates we must provide an configuration file to specify a fixed path.
+	The settings/config file must be located on %APPDATA%/.otpnitro/otpnitro.ini or $HOME/.otpnitro/otpnitro.ini
 
-	4.2 Project URL
+	4.2 Book storing
 
-	For more information, updates, etc. you can visit the project homepage.
+	By default the books are stored on %APPDATA%/.otpnitro/PAGES or $HOME/.otpnitro/PAGES (this can be changed in the config file)
+
+	4.3 Max pages parameter
+
+	Is the number of pages generated for book. (this value limits the number of messages to be crypted on a book)
+
+	4.4 Max chars parameter
+
+	Is the number of characters generated for page. (this value limits the number of text to be crypted)
+
+	4.5 Project URL
+
+	For more information, updates, etc. you can visit the project homepage_.
 
 
 5. License
@@ -145,12 +143,56 @@ GUI Usage
 
 6. Authors
 
-	@capi_x <capi_x@haibane.org>
+* `@capi_x`_ <capi_x@haibane.org>
 
 
 7. Acknowledges
 
-	@Mario_vilas - Thanks for crypto and GUI testing.
+* `@Mario_vilas`_ - Thanks for crypto and GUI testing.
+* `@sha0coder`_   - Thanks for CLI and GUI testing.
+
+
+CLI compile guide
+-----------------
+Compile::
+
+	vi Makefile
+	[ Edit your compiler clang/gcc ]
+	make
+	
+Install::
+
+	make install
+
+
+GUI compile guide 
+-----------------
+
+	First you must install the `U++ enviroment`_. Once installed you must add the otpnitrogui project. (Windows users also must install MinGW_)
+
+	.. image:: http://www.haibane.org/files/otp00.png
+
+	Next you must put the otpnitro path in the package textbox.
+
+	.. image:: http://www.haibane.org/files/otp01.png
+
+	Click on the output mode button.
+
+	.. image:: http://www.haibane.org/files/otp02.png
+
+	Fill all settings as in the image.
+
+	.. image:: http://www.haibane.org/files/otp03.png
+
+	Next select "Build methods" menu
+
+	.. image:: http://www.haibane.org/files/otp04.png
+
+	Again fill all options and add the otpnitro path to "lib directories"
+
+	.. image:: http://www.haibane.org/files/otp05.png
+
+	Ok, you can build all now pressing the F7 key. 
 
 
 Features
@@ -160,16 +202,27 @@ Features
 * Decrypt messages
 * Burn pages (secure delete)
 * Automatic text format
-* GUI using Utimate++
+* GUI using `Ultimate++`_
+
 
 TODO
 ----
 * Automatic file parse
 * Print pages
 
+
 License
 -------
 ``OTP Nitro`` is released under the GPLv3_ license.
 
+
+
 .. _`One Time Pad`: https://en.wikipedia.org/wiki/One-time_pad
+.. _`@capi_x`: https://twitter.com/capi_x
+.. _`@Mario_vilas`: https://twitter.com/mario_vilas
+.. _`@sha0coder`: https://twitter.com/sha0coder
+.. _MinGW: http://sourceforge.net/projects/mingw/files/
+.. _`Ultimate++`: http://www.ultimatepp.org
+.. _`U++ enviroment`: http://www.ultimatepp.org/www$uppweb$download$en-us.html
+.. _homepage: https://code.haibane.org/crypto/otpnitro
 .. _GPLv3: http://www.gnu.org/licenses/gpl-3.0.txt

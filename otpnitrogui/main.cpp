@@ -128,7 +128,7 @@ struct aboutDialog : public TopWindow {
     	Add(logo.SetImage(icons::main_icon_48).LeftPos(280,58).TopPos( 15,58));
     	Add(text.LeftPos(                              20,380).TopPos(30,280));
 
-		text.SetData("_____[6 OTP[5/ NITRO]]__v0.1&&Is a secure One Time Pad implementation to use on computers or as assistant on manual operations.&&This project is licensed under the [^http://www.gnu.org/licenses/gpl-3.0.html^ GPLv3] license. More information in the [^https://code.haibane.org/crypto/otpnitro^ project page].&&2013-2014 (c) [^mailto:capi_x@haibane.org^ capi_x@haibane.org]");
+		text.SetData("_____[6 OTP[5/ NITRO]]__v0.2&&Is a secure One Time Pad implementation to use on computers or as assistant on manual operations.&&This project is licensed under the [^http://www.gnu.org/licenses/gpl-3.0.html^ GPLv3] license. More information in the [^https://code.haibane.org/crypto/otpnitro^ project page].&&2013-2014 (c) [^mailto:capi_x@haibane.org^ capi_x@haibane.org]");
     }
 };
 
@@ -186,7 +186,7 @@ struct encodeDialog : public TopWindow {
 
 struct settingsDialog : public TopWindow {
 	
-	Button		btnSave, btnCancel;
+	Button		btnSave, btnCancel, btnFile;
 	Label		lbPath,  lbPages,  lbChars;
 	EditString	esPath;
 	EditIntSpin	esPages, esChars;
@@ -208,6 +208,16 @@ struct settingsDialog : public TopWindow {
 		Close();
 	}
 	
+	void DoFile() {
+		FileSel	fs;
+        fs.Type("Pages storage folder", "");
+        if (fs.ExecuteSelectDir()) {	        
+	        string seldir = fs.Get();
+	        seldir.append("/");
+			esPath.SetText(seldir);
+        }
+	}
+	
 	void DoCancel() {
     	Close();
 	}
@@ -217,48 +227,45 @@ struct settingsDialog : public TopWindow {
 	settingsDialog() {
     	SetRect(0, 0, 320, 270);
     	
-    	Add(lbPath.SetLabel("Books path").LeftPos(         20,280).TopPos(10,40));
-    	Add(lbPages.SetLabel("Max pages per book").LeftPos(20,280).TopPos(70,40));
-    	Add(lbChars.SetLabel("Max chars per page").LeftPos(20,280).TopPos(130,40));
+    	Add(lbPath.SetLabel("Books path").LeftPos(         20,280).TopPos( 15,40));
+    	Add(lbPages.SetLabel("Max pages per book").LeftPos(20,280).TopPos( 75,40));
+    	Add(lbChars.SetLabel("Max chars per page").LeftPos(20,280).TopPos(135,40));
     	
-    	Add(esPath.LeftPos( 20,280).TopPos( 50,20));
+    	Add(esPath.LeftPos( 20,250).TopPos( 50,20));
     	Add(esPages.LeftPos(20,280).TopPos(110,20));
     	Add(esChars.LeftPos(20,280).TopPos(170,20));
     	
-    	Add(btnSave.SetLabel("Save").LeftPos(     80,60).TopPos(220,25));
-    	Add(btnCancel.SetLabel("Cancel").LeftPos(160,60).TopPos(220,25));
+    	Add(btnFile.SetImage(icons::open).LeftPos(280,20).TopPos( 50,20));
+    	Add(btnSave.SetLabel("Save").LeftPos(      90,60).TopPos(220,25));
+		Add(btnCancel.SetLabel("Cancel").LeftPos( 170,60).TopPos(220,25));
     	
+    	btnFile   <<= THISBACK(DoFile);
     	btnSave   <<= THISBACK(DoSave);
     	btnCancel <<= THISBACK(DoCancel);
-    	
-    	
-    	Config * cfg = new Config;
-    	
-    	esPath.SetText(cfg->getPath());
-    	esPages.SetData(cfg->getPages());
-    	esChars.SetData(cfg->getChars());
-    	
-    	delete cfg;
 	}
 };
 
 struct otpWindow : TopWindow {
-
-    MenuBar		menu;
-    Label		lbBook;
-    DropList	book;
-    Label		lbFrom;
-    EditString	from;
-    Label		lbPage;
-    EditIntSpin	pagen;
-    Option		format;
-    DocEdit		text;
+	
+	MenuBar			menu;
+	Label			lbBook;
+	DropList		book;
+	Label			lbFrom;  	
+    EditString		from;
+    Label			lbPage;
+    EditIntSpin		pagen;
+    Option			format;
+    DocEdit			text;
     
     bookGenDialog	dlgBook;
     aboutDialog		dlgAbout;
     burnDialog		dlgBurn;
     encodeDialog	dlgEncode;
     settingsDialog	dlgSettings;
+    
+    virtual void WhenDrop() {
+        refreshBooks();
+    }
     
     void refreshBooks()
     {
@@ -490,8 +497,19 @@ struct otpWindow : TopWindow {
     
     void Settings()
     {
-        if(!dlgSettings.IsOpen())
+        if(!dlgSettings.IsOpen()) {
+            
+            book.SetData("");
+            
+            Config * cfg = new Config;
+    		dlgSettings.esPath.SetText(cfg->getPath());
+    		dlgSettings.esPages.SetData(cfg->getPages());
+    		dlgSettings.esChars.SetData(cfg->getChars());
+    		delete cfg;
+    		
 			dlgSettings.Open(this);
+			dlgSettings.btnCancel.SetFocus();
+        }
     }
     
 	void FormatOpt()
@@ -572,6 +590,7 @@ struct otpWindow : TopWindow {
         format.SetLabel("Formatted msg");
         
         format <<= THISBACK(FormatOpt);
+        book.WhenDrop = THISBACK(refreshBooks);
 
 		dlgBook.Icon(icons::generate);
 		dlgBook.Title("Generate book");

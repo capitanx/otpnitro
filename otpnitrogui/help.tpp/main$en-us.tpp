@@ -73,10 +73,22 @@ refresh the books in the app. To do that you can use the menu:
 [s0;b8; In this chapter we describe internal operations, know bugs 
 or missing features.&]
 [s0;b8; &]
-[s0;b8; [* 4.1 Book storing]&]
-[s0;b8; At this moment the books will be stored in the execution 
-path under the [/ `"PAGES`"] folder, in next updates we must provide 
-an configuration file to specify a fixed path.&]
+[s0;b8; [* 4.1 Settings]&]
+[s0; The settings/config file must be located on [/R2 %APPDATA%/.otpnitro/otpnitro.ini] 
+or [/R2 `$HOME/.otpnitro/otpnitro.ini]&]
+[s0; &]
+[s0; [* 4.2 Book storing]&]
+[s0; By default the books are stored on [/R2 %APPDATA%/.otpnitro/PAGES] 
+or [/R2 `$HOME/.otpnitro/PAGES] (this can be changed in the config 
+file)&]
+[s0; &]
+[s0; [* 4.3 Max pages parameter]&]
+[s0; Is the number of pages generated for book. (this value limits 
+the number of messages to be crypted on a book)&]
+[s0; &]
+[s0; [* 4.4 Max chars parameter]&]
+[s0;b8; Is the number of characters generated for page. (this value 
+limits the number of text to be crypted)&]
 [s0;b8; &]
 [s0;b8; [* 4.2 Project URL]&]
 [s0;b8; For more information, updates, etc. you can visit the [^https`:`/`/code`.haibane`.org`/projects`/otpnitro^ p
@@ -89,10 +101,13 @@ PLv3] license.&]
 [s0;b8; &]
 [s0;b8; &]
 [s0;b8; [*_+117 6. Authors]&]
-[s0;b8; [^https`:`/`/twitter`.com`/capi`_x^ `@capi`_x] <capi`_x`@haibane.org>&]
+[s0;b8; [^https`:`/`/twitter`.com`/capi`_x^ `@capi`_x] <[^mailto`:capi`_x`@haibane`.org^ c
+api`_x`@haibane.org]>&]
 [s0;b8; &]
 [s0;b8; &]
 [s0;b8; [*_+117 7. Acknowledges]&]
 [s0;b8; [^https`:`/`/twitter`.com`/Mario`_vilas^ `@Mario`_vilas] `- 
 Thanks for crypto and GUI testing.&]
+[s0;b8; [^https`:`/`/twitter`.com`/sha0coder^ `@sha0coder]  `- Thanks 
+for CLI and GUI testing.&]
 [s0;b8; ]]

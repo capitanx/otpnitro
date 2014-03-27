@@ -14,7 +14,7 @@
 CXX = clang++
 #CXX = g++
 PACKAGE = otpnitro
-VERSION = 0.1
+VERSION = 0.2
 
 CPPFLAGS = -O3 -Wall -Wextra -pedantic -I.
 #CPPFLAGS += -ggdb
