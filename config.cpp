@@ -17,11 +17,17 @@ Config::Config(void)
 #ifdef __unix__
 	string cfgPath = getenv("HOME");
 	cfgPath.append("/.otpnitro");
+	string pagesPath = cfgPath;
+	pagesPath.append("/PAGES/");
+	strncpy(REL_PATH, pagesPath.c_str(), MAX_PATH - 1);
 	mkdir(cfgPath.c_str(), S_IRWXU|S_IRGRP|S_IXGRP);
 	cfgPath.append("/otpnitro.ini");
 #else
 	string cfgPath = getenv("APPDATA");
 	cfgPath.append("\\otpnitro");
+	string pagesPath = cfgPath;
+	pagesPath.append("\\PAGES\\");
+	strncpy(REL_PATH, pagesPath.c_str(), MAX_PATH - 1);
 	mkdir(cfgPath.c_str());
 	cfgPath.append("\\otpnitro.ini");
 #endif
