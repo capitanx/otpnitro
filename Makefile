@@ -72,8 +72,15 @@ freebsd: all
 	pkg create -f txz -r packages/freebsd/otpnitro -m packages/freebsd/otpnitro
 	pkg create -f txz -r packages/freebsd/otpnitrogui -m packages/freebsd/otpnitrogui
 
-debian:
-	true
+debian: all
+	mkdir -p packages/debian/otpnitro/usr/bin
+	mkdir -p packages/debian/otpnitro/usr/lib
+	cp otpnitro packages/debian/otpnitro/usr/bin
+	cp libotpnitro.so packages/debian/otpnitro/usr/lib
+	mkdir -p packages/debian/otpnitrogui/usr/bin
+	cp $(HOME)/.upp/_out/otpnitrogui/CLANG.Blitz.Force_Speed.Gui.Shared.Sse2/otpnitrogui packages/debian/otpnitrogui/usr/bin
+	fakeroot dpkg-deb --build packages/debian/otpnitro otpnitro_0.2_amd64.deb
+	fakeroot dpkg-deb --build packages/debian/otpnitrogui otpnitrogui_0.2_amd64.deb
 
 scan-build:
 	scan-build -v -o /tmp/otpnitro gmake
