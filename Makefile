@@ -15,6 +15,7 @@ CXX = clang++
 #CXX = g++
 PACKAGE = otpnitro
 VERSION = 0.2
+PREFIX = /usr
 
 CPPFLAGS = -O3 -Wall -Wextra -pedantic -I.
 #CPPFLAGS += -ggdb
@@ -22,16 +23,16 @@ CPPFLAGS = -O3 -Wall -Wextra -pedantic -I.
 #CPPFLAGS += -DDEBUG
 
 ifdef SystemRoot
-	RM = del /Q otpnitro.exe otpnitro.wixobj otpnitro.wixpdb otpnitro.msi
+	RM = cmd /c del /Q otpnitro.exe
 	LIBNAME = otpnitro.dll
 	EXTRAS  = -static-libgcc -static-libstdc++
-	INSTALL = candle otpnitro.wxs & light otpnitro.wixobj
+	INSTALL = candle packages\\windows\\otpnitro.wxs & light otpnitro.wixobj
 else
 	RM = rm -f otpnitro
 	LIBNAME = libotpnitro.so
 	EXTRAS  =
 	CPPFLAGS += -fPIC
-	INSTALL = cp -f otpnitro /usr/bin && cp -f libotpnitro.so /usr/lib
+	INSTALL = cp -f otpnitro $(PREFIX)/bin && cp -f libotpnitro.so $(PREFIX)/lib
 endif
 
 MODULES  = rand.o page.o crypto.o text.o config.o
@@ -56,6 +57,23 @@ install:
 
 clean:
 	$(RM) $(MODULES) $(LIBNAME)
+
+windows: all
+	candle packages\\windows\\otpnitro.wxs
+	light otpnitro.wixobj
+
+freebsd: all
+	mkdir -p packages/freebsd/otpnitro/usr/local/bin
+	mkdir -p packages/freebsd/otpnitro/usr/local/lib
+	cp otpnitro packages/freebsd/otpnitro/usr/local/bin
+	cp libotpnitro.so packages/freebsd/otpnitro/usr/local/lib
+	mkdir -p packages/freebsd/otpnitrogui/usr/local/bin
+	cp $(HOME)/.upp/_out/otpnitrogui/GCC.Blitz.Force_Speed.Gui.Shared.Sse2/otpnitrogui packages/freebsd/otpnitrogui/usr/local/bin
+	pkg create -f txz -r packages/freebsd/otpnitro -m packages/freebsd/otpnitro
+	pkg create -f txz -r packages/freebsd/otpnitrogui -m packages/freebsd/otpnitrogui
+
+debian:
+	true
 
 scan-build:
 	scan-build -v -o /tmp/otpnitro gmake

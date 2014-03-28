@@ -1,0 +1,19 @@
+{
+"name":"otpnitro",
+"version":"0.2",
+"origin":"security/otpnitro",
+"comment":"A secure One Time Pad implementation.",
+"desc":"OTP Nitro is a secure One Time Pad library and CLI to use on computers.",
+"arch":"freebsd:10:x86:64",
+"www":"https://code.haibane.org/crypto/otpnitro",
+"maintainer":"capi_x@haibane.org",
+"prefix":"/usr/local",
+"flatsize":"144",
+"deps":{
+    "pkg":{"origin":"ports-mgmt/pkg","version":"1.2"},
+},
+"files":{
+    "/usr/local/bin/otpnitro":"f0432201107bc3533a9831b2daa78ede6c5ac701de057e14fee1ac9c8dd7668d","/usr/local/bin/otpnitro",
+    "/usr/local/lib/libotpnitro.so":"3e4f697679c489e5799ed6f4c2566c630e172363370ea541631a8366ae402e5a","/usr/local/lib/libotpnitro.so"
+}
+}
