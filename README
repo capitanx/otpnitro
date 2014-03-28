@@ -141,21 +141,31 @@ This program is under the GPLv3 license.
 
 
 7. Acknowledges
-* `@Mario_vilas`_ - Thanks for crypto and GUI testing.
-* `@sha0coder`_   - Thanks for CLI and GUI testing.
+* `@Mario_vilas`_     - Thanks for GUI and crypto testing.
+* `@sha0coder`_       - Thanks for CLI and GUI testing.
+* `@AloneInTheShell`_ - Thanks for CLI and LIB testing.
 
 
 CLI compile guide
 -----------------
 Compile::
 
-	vi Makefile
-	[ Edit your compiler clang/gcc ]
+	[ Generic ]
 	make
+
+	[ FreeBSD ]
+	CXX=clang++ gmake
 	
 Install::
 
+	[ Generic ]
 	make install
+
+	[ FreeBSD ]
+	CXX=clang++ gmake freebsd-cli
+
+	[ Debian ]
+	make debian-cli
 
 
 GUI compile guide 
@@ -213,6 +223,7 @@ License
 .. _`@capi_x`: https://twitter.com/capi_x
 .. _`@Mario_vilas`: https://twitter.com/mario_vilas
 .. _`@sha0coder`: https://twitter.com/sha0coder
+.. _`@AloneInTheShell`: https://twitter.com/AloneInTheShell
 .. _MinGW: http://sourceforge.net/projects/mingw/files/
 .. _`Ultimate++`: http://www.ultimatepp.org
 .. _`U++ enviroment`: http://www.ultimatepp.org/www$uppweb$download$en-us.html

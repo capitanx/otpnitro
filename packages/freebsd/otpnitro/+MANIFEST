@@ -13,7 +13,7 @@
     "pkg":{"origin":"ports-mgmt/pkg","version":"1.2"},
 },
 "files":{
-    "/usr/local/bin/otpnitro":"f0432201107bc3533a9831b2daa78ede6c5ac701de057e14fee1ac9c8dd7668d","/usr/local/bin/otpnitro",
-    "/usr/local/lib/libotpnitro.so":"3e4f697679c489e5799ed6f4c2566c630e172363370ea541631a8366ae402e5a","/usr/local/lib/libotpnitro.so"
+    "/usr/local/bin/otpnitro":"4f3e760f31b49253caf96737b4feffc1163232a93cdca647047740cbd2e2de46","/usr/local/bin/otpnitro",
+    "/usr/local/lib/libotpnitro.so":"7cae5f40b5f006967f5e051c987e771cccf41db3df64e7ee961e36f172228939","/usr/local/lib/libotpnitro.so"
 }
 }

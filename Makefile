@@ -11,27 +11,44 @@
 # [...]
 #
 
-CXX = clang++
-#CXX = g++
 PACKAGE = otpnitro
 VERSION = 0.2
-PREFIX = /usr
 
-CPPFLAGS = -O3 -Wall -Wextra -pedantic -I.
-#CPPFLAGS += -ggdb
-#CPPFLAGS += --analyze
-#CPPFLAGS += -DDEBUG
+ifndef PREFIX
+	PREFIX = /usr
+endif
+
+ifndef CXX
+#	CXX = clang++
+	CXX = g++
+endif
+
+ifndef CXXFLAGS
+	CXXFLAGS = -O3 -Wall -Wextra -pedantic -pipe -fno-strict-aliasing -ffast-math -funroll-loops
+endif
+CXXFLAGS += -I.
+
+ifdef DEBUG
+	CXXFLAGS += -ggdb
+endif
+
+ifdef ANAL
+	CXXFLAGS += --analyze
+	CXXFLAGS += -DDEBUG
+endif
 
 ifdef SystemRoot
 	RM = cmd /c del /Q otpnitro.exe
 	LIBNAME = otpnitro.dll
+	EXENAME = otpnitro.exe
 	EXTRAS  = -static-libgcc -static-libstdc++
-	INSTALL = candle packages\\windows\\otpnitro.wxs & light otpnitro.wixobj
+	INSTALL = cmd /c echo See make windows
 else
 	RM = rm -f otpnitro
 	LIBNAME = libotpnitro.so
+	EXENAME = otpnitro
 	EXTRAS  =
-	CPPFLAGS += -fPIC
+	CXXFLAGS += -fPIC
 	INSTALL = cp -f otpnitro $(PREFIX)/bin && cp -f libotpnitro.so $(PREFIX)/lib
 endif
 
@@ -44,13 +61,15 @@ Release: all
 all: $(MODULES) otpnitro-lib otpnitro
 
 otpnitro:
-	$(CXX)  $(CPPFLAGS) -L. otpnitro.cpp  $(EXTRAS) -o otpnitro -lotpnitro
+	$(CXX)  $(CXXFLAGS) -L. otpnitro.cpp  $(EXTRAS) -o otpnitro -lotpnitro
+	strip   $(EXENAME)
 
 prngtest:
-	$(CXX)  $(CPPFLAGS) -L. prngtest.cpp  $(EXTRAS) -o prngtest -lotpnitro
+	$(CXX)  $(CXXFLAGS) -L. prngtest.cpp  $(EXTRAS) -o prngtest -lotpnitro
 
 otpnitro-lib:
-	$(CXX)  $(CPPFLAGS) -shared $(EXTRAS) $(MODULES) -o $(LIBNAME)
+	$(CXX)  $(CXXFLAGS) -shared $(EXTRAS) $(MODULES) -o $(LIBNAME)
+	strip   $(LIBNAME)
 
 install:
 	$(INSTALL)
@@ -62,25 +81,31 @@ windows: all
 	candle packages\\windows\\otpnitro.wxs
 	light otpnitro.wixobj
 
-freebsd: all
+freebsd-cli: all
 	mkdir -p packages/freebsd/otpnitro/usr/local/bin
 	mkdir -p packages/freebsd/otpnitro/usr/local/lib
 	cp otpnitro packages/freebsd/otpnitro/usr/local/bin
 	cp libotpnitro.so packages/freebsd/otpnitro/usr/local/lib
+	pkg create -f txz -r packages/freebsd/otpnitro -m packages/freebsd/otpnitro
+
+freebsd: freebsd-cli
 	mkdir -p packages/freebsd/otpnitrogui/usr/local/bin
 	cp $(HOME)/.upp/_out/otpnitrogui/GCC.Blitz.Force_Speed.Gui.Shared.Sse2/otpnitrogui packages/freebsd/otpnitrogui/usr/local/bin
-	pkg create -f txz -r packages/freebsd/otpnitro -m packages/freebsd/otpnitro
+	strip packages/freebsd/otpnitrogui/usr/local/bin/otpnitrogui
 	pkg create -f txz -r packages/freebsd/otpnitrogui -m packages/freebsd/otpnitrogui
 
-debian: all
+debian-cli: all
 	mkdir -p packages/debian/otpnitro/usr/bin
 	mkdir -p packages/debian/otpnitro/usr/lib
 	cp otpnitro packages/debian/otpnitro/usr/bin
 	cp libotpnitro.so packages/debian/otpnitro/usr/lib
+	fakeroot dpkg-deb --build packages/debian/otpnitro otpnitro_$(VERSION)_amd64.deb
+
+debian: debian-cli
 	mkdir -p packages/debian/otpnitrogui/usr/bin
 	cp $(HOME)/.upp/_out/otpnitrogui/CLANG.Blitz.Force_Speed.Gui.Shared.Sse2/otpnitrogui packages/debian/otpnitrogui/usr/bin
-	fakeroot dpkg-deb --build packages/debian/otpnitro otpnitro_0.2_amd64.deb
-	fakeroot dpkg-deb --build packages/debian/otpnitrogui otpnitrogui_0.2_amd64.deb
+	strip packages/debian/otpnitrogui/usr/bin/otpnitrogui
+	fakeroot dpkg-deb --build packages/debian/otpnitrogui otpnitrogui_$(VERSION)_amd64.deb
 
 scan-build:
 	scan-build -v -o /tmp/otpnitro gmake
