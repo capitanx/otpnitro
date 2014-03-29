@@ -96,6 +96,8 @@ bool	Page::write(int page, string id, string ciphertext)
 	// Create OTP folder for ID
 #ifdef __unix__
 	mkdir(dirPath(id).c_str(), S_IRWXU|S_IRGRP|S_IXGRP);
+#elif  __APPLE__
+	mkdir(dirPath(id).c_str(), S_IRWXU|S_IRGRP|S_IXGRP);
 #else
 	mkdir(dirPath(id).c_str());
 #endif
@@ -138,6 +140,8 @@ string	Page::get()
 bool	Page::generate(string id)
 {
 #ifdef	__unix__
+	mkdir(REL_PATH, S_IRWXU|S_IRGRP|S_IXGRP);
+#elif   __APPLE__
 	mkdir(REL_PATH, S_IRWXU|S_IRGRP|S_IXGRP);
 #else
 	mkdir(REL_PATH);

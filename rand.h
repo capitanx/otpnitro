@@ -4,6 +4,9 @@
 #ifdef __unix__
 # include <sys/types.h>
 # include <unistd.h>
+#elif __APPLE__
+# include <sys/types.h>
+# include <unistd.h>
 #endif
 
 //using namespace std;

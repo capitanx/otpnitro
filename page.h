@@ -7,6 +7,8 @@
 
 #ifdef __unix__
 # include <sys/stat.h>
+#elif __APPLE__
+# include <sys/stat.h>
 #endif
 
 #include "rand.h"

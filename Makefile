@@ -60,7 +60,7 @@ Release: all
 
 all: $(MODULES) otpnitro-lib otpnitro
 
-otpnitro:
+otpnitro: otpnitro-lib
 	$(CXX)  $(CXXFLAGS) -L. otpnitro.cpp  $(EXTRAS) -o otpnitro -lotpnitro
 	strip   $(EXENAME)
 
@@ -69,7 +69,7 @@ prngtest:
 
 otpnitro-lib:
 	$(CXX)  $(CXXFLAGS) -shared $(EXTRAS) $(MODULES) -o $(LIBNAME)
-	strip   $(LIBNAME)
+	strip -x $(LIBNAME)
 
 install:
 	$(INSTALL)
@@ -106,6 +106,9 @@ debian: debian-cli
 	cp $(HOME)/.upp/_out/otpnitrogui/CLANG.Blitz.Force_Speed.Gui.Shared.Sse2/otpnitrogui packages/debian/otpnitrogui/usr/bin
 	strip packages/debian/otpnitrogui/usr/bin/otpnitrogui
 	fakeroot dpkg-deb --build packages/debian/otpnitrogui otpnitrogui_$(VERSION)_amd64.deb
+
+osx-cli: all
+	tar -zcf otpnitro-$(VERSION)-osx.tgz otpnitro libotpnitro.so
 
 scan-build:
 	scan-build -v -o /tmp/otpnitro gmake
