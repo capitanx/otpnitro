@@ -134,7 +134,7 @@ struct aboutDialog : public TopWindow {
 
 struct encodeDialog : public TopWindow {
 	
-	Button	btnEncode, btnDecode;
+	Button	btnEncode, btnDecode, btnOpenE, btnClearE, btnSaveE, btnBinaryE, btnOpenD, btnClearD, btnSaveD, btnBinaryD;
 	Label	lbEncode,  lbDecode;
 	DocEdit	encode,    decode;
 
@@ -164,6 +164,136 @@ struct encodeDialog : public TopWindow {
 	void DoClose() {
     	Close();
 	}
+	
+	void DoOpenE() {
+		FileSel	fs;
+        fs.Type("File(s)", "*.txt *.*");
+        
+        if (!fs.ExecuteOpen())
+            return;
+
+		FileStream file;
+        file.Open(fs.Get(),600);
+        encode.Load(file);
+        file.Close();
+	}
+	
+	void DoSaveE() {
+		FileSel	fs;
+        fs.Type("Text file(s)", "*.txt *.*");
+        
+        if (!fs.ExecuteSaveAs())
+            return;
+        
+        FileStream file;
+        file.Open(fs.Get(),600);
+        encode.Save(file);
+        file.Close();
+	}
+	
+	void DoClearE() {
+		encode.Clear();
+	}
+	
+	void DoBinaryE() {
+		FileSel	fs;
+        fs.Type("File(s)", "*.*");
+        
+        if (!fs.ExecuteOpen())
+            return;
+
+		FileStream file;
+        file.Open(fs.Get(),600);
+        
+        Text * txt = new Text;
+		
+		int decLen = file.GetSize();
+		unsigned char * msgDec = new unsigned char[decLen];
+		file.GetAll(msgDec, decLen);
+		
+		string msgEnc = txt->encodeB26( msgDec, decLen );
+
+		FileSel	fsOut;
+		fsOut.Type("Text file(s)", "*.txt *.*");
+		
+		if (!fsOut.ExecuteSaveAs())
+			return;
+		
+		FileStream fileOut;
+		fileOut.Open(fsOut.Get(),600);
+		fileOut.Put(msgEnc);
+		
+		fileOut.Close();
+        delete txt;
+        delete[] msgDec;
+        file.Close();
+	}
+	
+	void DoOpenD() {
+		FileSel	fs;
+        fs.Type("Text file(s)", "*.txt *.*");
+        
+        if (!fs.ExecuteOpen())
+            return;
+
+		FileStream file;
+        file.Open(fs.Get(),600);
+        decode.Load(file);
+        file.Close();
+	}
+	
+	void DoSaveD() {
+		FileSel	fs;
+        fs.Type("File(s)", "*.*");
+        
+        if (!fs.ExecuteSaveAs())
+            return;
+        
+        FileStream file;
+        file.Open(fs.Get(),600);
+        decode.Save(file);
+        file.Close();
+	}
+	
+	void DoBinaryD() {
+		FileSel	fs;
+        fs.Type("Text file(s)", "*.txt *.*");
+        if (!fs.ExecuteOpen())
+            return;
+
+		FileStream file;
+        file.Open(fs.Get(),600);
+        
+        Text * txt = new Text;
+		
+		int decLen  = file.GetSize() / 2;
+		int origLen = file.GetSize();
+		unsigned char * msgDec  = new unsigned char[decLen];
+		char * msgOrig = new char[origLen];
+		file.GetAll(msgOrig, origLen);
+
+		txt->decodeB26( msgDec, msgOrig );
+		string msgDecStr((char *)msgDec, decLen);
+		
+		FileSel	fsOut;
+		fsOut.Type("File(s)", "*.*");
+		
+		if (!fsOut.ExecuteSaveAs())
+			return;
+		
+		FileStream fileOut;
+		fileOut.Open(fsOut.Get(),600);
+		fileOut.Put(msgDecStr);
+		
+		fileOut.Close();
+        delete txt;
+        delete[] msgDec;
+        file.Close();
+	}
+	
+	void DoClearD() {
+		decode.Clear();
+	}
 
 	typedef encodeDialog CLASSNAME;
 
@@ -173,14 +303,32 @@ struct encodeDialog : public TopWindow {
     	Add(btnEncode.SetLabel("Encode").LeftPos( 20,380).TopPos(340,40));
     	Add(btnDecode.SetLabel("Decode").LeftPos(400,380).TopPos(340,40));
     	
-    	Add(lbDecode.SetLabel("Decoded data:").LeftPos( 20,380).TopPos(20,20));
-    	Add(lbEncode.SetLabel("Encoded data:").LeftPos(400,380).TopPos(20,20));
+    	Add(lbDecode.SetLabel("Decoded data:").LeftPos( 40,380).TopPos(20,20));
+    	Add(lbEncode.SetLabel("Encoded data:").LeftPos(420,380).TopPos(20,20));
+    	
+    	Add(btnBinaryE.SetImage(icons::encod).LeftPos( 320,20).TopPos( 20,20));
+    	Add(btnOpenD.SetImage(icons::open).LeftPos(    340,20).TopPos( 20,20));
+    	Add(btnSaveD.SetImage(icons::save).LeftPos(    360,20).TopPos( 20,20));
+    	Add(btnClearD.SetImage(icons::clear).LeftPos(  380,20).TopPos( 20,20));
+    	
+    	Add(btnBinaryD.SetImage(icons::decod).LeftPos( 700,20).TopPos( 20,20));
+    	Add(btnOpenE.SetImage(icons::open).LeftPos(    720,20).TopPos( 20,20));
+    	Add(btnSaveE.SetImage(icons::save).LeftPos(    740,20).TopPos( 20,20));
+    	Add(btnClearE.SetImage(icons::clear).LeftPos(  760,20).TopPos( 20,20));
     	
     	Add(decode.LeftPos( 20,380).TopPos(40,280));
     	Add(encode.LeftPos(400,380).TopPos(40,280));
-    	
-    	btnEncode <<= THISBACK(DoEncode);
-    	btnDecode <<= THISBACK(DoDecode);
+
+		btnBinaryD <<= THISBACK(DoBinaryD);
+		btnBinaryE <<= THISBACK(DoBinaryE);
+    	btnEncode  <<= THISBACK(DoEncode);
+    	btnDecode  <<= THISBACK(DoDecode);
+    	btnOpenE   <<= THISBACK(DoOpenE);
+    	btnClearE  <<= THISBACK(DoClearE);
+    	btnSaveE   <<= THISBACK(DoSaveE);
+    	btnOpenD   <<= THISBACK(DoOpenD);
+    	btnClearD  <<= THISBACK(DoClearD);
+    	btnSaveD   <<= THISBACK(DoSaveD);
 	}
 };
 
