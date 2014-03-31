@@ -12,7 +12,7 @@
 #
 
 PACKAGE = otpnitro
-VERSION = 0.2
+VERSION = 0.3
 
 ifndef PREFIX
 	PREFIX = /usr

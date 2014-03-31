@@ -128,7 +128,7 @@ struct aboutDialog : public TopWindow {
     	Add(logo.SetImage(icons::main_icon_48).LeftPos(280,58).TopPos( 15,58));
     	Add(text.LeftPos(                              20,380).TopPos(30,280));
 
-		text.SetData("_____[6 OTP[5/ NITRO]]__v0.2&&Is a secure One Time Pad implementation to use on computers or as assistant on manual operations.&&This project is licensed under the [^http://www.gnu.org/licenses/gpl-3.0.html^ GPLv3] license. More information in the [^https://code.haibane.org/crypto/otpnitro^ project page].&&2013-2014 (c) [^mailto:capi_x@haibane.org^ capi_x@haibane.org]");
+		text.SetData("_____[6 OTP[5/ NITRO]]__v0.3&&Is a secure One Time Pad implementation to use on computers or as assistant on manual operations.&&This project is licensed under the [^http://www.gnu.org/licenses/gpl-3.0.html^ GPLv3] license. More information in the [^https://code.haibane.org/crypto/otpnitro^ project page].&&2013-2014 (c) [^mailto:capi_x@haibane.org^ capi_x@haibane.org]");
     }
 };
 
