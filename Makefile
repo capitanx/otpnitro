@@ -12,7 +12,7 @@
 #
 
 PACKAGE = otpnitro
-VERSION = 0.3
+VERSION = 0.4
 
 ifndef PREFIX
 	PREFIX = /usr
@@ -41,12 +41,14 @@ ifdef SystemRoot
 	RM = cmd /c del /Q otpnitro.exe
 	LIBNAME = otpnitro.dll
 	EXENAME = otpnitro.exe
+	BASNAME = base24.exe
 	EXTRAS  = -static-libgcc -static-libstdc++
 	INSTALL = cmd /c echo See make windows
 else
 	RM = rm -f otpnitro
 	LIBNAME = libotpnitro.so
 	EXENAME = otpnitro
+	BASNAME = base24
 	EXTRAS  =
 	CXXFLAGS += -fPIC
 	INSTALL = cp -f otpnitro $(PREFIX)/bin && cp -f libotpnitro.so $(PREFIX)/lib
@@ -58,11 +60,15 @@ Debug: all
 
 Release: all
 
-all: $(MODULES) otpnitro-lib otpnitro
+all: $(MODULES) otpnitro-lib otpnitro base24
 
 otpnitro: otpnitro-lib
 	$(CXX)  $(CXXFLAGS) -L. otpnitro.cpp  $(EXTRAS) -o otpnitro -lotpnitro
 	strip   $(EXENAME)
+
+base24:
+	$(CXX)  $(CXXFLAGS) -L. base24.cpp    $(EXTRAS) -o base24   -lotpnitro
+	strip   $(BASNAME)
 
 prngtest:
 	$(CXX)  $(CXXFLAGS) -L. prngtest.cpp  $(EXTRAS) -o prngtest -lotpnitro
@@ -75,7 +81,7 @@ install:
 	$(INSTALL)
 
 clean:
-	$(RM) $(MODULES) $(LIBNAME)
+	$(RM) $(MODULES) $(LIBNAME) $(EXENAME) $(BASNAME)
 
 windows: all
 	candle packages\\windows\\otpnitro.wxs
@@ -85,6 +91,7 @@ freebsd-cli: all
 	mkdir -p packages/freebsd/otpnitro/usr/local/bin
 	mkdir -p packages/freebsd/otpnitro/usr/local/lib
 	cp otpnitro packages/freebsd/otpnitro/usr/local/bin
+	cp base24   packages/freebsd/otpnitro/usr/local/bin
 	cp libotpnitro.so packages/freebsd/otpnitro/usr/local/lib
 	pkg create -f txz -r packages/freebsd/otpnitro -m packages/freebsd/otpnitro
 
@@ -98,6 +105,7 @@ debian-cli: all
 	mkdir -p packages/debian/otpnitro/usr/bin
 	mkdir -p packages/debian/otpnitro/usr/lib
 	cp otpnitro packages/debian/otpnitro/usr/bin
+	cp base24   packages/debian/otpnitro/usr/bin
 	cp libotpnitro.so packages/debian/otpnitro/usr/lib
 	fakeroot dpkg-deb --build packages/debian/otpnitro otpnitro_$(VERSION)_amd64.deb
 
@@ -108,7 +116,7 @@ debian: debian-cli
 	fakeroot dpkg-deb --build packages/debian/otpnitrogui otpnitrogui_$(VERSION)_amd64.deb
 
 osx-cli: all
-	tar -zcf otpnitro-$(VERSION)-osx.tgz otpnitro libotpnitro.so
+	tar -zcf otpnitro-$(VERSION)-osx.tgz otpnitro base24 libotpnitro.so
 
 scan-build:
 	scan-build -v -o /tmp/otpnitro gmake

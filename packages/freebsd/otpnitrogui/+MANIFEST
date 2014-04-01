@@ -1,6 +1,6 @@
 {
 "name":"otpnitrogui",
-"version":"0.3",
+"version":"0.4",
 "origin":"security/otpnitrogui",
 "comment":"A secure One Time Pad implementation GUI.",
 "desc":"OTP Nitro GUI is a secure One Time Pad implementation to use on computers with GTK.",
@@ -11,16 +11,16 @@
 "flatsize":"3188",
 "deps":{
     "pkg":{"origin":"ports-mgmt/pkg","version":"1.2"},
-    "otpnitro":{"origin":"security/otpnitro","version":"0.3"},
+    "otpnitro":{"origin":"security/otpnitro","version":"0.4"},
     "gtk2":{"origin":"x11-toolkits/gtk20","version":"2.24"},
     "pcre":{"origin":"devel/pcre","version":"8.3"},
     "png":{"origin":"graphics/png","version":"1.5"}
 },
 "files":{
-    "/usr/local/bin/otpnitrogui":"1afce2fc7ace0e946353ce87c796c30bcbf609e2177cbfbc470daa21f39ea641","/usr/local/bin/otpnitrogui",
+    "/usr/local/bin/otpnitrogui":"ebd657beda7de3bda0b802e666b2d25ef91ad85edb0c282b387a830cc792d2a6","/usr/local/bin/otpnitrogui",
     "/usr/local/share/otpnitrogui/main_icon_16.png":"1eade78438a875c6cb40dc3367f6857ba71149bd8d0ce01422b82c1de144fc05","/usr/local/share/otpnitrogui/main_icon_16.png",
     "/usr/local/share/otpnitrogui/main_icon_32.png":"860cce12875995b7da77fd3ed5a419377da46af5b66a3faca8ac592e70e654e4","/usr/local/share/otpnitrogui/main_icon_32.png",
     "/usr/local/share/otpnitrogui/main_icon_48.png":"b74834c267ba39f171032d35853071f930ee6fe7fc5b478c09d1f4f763a5f168","/usr/local/share/otpnitrogui/main_icon_48.png",
-    "/usr/local/share/applications/OTPNitro.desktop":"84e3800552aefc66b8fa3d7991df8c52370d18ed05f5821657032ed88009d538","/usr/local/share/applications/OTPNitro.desktop"
+    "/usr/local/share/applications/OTPNitro.desktop":"de3146421ad1200a70383bcdfde20a79cc73c883275fe9f9ab55065a83699609","/usr/local/share/applications/OTPNitro.desktop"
 }
 }

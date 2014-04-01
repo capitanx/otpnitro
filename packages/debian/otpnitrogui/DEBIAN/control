@@ -1,8 +1,8 @@
 Package: otpnitrogui
 Architecture: amd64
 Maintainer: capi_x <capi_x@haibane.org>
-Depends: debconf (>= 0.5.00), otpnitro (>= 0.3), libgtk2.0-common (>= 2.24.00), libpcre3 (>= 8.3), libpng12-0 (>= 1.2.00)
+Depends: debconf (>= 0.5.00), otpnitro (>= 0.4), libgtk2.0-common (>= 2.24.00), libpcre3 (>= 8.3), libpng12-0 (>= 1.2.00)
 Priority: optional
-Version: 0.3-1wheezy0
+Version: 0.4-1wheezy0
 Description: A secure One Time Pad implementation GUI.
  OTP Nitro GUI is a secure One Time Pad implementation to use on computers with GTK.

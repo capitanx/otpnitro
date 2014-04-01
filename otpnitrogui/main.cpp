@@ -21,7 +21,7 @@ struct bookGenDialog : public TopWindow {
 	Button		btnCancel;
 	EditString	bookId;
 	Label		txtBookGen;
-
+	
 	void DoGen() {
     	WString id = bookId.GetText();
 
@@ -32,6 +32,7 @@ struct bookGenDialog : public TopWindow {
     		Page * page = new Page;
     		page->generate(id.ToString());
     		delete page;
+    		GetOwner()->Update();
     		Close();
     	}
 	}
@@ -45,13 +46,13 @@ struct bookGenDialog : public TopWindow {
 	bookGenDialog() {
     	SetRect(0, 0, 200, 100);
     	
-    	Add(txtBookGen.SetLabel("Enter Book name (ID):").LeftPos( 10,180).TopPos(10, 25));
-    	Add(bookId.LeftPos(                                       10,180).TopPos(30, 25));
-    	Add(btnCancel.SetLabel( "Cancel").LeftPos(                35, 75).TopPos(65, 25));
-    	Add(btnGen.SetLabel(    "Generate").LeftPos(             115, 75).TopPos(65, 25));
+    	Add(txtBookGen.SetLabel("Enter Book name (ID):").LeftPos(          10,180).TopPos(10, 25));
+    	Add(bookId.LeftPos(                                                10,180).TopPos(30, 25));
+    	Add(btnCancel.SetImage(icons::cancel).SetLabel( "Cancel").LeftPos( 10, 80).TopPos(65, 25));
+    	Add(btnGen.SetImage(icons::generate).SetLabel("Generate").LeftPos(110, 80).TopPos(65, 25));
     	
     	btnGen    <<= THISBACK(DoGen);
-    	btnCancel <<= THISBACK(DoClose);
+    	btnCancel <<= THISBACK(DoClose);;
     }
 };
 
@@ -87,13 +88,13 @@ struct burnDialog : public TopWindow {
 	typedef burnDialog CLASSNAME;
 
 	burnDialog() {
-    	SetRect(0, 0, 160, 100);
+    	SetRect(0, 0, 190, 100);
     	
-    	Add(txtBookGen.SetLabel("Enter Book and page num:").LeftPos( 10,150).TopPos(10, 25));
-    	Add(book.LeftPos(                                            10, 60).TopPos(30, 25));
-    	Add(pagen.LeftPos(                                           90, 60).TopPos(30, 25));
-    	Add(btnCancel.SetLabel( "Close").LeftPos(                    10, 60).TopPos(65, 25));
-    	Add(btnGen.SetLabel(    "Burn").LeftPos(                     90, 60).TopPos(65, 25));
+    	Add(txtBookGen.SetLabel("Enter Book and page num:").LeftPos(     10,150).TopPos(10, 25));
+    	Add(book.LeftPos(                                                10, 80).TopPos(30, 25));
+    	Add(pagen.LeftPos(                                              100, 80).TopPos(30, 25));
+    	Add(btnCancel.SetImage(icons::cancel).SetLabel( "Close").LeftPos(10, 80).TopPos(65, 25));
+    	Add(btnGen.SetImage(icons::burn).SetLabel(      "Burn").LeftPos(100, 80).TopPos(65, 25));
     	
     	btnGen    <<= THISBACK(DoBurn);
     	btnCancel <<= THISBACK(DoClose);
@@ -128,7 +129,7 @@ struct aboutDialog : public TopWindow {
     	Add(logo.SetImage(icons::main_icon_48).LeftPos(280,58).TopPos( 15,58));
     	Add(text.LeftPos(                              20,380).TopPos(30,280));
 
-		text.SetData("_____[6 OTP[5/ NITRO]]__v0.3&&Is a secure One Time Pad implementation to use on computers or as assistant on manual operations.&&This project is licensed under the [^http://www.gnu.org/licenses/gpl-3.0.html^ GPLv3] license. More information in the [^https://code.haibane.org/crypto/otpnitro^ project page].&&2013-2014 (c) [^mailto:capi_x@haibane.org^ capi_x@haibane.org]");
+		text.SetData("_____[6 OTP[5/ NITRO]]__v0.4&&Is a secure One Time Pad implementation to use on computers or as assistant on manual operations.&&This project is licensed under the [^http://www.gnu.org/licenses/gpl-3.0.html^ GPLv3] license. More information in the [^https://code.haibane.org/crypto/otpnitro^ project page].&&2013-2014 (c) [^mailto:capi_x@haibane.org^ capi_x@haibane.org]");
     }
 };
 
@@ -300,8 +301,8 @@ struct encodeDialog : public TopWindow {
 	encodeDialog() {
     	SetRect(0, 0, 800, 400);
     	
-    	Add(btnEncode.SetLabel("Encode").LeftPos( 20,380).TopPos(340,40));
-    	Add(btnDecode.SetLabel("Decode").LeftPos(400,380).TopPos(340,40));
+    	Add(btnEncode.SetImage(icons::crypt).SetLabel("Encode").LeftPos(   20,380).TopPos(340,40));
+    	Add(btnDecode.SetImage(icons::decrypt).SetLabel("Decode").LeftPos(400,380).TopPos(340,40));
     	
     	Add(lbDecode.SetLabel("Decoded data:").LeftPos( 40,380).TopPos(20,20));
     	Add(lbEncode.SetLabel("Encoded data:").LeftPos(420,380).TopPos(20,20));
@@ -352,6 +353,7 @@ struct settingsDialog : public TopWindow {
 		delete cfg;
 		
 		PromptOK("Settings updated");
+		GetOwner()->Update();
 		
 		Close();
 	}
@@ -383,9 +385,9 @@ struct settingsDialog : public TopWindow {
     	Add(esPages.LeftPos(20,280).TopPos(110,20));
     	Add(esChars.LeftPos(20,280).TopPos(170,20));
     	
-    	Add(btnFile.SetImage(icons::open).LeftPos(280,20).TopPos( 50,20));
-    	Add(btnSave.SetLabel("Save").LeftPos(      90,60).TopPos(220,25));
-		Add(btnCancel.SetLabel("Cancel").LeftPos( 170,60).TopPos(220,25));
+    	Add(btnFile.SetImage(icons::open).LeftPos(                        280,20).TopPos( 50,20));
+    	Add(btnSave.SetImage(icons::save).SetLabel("Save").LeftPos(        70,80).TopPos(220,25));
+		Add(btnCancel.SetImage(icons::cancel).SetLabel("Cancel").LeftPos( 170,80).TopPos(220,25));
     	
     	btnFile   <<= THISBACK(DoFile);
     	btnSave   <<= THISBACK(DoSave);
@@ -410,6 +412,10 @@ struct otpWindow : TopWindow {
     burnDialog		dlgBurn;
     encodeDialog	dlgEncode;
     settingsDialog	dlgSettings;
+    
+    virtual void Updated() {
+        refreshBooks();
+    }
     
     virtual void WhenDrop() {
         refreshBooks();
