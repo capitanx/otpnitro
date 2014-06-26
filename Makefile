@@ -43,7 +43,7 @@ ifdef SystemRoot
 	EXENAME = otpnitro.exe
 	BASNAME = base24.exe
 	PYINDIR = -L/Python27/libs -I/Python27/include -lpython27
-	PYLIBEX  = .pyd
+	PYLIBEX = .pyd
 	EXTRAS  = -static-libgcc -static-libstdc++
 	INSTALL = cmd /c echo See make windows
 else
@@ -52,7 +52,7 @@ else
 	EXENAME = otpnitro
 	BASNAME = base24
 	PYINDIR = $(shell python-config --includes)
-	PYLIBEX  = .so
+	PYLIBEX = .so
 	EXTRAS  =
 	CXXFLAGS += -fPIC
 	INSTALL = cp -f otpnitro $(PREFIX)/bin && cp -f libotpnitro.so $(PREFIX)/lib
