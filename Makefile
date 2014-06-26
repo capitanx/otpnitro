@@ -39,20 +39,20 @@ endif
 
 ifdef SystemRoot
 	RM = cmd /c del /Q otpnitro.exe
-	LIBEXT  = .dll
 	LIBNAME = otpnitro.dll
 	EXENAME = otpnitro.exe
 	BASNAME = base24.exe
-	PYINDIR = \\Python27\\include
+	PYINDIR = -L/Python27/libs -I/Python27/include -lpython27
+	PYLIBEX  = .pyd
 	EXTRAS  = -static-libgcc -static-libstdc++
 	INSTALL = cmd /c echo See make windows
 else
 	RM = rm -f otpnitro
-	LIBEXT  = .so
 	LIBNAME = libotpnitro.so
 	EXENAME = otpnitro
 	BASNAME = base24
 	PYINDIR = $(shell python-config --includes)
+	PYLIBEX  = .so
 	EXTRAS  =
 	CXXFLAGS += -fPIC
 	INSTALL = cp -f otpnitro $(PREFIX)/bin && cp -f libotpnitro.so $(PREFIX)/lib
@@ -72,7 +72,7 @@ otpnitro: otpnitro-lib
 
 bindings: otpnitro-lib
 	swig -Wall -c++ -python bindings/otpnitro.i
-	$(CXX)  $(CXXFLAGS) -shared $(EXTRAS) $(MODULES) bindings/otpnitro_wrap.cxx $(PYINDIR) -o bindings/_otpnitro${LIBEXT}
+	$(CXX)  $(CXXFLAGS) -shared $(EXTRAS) $(MODULES) bindings/otpnitro_wrap.cxx $(PYINDIR) -o bindings/_otpnitro${PYLIBEX}
 
 base24:
 	$(CXX)  $(CXXFLAGS) -L. base24.cpp    $(EXTRAS) -o base24   -lotpnitro
