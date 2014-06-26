@@ -73,6 +73,7 @@ otpnitro: otpnitro-lib
 bindings: otpnitro-lib
 	swig -Wall -c++ -python bindings/otpnitro.i
 	$(CXX)  $(CXXFLAGS) -shared $(EXTRAS) $(MODULES) bindings/otpnitro_wrap.cxx $(PYINDIR) -o bindings/_otpnitro${PYLIBEX}
+	strip -x bindings/_otpnitro${PYLIBEX}
 
 base24:
 	$(CXX)  $(CXXFLAGS) -L. base24.cpp    $(EXTRAS) -o base24   -lotpnitro
