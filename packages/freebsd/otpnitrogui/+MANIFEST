@@ -17,7 +17,7 @@
     "png":{"origin":"graphics/png","version":"1.5"}
 },
 "files":{
-    "/usr/local/bin/otpnitrogui":"ebd657beda7de3bda0b802e666b2d25ef91ad85edb0c282b387a830cc792d2a6","/usr/local/bin/otpnitrogui",
+    "/usr/local/bin/otpnitrogui":"6e439b3db6cdd18bcbe1d1a7722815a8b8bca414a2db84994214ae507b469f41","/usr/local/bin/otpnitrogui",
     "/usr/local/share/otpnitrogui/main_icon_16.png":"1eade78438a875c6cb40dc3367f6857ba71149bd8d0ce01422b82c1de144fc05","/usr/local/share/otpnitrogui/main_icon_16.png",
     "/usr/local/share/otpnitrogui/main_icon_32.png":"860cce12875995b7da77fd3ed5a419377da46af5b66a3faca8ac592e70e654e4","/usr/local/share/otpnitrogui/main_icon_32.png",
     "/usr/local/share/otpnitrogui/main_icon_48.png":"b74834c267ba39f171032d35853071f930ee6fe7fc5b478c09d1f4f763a5f168","/usr/local/share/otpnitrogui/main_icon_48.png",
