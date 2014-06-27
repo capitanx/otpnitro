@@ -94,6 +94,10 @@ install:
 clean:
 	$(RM) $(MODULES) $(LIBNAME) $(EXENAME) $(BASNAME)
 
+.PHONY : doc
+doc:
+	doxygen doc/doxygen.conf
+
 windows: all
 	candle packages\\windows\\otpnitro.wxs
 	light otpnitro.wixobj

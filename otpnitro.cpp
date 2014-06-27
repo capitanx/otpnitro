@@ -148,7 +148,7 @@ int main(int argc, char **argv)
 		}
 
 		// Crypto
-		crypto->replaceAll(txt->msg," ","");
+		txt->replaceAll(txt->msg," ","");
 		txt->msg = crypto->decrypt(txt->msg,out);
 
 		// Print MSG

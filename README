@@ -61,11 +61,11 @@ In this chapter we describe the basic concepts to use in this app.
 
 	2.1 Books
 
-	The cypher data is stored on books, every book have "pages" where the data is generated. The books usually have very short names, from 3 to 5 characters.
+	The cipher data is stored on books, every book have "pages" where the data is generated. The books usually have very short names, from 3 to 5 characters.
 
 	2.2 Pages
 
-	The pages store the cypher to crypt and decrypt, every page is unique and after use it you must burn the used page.
+	The pages store the cipher to crypt and decrypt, every page is unique and after use it you must burn the used page.
 
 	2.3 From field
 

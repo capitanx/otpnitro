@@ -6,6 +6,10 @@
 
 using namespace std;
 
+/*!
+ * @brief The constructor sets all parameters from the Config object
+ * @return Page object
+ */
 Page::Page(void)
 {
 	Config * cfg = new Config;
@@ -14,6 +18,11 @@ Page::Page(void)
 	MAX_CHARS	= cfg->getChars();
 }
 
+/*!
+ * @brief Returns the PATH of a given book
+ * @param id ID of a valid book
+ * @return dirpath
+ */
 string	Page::dirPath(string id)
 {
 	string dirpath = REL_PATH;
@@ -22,6 +31,12 @@ string	Page::dirPath(string id)
 	return(dirpath);
 }
 
+/*!
+ * @brief Returns the file path of a book for a given page
+ * @param page Page num
+ * @param id   Book ID
+ * @return filepath
+ */
 string	Page::filePath(int page, string id)
 {
 	char pagetxt[10];
@@ -33,6 +48,12 @@ string	Page::filePath(int page, string id)
 	return(filepath);
 }
 
+/*!
+ * @brief Secure page file delete
+ * @param page Page num
+ * @param id   Book ID
+ * @return (bool) true == ok
+ */
 bool	Page::burn(int page, string id)
 {
 	// Open file
@@ -64,6 +85,11 @@ bool	Page::burn(int page, string id)
 
 }
 
+/*!
+ * @brief Returns the next unused page num for a book
+ * @param id Book ID
+ * @return (int)pagenum
+ */
 int	Page::next(string id)
 {
 	string filename;
@@ -111,6 +137,12 @@ bool	Page::write(int page, string id, string ciphertext)
 	return true;
 }
 
+/*!
+ * @brief Get the ciphertext page from a given book
+ * @param page Page num
+ * @param id Book ID
+ * @return ciphertext
+ */
 string	Page::read(int page, string id)
 {
 	// Read PAGE
@@ -125,6 +157,10 @@ string	Page::read(int page, string id)
 	return(ciphertext);
 }
 
+/*!
+ * @brief Generate ciphertext page using the Rand class
+ * @return ciphertext
+ */ 
 string	Page::get()
 {
 	string ciphtext;
@@ -137,6 +173,11 @@ string	Page::get()
 	return ciphtext;
 }
 
+/*!
+ * @brief Generate a complete Book using Page::get() and write it to the disk
+ * @param id New book ID
+ * @return (bool) true == ok
+ */
 bool	Page::generate(string id)
 {
 #ifdef	__unix__
@@ -156,6 +197,10 @@ bool	Page::generate(string id)
 	return true;
 }
 
+/*!
+ * @brief Returns a list of valid books
+ * @return files
+ */
 string	Page::list()
 {
 	string files;

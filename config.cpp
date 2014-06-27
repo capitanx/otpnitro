@@ -6,6 +6,18 @@
 
 using namespace std;
 
+/*!
+ * @brief Config constructor
+ * @return Config object
+ *
+ * <b>Default PATH</b> \n
+ * \t Win32: The PATH is \%APPDATA\%\\\.otpnitro\\ \n
+ * \t Unix:  The PATH is $HOME/.otpnitro/ \n
+ * \n
+ * <b>Files</b> \n
+ * The config file is always otpnitro.ini in the PATH root. \n
+ * The pages are stored on the PAGES folder from the PATH root.
+ */
 Config::Config(void)
 {
 	// Default values
@@ -78,6 +90,10 @@ Config::Config(void)
 #endif
 }
 
+/*!
+ * @brief Save the config to the default PATH \n
+ * If the config file doesnt exist it will create it with default values
+ */
 void	Config::saveConfig(void) {
 
 	// Unix and windows path
@@ -104,31 +120,53 @@ void	Config::saveConfig(void) {
 
 }
 
+/*!
+ * @brief Returns the current PATH
+ */
 char *	Config::getPath()
 {
 	return REL_PATH;
 }
 
+/*!
+ * @brief Returns the max PATH length
+ * @return MAX_CHARS
+ */
 int		Config::getChars()
 {
 	return MAX_CHARS;
 }
 
+/*!
+ * @brief Returns the number of generated pages
+ * @return MAX_PAGES
+ */
 int		Config::getPages()
 {
 	return MAX_PAGES;
 }
 
+/*!
+ * @brief Set a new PATH to be used
+ */
 void	Config::setPath( char * path)
 {
 	strncpy(REL_PATH, path, MAX_PATH - 1);
 }
 
+/*!
+ * @brief Set the max PATH length
+ * @param chars MAX_CHARS (int)
+ */
 void	Config::setChars(int chars)
 {
 	MAX_CHARS = chars;
 }
 
+/*!
+ * @brief Set the num of pages to be generated
+ * @param pages MAX_PAGES (int)
+ */
 void	Config::setPages(int pages)
 {
 	MAX_PAGES = pages;

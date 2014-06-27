@@ -16,6 +16,9 @@
 # define getpid _getpid
 #endif
 
+/*!
+ * @brief This class provides all secure random rutines
+ */
 class Rand {
 	float seed;
 

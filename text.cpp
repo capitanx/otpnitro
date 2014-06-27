@@ -5,6 +5,13 @@
 #include "text.h"
 #include "otpnitro.h"
 
+/*!
+ * replaceAll( str, from, to ) \n
+ * @brief Replace all characters from a string
+ * @param str The string pointer
+ * @param from Character to be replaced
+ * @param to Replace character
+ */
 void   Text::replaceAll(std::string& str, const std::string& from, const std::string& to)
 {
 	if(from.empty())
@@ -17,6 +24,13 @@ void   Text::replaceAll(std::string& str, const std::string& from, const std::st
 	}
 }
 
+/*!
+ * @brief Set the Text object parameters
+ * @param page Page num
+ * @param book Book ID
+ * @param from A sender id for identification
+ * @param msg The cleartext message
+ */
 void Text::create(int page, string book, string from, string msg)
 {
 	this->page = page;
@@ -25,6 +39,11 @@ void Text::create(int page, string book, string from, string msg)
 	this->msg  = msg;
 }
 
+/*!
+ * @brief Print a human friendly Text object
+ * @param spa Space num
+ * @return sout.str()
+ */
 string Text::print(int spa)
 {
 	std::stringstream sout;
@@ -47,6 +66,10 @@ string Text::print(int spa)
 	return sout.str();
 }
 
+/*!
+ * @brief Parse and set the Text object with a formatted (headed) message
+ * @param text The formatted message string
+ */
 void Text::parse(string text)
 {
 	transform(text.begin(), text.end(), text.begin(), ::toupper);
@@ -78,6 +101,12 @@ void Text::parse(string text)
 	this->msg  = msg;
 }
 
+/*!
+ * @brief Returns the text encoded in Base26
+ * @param text Text to encode
+ * @param len Text len
+ * @return Encoded text (string)
+ */
 string Text::encodeB26(unsigned char * text, long len)
 {
 	string output;
@@ -90,6 +119,11 @@ string Text::encodeB26(unsigned char * text, long len)
 	return output;
 }
 
+/*!
+ * @brief Returns the text decoded in Base26
+ * @param output Text decoded
+ * @param text Encoded text
+ */
 void Text::decodeB26(unsigned char * output, string text)
 {
 	unsigned char current = 0x00;

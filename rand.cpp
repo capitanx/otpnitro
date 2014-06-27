@@ -6,6 +6,10 @@
 # include <iostream>
 #endif
 
+/*!
+ * @brief The Rand constructor generate a new random seed
+ * @return Rand object
+ */
 Rand::Rand()
 {
 	srand(this->genSeed());
@@ -14,6 +18,13 @@ Rand::Rand()
 #endif
 }
 
+/*!
+ * @brief This function get the tick number from the CPU
+ * @return (ulong)tsc
+ *
+ * In ix86 and amd64 uses RDTSC to get the low ticks value. \n
+ * In ARMv6 and ARMv7 currently uses a gettimeofday()
+ */
 unsigned long Rand::getTicks()
 {
 // TODO: Find a cpu time/ticks asm inline for ARMv6 and ARMv7
@@ -35,6 +46,10 @@ unsigned long Rand::getTicks()
 #endif
 }
 
+/*!
+ * @brief Random seed setter
+ * @param a The new seed
+ */
 void Rand::setSeed(float a)
 {
 	seed = a;
@@ -44,11 +59,21 @@ void Rand::setSeed(float a)
 #endif
 }
 
+/*!
+ * @brief Random sed getter
+ * @return (float)seed
+ */
 float Rand::getSeed()
 {
 	return(seed);
 }
 
+/*!
+ * @param Generate a new seed using some black magic
+ * @return (float)seed
+ *
+ * seed = (float)( (usecs.tv_usec + getpid()) ^ (int(Rand::getTicks()) << 16) / 10000 );
+ */
 float Rand::genSeed()
 {
 	struct timeval usecs;
@@ -57,11 +82,19 @@ float Rand::genSeed()
 	return(seed);
 }
 
+/*!
+ * @param Get a random char
+ * @return (char)rnd
+ */
 char Rand::getChar()
 {
 	return rand() % 256;
 }
 
+/*!
+ * @brief Get a random [A-Z] char
+ * @return (char)rnd
+ */
 char Rand::getLetter()
 {
 	// TY @MarioVilas for ur help here :-)
@@ -74,6 +107,11 @@ char Rand::getLetter()
 	return rnd;
 }
 
+/*!
+ * @brief Get a random number
+ * @param a number len
+ * @return (int)rnd
+ */
 int  Rand::getNumber(int a)
 {
 	return rand() % a+1;

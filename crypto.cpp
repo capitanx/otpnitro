@@ -3,6 +3,13 @@
 #include "crypto.h"
 #include "otpnitro.h"
 
+/*!
+ * replaceAll( str, from, to ) \n
+ * @brief Replace all characters from a string
+ * @param str The string pointer
+ * @param from Character to be replaced
+ * @param to Replace character
+ */
 void Crypto::replaceAll(std::string& str, const std::string& from, const std::string& to)
 {
 	if(from.empty())
@@ -15,6 +22,14 @@ void Crypto::replaceAll(std::string& str, const std::string& from, const std::st
 	}
 }
 
+/*!
+ * @brief Crypt a text string
+ * @param in Original (not crypted) string
+ * @param out The ciphered text to sum(26)
+ * @return The crypted string
+ *
+ * This function also remove the newline chars and replace all spaces to the "JQ" from the original text before to be crypted
+ */
 string Crypto::encrypt(string in, string out)
 {
 	// To upper :-)
@@ -53,6 +68,14 @@ string Crypto::encrypt(string in, string out)
 	return crypted;
 }
 
+/*!
+ * @brief Decrypt a text (crypted) string
+ * @param crypted Original (crypted) string
+ * @param out The ciphered text to sum(26)
+ * @return The decrypted string
+ *
+ * This function also replaces all "JQ" ocurrences from the decrypted text to spaces
+ */ 
 string Crypto::decrypt(string crypted, string out)
 {
 	// To upper

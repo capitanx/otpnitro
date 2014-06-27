@@ -15,6 +15,9 @@
 
 using namespace std;
 
+/*!
+ * @brief Configuration, path and pages management
+ */
 class Config {
 		char	REL_PATH[MAX_PATH];
 		int		MAX_CHARS;

@@ -16,6 +16,9 @@
 
 using namespace std;
 
+/*!
+ * @brief Page operations class
+ */
 class Page {
 		char	REL_PATH[MAX_PATH];
 		int		MAX_CHARS;
