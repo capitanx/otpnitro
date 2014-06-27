@@ -118,7 +118,13 @@ debian-cli: all
 	cp libotpnitro.so packages/debian/otpnitro/usr/lib
 	fakeroot dpkg-deb --build packages/debian/otpnitro otpnitro_$(VERSION)_amd64.deb
 
-debian: debian-cli
+debian-python:
+	mkdir -p                  packages/debian/python-otpnitro/usr/lib/python2.7/dist-packages
+	cp bindings/otpnitro.py   packages/debian/python-otpnitro/usr/lib/python2.7/dist-packages
+	cp bindings/_otpnitro.so  packages/debian/python-otpnitro/usr/lib/python2.7/dist-packages
+	fakeroot dpkg-deb --build packages/debian/python-otpnitro python-otpnitro_$(VERSION)_amd64.deb
+
+debian: debian-cli debian-python
 	mkdir -p packages/debian/otpnitrogui/usr/bin
 	cp $(HOME)/.upp/_out/otpnitrogui/CLANG.Blitz.Force_Speed.Gui.Shared.Sse2/otpnitrogui packages/debian/otpnitrogui/usr/bin
 	strip packages/debian/otpnitrogui/usr/bin/otpnitrogui
