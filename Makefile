@@ -71,9 +71,11 @@ otpnitro: otpnitro-lib
 	strip   $(EXENAME)
 
 bindings: otpnitro-lib
-	swig -Wall -c++ -python bindings/otpnitro.i
 	$(CXX)  $(CXXFLAGS) -shared $(EXTRAS) $(MODULES) bindings/otpnitro_wrap.cxx $(PYINDIR) -o bindings/_otpnitro${PYLIBEX}
 	strip -x bindings/_otpnitro${PYLIBEX}
+
+swig:
+	swig -Wall -c++ -python bindings/otpnitro.i
 
 base24:
 	$(CXX)  $(CXXFLAGS) -L. base24.cpp    $(EXTRAS) -o base24   -lotpnitro
@@ -97,12 +99,18 @@ windows: all
 	light otpnitro.wixobj
 
 freebsd-cli: all
-	mkdir -p packages/freebsd/otpnitro/usr/local/bin
-	mkdir -p packages/freebsd/otpnitro/usr/local/lib
-	cp otpnitro packages/freebsd/otpnitro/usr/local/bin
-	cp base24   packages/freebsd/otpnitro/usr/local/bin
-	cp libotpnitro.so packages/freebsd/otpnitro/usr/local/lib
-	pkg create -f txz -r packages/freebsd/otpnitro -m packages/freebsd/otpnitro
+	mkdir -p                  packages/freebsd/otpnitro/usr/local/bin
+	mkdir -p                  packages/freebsd/otpnitro/usr/local/lib
+	cp otpnitro               packages/freebsd/otpnitro/usr/local/bin
+	cp base24                 packages/freebsd/otpnitro/usr/local/bin
+	cp libotpnitro.so         packages/freebsd/otpnitro/usr/local/lib
+	pkg create -f txz      -r packages/freebsd/otpnitro -m packages/freebsd/otpnitro
+
+freebsd-python:
+	mkdir -p                  packages/freebsd/python-otpnitro/usr/local/lib/python2.7/site-packages
+	cp bindings/_otpnitro.so  packages/freebsd/python-otpnitro/usr/local/lib/python2.7/site-packages
+	cp bindings/otpnitro.py   packages/freebsd/python-otpnitro/usr/local/lib/python2.7/site-packages
+	pkg create -f txz      -r packages/freebsd/python-otpnitro -m packages/freebsd/python-otpnitro
 
 freebsd: freebsd-cli
 	mkdir -p packages/freebsd/otpnitrogui/usr/local/bin
@@ -111,11 +119,11 @@ freebsd: freebsd-cli
 	pkg create -f txz -r packages/freebsd/otpnitrogui -m packages/freebsd/otpnitrogui
 
 debian-cli: all
-	mkdir -p packages/debian/otpnitro/usr/bin
-	mkdir -p packages/debian/otpnitro/usr/lib
-	cp otpnitro packages/debian/otpnitro/usr/bin
-	cp base24   packages/debian/otpnitro/usr/bin
-	cp libotpnitro.so packages/debian/otpnitro/usr/lib
+	mkdir -p                  packages/debian/otpnitro/usr/bin
+	mkdir -p                  packages/debian/otpnitro/usr/lib
+	cp otpnitro               packages/debian/otpnitro/usr/bin
+	cp base24                 packages/debian/otpnitro/usr/bin
+	cp libotpnitro.so         packages/debian/otpnitro/usr/lib
 	fakeroot dpkg-deb --build packages/debian/otpnitro otpnitro_$(VERSION)_amd64.deb
 
 debian-python:

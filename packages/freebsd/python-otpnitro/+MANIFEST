@@ -1,0 +1,19 @@
+{
+"name":"python-otpnitro",
+"version":"0.4",
+"origin":"security/python-otpnitro",
+"comment":"Python bindings for otpnitro",
+"desc":"OTP Nitro is a secure One Time Pad library and CLI to use on computers.",
+"arch":"freebsd:10:x86:64",
+"www":"https://code.haibane.org/crypto/otpnitro",
+"maintainer":"capi_x@haibane.org",
+"prefix":"/usr/local",
+"flatsize":"144",
+"deps":{
+    "pkg":{"origin":"lang/python27","version":"2.7"},
+},
+"files":{
+    "/usr/local/lib/python2.7/site-packages/_otpnitro.so":"ff9bbab95f38710952750b0ac74029cbe6f40e7a8f4add494aa2d865b3e766b7","/usr/local/lib/python2.7/site-packages/_otpnitro.so",
+	"/usr/local/lib/python2.7/site-packages/otpnitro.py":"b1c6fed7837493cccb01eaccd416c821c566af5006d7b74b93e089faa862c22c","/usr/local/lib/python2.7/site-packages/otpnitro.py",
+}
+}
