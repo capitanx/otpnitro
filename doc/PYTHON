@@ -1,0 +1,6 @@
+PYTHON API
+==========
+
+# text.h
+'from'  is renamed to '_from'
+'print' is renamed to '_print'
