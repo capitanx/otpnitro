@@ -51,7 +51,7 @@ else
 	LIBNAME = libotpnitro.so
 	EXENAME = otpnitro
 	BASNAME = base24
-	PYINDIR = $(shell python-config --includes)
+	PYINDIR = $(shell python-config --includes) $(shell python-config --ldflags)
 	PYLIBEX = .so
 	EXTRAS  =
 	CXXFLAGS += -fPIC
