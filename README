@@ -52,119 +52,102 @@ CLI Usage
 GUI Usage
 ---------
 
-1. Introduction
-OTPNITRO is a secure One Time Pad implementation to use on computers or as assistant on manual operation.
+1) **Introduction**
+	OTPNITRO is a secure One Time Pad implementation to use on computers or as assistant on manual operation.
 
+2) **Concepts**
+	In this chapter we describe the basic concepts to use in this app.
 
-2. Concepts
-In this chapter we describe the basic concepts to use in this app.
+	a) **Books**
+		The cipher data is stored on books, every book have "pages" where the data is generated. The books usually have very short names, from 3 to 5 characters.
 
-	2.1 Books
+	b) **Pages**
+		The pages store the cipher to crypt and decrypt, every page is unique and after use it you must burn the used page.
 
-	The cipher data is stored on books, every book have "pages" where the data is generated. The books usually have very short names, from 3 to 5 characters.
+	c) **From field**
+		The recipient is anyone who have the same book than you used to crypt the message and you must identify yourself as sender in the from field. The IDs usually have very short names, from 3 to 5 characters.
 
-	2.2 Pages
+	d) **Formatted message**
+		To have a send/receive standar format, please use this one::
 
-	The pages store the cipher to crypt and decrypt, every page is unique and after use it you must burn the used page.
+			<BOOK> DE <FROM> <PAGE> = <MESSAGE> =
 
-	2.3 From field
+		**Example**::
 
-	The recipient is anyone who have the same book than you used to crypt the message and you must identify yourself as sender in the from field. The IDs usually have very short names, from 3 to 5 characters.
+			TST DE CPX 2 = QSZBO IGFIY NVTVY BFXCB KROAP =
 
-	2.4 Formatted message
+3) **Operations**
+	In this chapter we describe the basic operations.
 
-	To have a send/receive standar format, please use this one::
+	a) **Generate a book**
+		The first operation is generate a book, to do this, please use the menu: Books -> Generate Book or press CTRL + G keys.
 
-		<BOOK> DE <FROM> <PAGE> = <MESSAGE> =
+	b) **Crypt**
+		To crypt a message you must provide a valid book in the selector, an arbitrary ID in the form field and a message unformated to crypt. The page will be selected automatically. Later you must use the menu: Crypto -> Crypt or press CTRL + E keys.
 
-	Example::
+	c) **Decrypt**
+		To decrypt a message you can provide a formatted message, in this case you only must select the "Formatted msg" option. If you dont have the format, you can enter all fields manually. Later you must use the menu: Crypto -> Decrypt or press CTRL + D keys.
 
-		TST DE CPX 2 = QSZBO IGFIY NVTVY BFXCB KROAP =
+	d) **Burn page**
+		It is recommended to burn the page after use, but if you want to do this manually  (or later) you can use the menu: Crypto -> Burn page or press CTRL + B keys.
 
+	e) **Refresh books**
+		If you modify or delete any book in the filesystem you must refresh the books in the app. To do that you can use the menu: Crypto -> Refresh books or press CTRL + R keys.
 
-3. Operations
-In this chapter we describe the basic operations.
+4) **Internals**
+	In this chapter we describe internal operations, know bugs or missing features.
 
-	3.1 Generate a book
+	a) **Settings**
+		The settings/config file must be located on %APPDATA%/.otpnitro/otpnitro.ini or $HOME/.otpnitro/otpnitro.ini
 
-	The first operation is generate a book, to do this, please use the menu: Books -> Generate Book or press CTRL + G keys.
+	b) **Book storing**
+		By default the books are stored on %APPDATA%/.otpnitro/PAGES or $HOME/.otpnitro/PAGES (this can be changed in the config file)
 
-	3.2 Crypt
+	c) **Max pages parameter**
+		Is the number of pages generated for book. (this value limits the number of messages to be crypted on a book)
 
-	To crypt a message you must provide a valid book in the selector, an arbitrary ID in the form field and a message unformated to crypt. The page will be selected automatically.
-	Later you must use the menu: Crypto -> Crypt or press CTRL + E keys.
+	d) **Max chars parameter**
+		Is the number of characters generated for page. (this value limits the number of text to be crypted)
 
-	3.3 Decrypt
+	e) **Project URL**
+		For more information, updates, etc. you can visit the project homepage_.
 
-	To decrypt a message you can provide a formatted message, in this case you only must select the "Formatted msg" option. If you dont have the format, you can enter all fields manually.
-	Later you must use the menu: Crypto -> Decrypt or press CTRL + D keys.
+5) **License**
+	This program is under the GPLv3 license.
 
-	3.4 Burn page
+6) **Authors**
+	* `@capi_x`_ <capi_x@haibane.org>
 
-	It is recommended to burn the page after use, but if you want to do this manually  (or later) you can use the menu: Crypto -> Burn page or press CTRL + B keys.
-
-	3.5 Refresh books
-
-	If you modify or delete any book in the filesystem you must refresh the books in the app. To do that you can use the menu: Crypto -> Refresh books or press CTRL + R keys.
-
-
-4. Internals
-In this chapter we describe internal operations, know bugs or missing features.
-
-	4.1 Settings
-
-	The settings/config file must be located on %APPDATA%/.otpnitro/otpnitro.ini or $HOME/.otpnitro/otpnitro.ini
-
-	4.2 Book storing
-
-	By default the books are stored on %APPDATA%/.otpnitro/PAGES or $HOME/.otpnitro/PAGES (this can be changed in the config file)
-
-	4.3 Max pages parameter
-
-	Is the number of pages generated for book. (this value limits the number of messages to be crypted on a book)
-
-	4.4 Max chars parameter
-
-	Is the number of characters generated for page. (this value limits the number of text to be crypted)
-
-	4.5 Project URL
-
-	For more information, updates, etc. you can visit the project homepage_.
-
-
-5. License
-This program is under the GPLv3 license.
-
-
-6. Authors
-* `@capi_x`_ <capi_x@haibane.org>
-
-
-7. Acknowledges
-* `@Mario_vilas`_     - Thanks for GUI and crypto testing.
-* `@sha0coder`_       - Thanks for CLI and GUI testing.
-* `@AloneInTheShell`_ - Thanks for CLI and LIB testing.
+7) **Acknowledges**
+	* `@Mario_vilas`_     - Thanks for GUI and crypto testing.
+	* `@sha0coder`_       - Thanks for CLI and GUI testing.
+	* `@AloneInTheShell`_ - Thanks for CLI and LIB testing.
 
 
 CLI compile guide
 -----------------
-Compile::
+**Compile:**
 
-	[ Generic ]
+1) Generic / Debian::
+
 	make
 
-	[ FreeBSD ]
+2) FreeBSD::
+
 	CXX=clang++ gmake
 	
-Install::
+**Install:**
 
-	[ Generic ]
+1) Generic::
+
 	make install
 
-	[ FreeBSD ]
+2) FreeBSD::
+
 	CXX=clang++ gmake freebsd-cli
 
-	[ Debian ]
+3) Debian::
+
 	make debian-cli
 
 
@@ -196,6 +179,49 @@ Again fill all options and add the otpnitro path to "lib directories"
 
 Ok, you can build all now pressing the F7 key. 
 
+**Install:**
+
+1) Generic::
+
+	make install
+
+2) FreeBSD::
+
+	CXX=clang++ gmake freebsd
+
+3) Debian::
+
+	make debian
+
+
+Bindings
+--------
+``OTP Nitro`` supports bindings to other languages using SWIG_
+
+1) **Python**
+	a) **Compile**::
+
+		make bindings
+
+	b) **Install**::
+
+		make python-otpnitro
+		( Install the .deb or .tzx package )
+
+	c) **Usage**
+		Once installed::
+
+			>> import otpnitro
+			>> page = otpnitro.Page()
+			>> print page.list() 
+
+
+API
+---
+The API documentation is located here:
+
+* `HTML <http://www.haibane.org/doc/otpnitro/index.html>`_
+* `PDF <http://www.haibane.org/doc/otpnitro.pdf>`_
 
 Features
 --------
@@ -203,8 +229,10 @@ Features
 * Encrypt messages
 * Decrypt messages
 * Burn pages (secure delete)
-* Automatic text format
+* Automatic text format (header)
 * GUI using `Ultimate++`_
+* API and library
+* Bindings
 
 
 TODO
@@ -229,3 +257,4 @@ License
 .. _`U++ enviroment`: http://www.ultimatepp.org/www$uppweb$download$en-us.html
 .. _homepage: https://code.haibane.org/crypto/otpnitro
 .. _GPLv3: http://www.gnu.org/licenses/gpl-3.0.txt
+.. _SWIG: http://www.swig.org/
