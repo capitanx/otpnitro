@@ -17,6 +17,10 @@
 # include <iostream>
 #endif
 
+#ifdef __HAIKU__
+#include <unistd.h>
+#endif
+
 /*!
  * @brief The Rand constructor generate a new random seed
  * @return Rand object

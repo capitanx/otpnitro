@@ -15,6 +15,10 @@
 #include "config.h"
 #include "otpnitro.h"
 
+#ifdef __HAIKU__
+#include <sys/stat.h>
+#endif
+
 using namespace std;
 
 /*!
@@ -37,15 +41,7 @@ Config::Config(void)
 	MAX_CHARS	= 1020;
 
 	// Unix and windows path
-#ifdef __unix__
-	string cfgPath = getenv("HOME");
-	cfgPath.append("/.otpnitro");
-	string pagesPath = cfgPath;
-	pagesPath.append("/PAGES/");
-	strncpy(REL_PATH, pagesPath.c_str(), MAX_PATH - 1);
-	mkdir(cfgPath.c_str(), S_IRWXU|S_IRGRP|S_IXGRP);
-	cfgPath.append("/otpnitro.ini");
-#elif  __APPLE__
+#if	defined(__unix__) || defined(__APPLE__) || defined(__HAIKU__)
 	string cfgPath = getenv("HOME");
 	cfgPath.append("/.otpnitro");
 	string pagesPath = cfgPath;

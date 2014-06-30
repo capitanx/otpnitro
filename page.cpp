@@ -15,6 +15,10 @@
 #include "config.h"
 #include "otpnitro.h"
 
+#ifdef __HAIKU__
+#include <sys/stat.h>
+#endif
+
 using namespace std;
 
 /*!
@@ -131,9 +135,7 @@ int	Page::next(string id)
 bool	Page::write(int page, string id, string ciphertext)
 {
 	// Create OTP folder for ID
-#ifdef __unix__
-	mkdir(dirPath(id).c_str(), S_IRWXU|S_IRGRP|S_IXGRP);
-#elif  __APPLE__
+#if	defined(__unix__) || defined(__APPLE__) || defined(__HAIKU__)
 	mkdir(dirPath(id).c_str(), S_IRWXU|S_IRGRP|S_IXGRP);
 #else
 	mkdir(dirPath(id).c_str());
@@ -191,9 +193,7 @@ string	Page::get()
  */
 bool	Page::generate(string id)
 {
-#ifdef	__unix__
-	mkdir(REL_PATH, S_IRWXU|S_IRGRP|S_IXGRP);
-#elif   __APPLE__
+#if	defined(__unix__) || defined(__APPLE__) || defined(__HAIKU__)
 	mkdir(REL_PATH, S_IRWXU|S_IRGRP|S_IXGRP);
 #else
 	mkdir(REL_PATH);
