@@ -51,7 +51,11 @@ unsigned long Rand::getTicks()
 			"rdtsc"
 			: "=a"(lo), "=d"(hi)
 			: "a"(0)
+#ifdef __i386__
+			: "%ecx");
+#else
 			: "%ebx", "%ecx");
+#endif
 	tsc = (unsigned long)lo;
 	return tsc;
 #endif
