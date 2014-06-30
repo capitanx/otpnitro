@@ -32,6 +32,8 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="config.cpp" />
+		<Unit filename="config.h" />
 		<Unit filename="crypto.cpp" />
 		<Unit filename="crypto.h" />
 		<Unit filename="otpnitro.cpp" />
