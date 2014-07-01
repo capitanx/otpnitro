@@ -12,7 +12,7 @@
 #
 
 PACKAGE = otpnitro
-VERSION = 0.4
+VERSION = 0.4.1
 
 ifndef PREFIX
 	PREFIX = /usr
@@ -108,18 +108,21 @@ freebsd-cli: all
 	cp otpnitro               packages/freebsd/otpnitro/usr/local/bin
 	cp base24                 packages/freebsd/otpnitro/usr/local/bin
 	cp libotpnitro.so         packages/freebsd/otpnitro/usr/local/lib
+	packages/freebsd/build.sh packages/freebsd/otpnitro/+MANIFEST
 	pkg create -f txz      -r packages/freebsd/otpnitro -m packages/freebsd/otpnitro
 
 freebsd-python:
 	mkdir -p                  packages/freebsd/python-otpnitro/usr/local/lib/python2.7/site-packages
 	cp bindings/_otpnitro.so  packages/freebsd/python-otpnitro/usr/local/lib/python2.7/site-packages
 	cp bindings/otpnitro.py   packages/freebsd/python-otpnitro/usr/local/lib/python2.7/site-packages
+	packages/freebsd/build.sh packages/freebsd/python-otpnitro/+MANIFEST
 	pkg create -f txz      -r packages/freebsd/python-otpnitro -m packages/freebsd/python-otpnitro
 
 freebsd: freebsd-cli
 	mkdir -p packages/freebsd/otpnitrogui/usr/local/bin
 	cp $(HOME)/.upp/_out/otpnitrogui/GCC.Blitz.Force_Speed.Gui.Shared.Sse2/otpnitrogui packages/freebsd/otpnitrogui/usr/local/bin
 	strip packages/freebsd/otpnitrogui/usr/local/bin/otpnitrogui
+	packages/freebsd/build.sh packages/freebsd/otpnitrogui/+MANIFEST
 	pkg create -f txz -r packages/freebsd/otpnitrogui -m packages/freebsd/otpnitrogui
 
 debian-cli: all

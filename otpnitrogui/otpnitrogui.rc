@@ -10,12 +10,12 @@ BEGIN
     BEGIN
       VALUE "CompanyName", "Haibane.org"
       VALUE "FileDescription", "OTPNitro"
-      VALUE "FileVersion", "0.4"
+      VALUE "FileVersion", "0.4.1"
       VALUE "InternalName", "OTPNitro"
       VALUE "LegalCopyright", "OTPNitro 2013-2014 (c) capi_x <capi_x@haibane.org>"
       VALUE "OriginalFilename", "otpnitrogui.exe"
       VALUE "ProductName", "OTPNitro"
-      VALUE "ProductVersion", "0.4"
+      VALUE "ProductVersion", "0.4.1"
     END
   END
 

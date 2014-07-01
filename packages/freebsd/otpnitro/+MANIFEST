@@ -1,6 +1,6 @@
 {
 "name":"otpnitro",
-"version":"0.4",
+"version":"#VERSION#",
 "origin":"security/otpnitro",
 "comment":"A secure One Time Pad implementation.",
 "desc":"OTP Nitro is a secure One Time Pad library and CLI to use on computers.",
@@ -13,8 +13,8 @@
     "pkg":{"origin":"ports-mgmt/pkg","version":"1.2"},
 },
 "files":{
-    "/usr/local/bin/otpnitro":"c2555cae9ec32d4ccdb0cdc3a061aa66901d0a00e8d51e10bafb624418630f6c","/usr/local/bin/otpnitro",
-	"/usr/local/bin/base24":"76567f24c59bbae2664a494c9ab4a7b7e69c1a40c50bee468d3602010bfebe44","/usr/local/bin/base24",
-    "/usr/local/lib/libotpnitro.so":"3ad2077ca0e72f9e494d1c6f192b84849ff0fc2f02419e34486454033a99a3ea","/usr/local/lib/libotpnitro.so"
+    "/usr/local/bin/otpnitro":"#SHA256OTPNITRO#","/usr/local/bin/otpnitro",
+	"/usr/local/bin/base24":"#SHA256BASE64#","/usr/local/bin/base24",
+    "/usr/local/lib/libotpnitro.so":"#SHA256LIBOTPNITRO#","/usr/local/lib/libotpnitro.so"
 }
 }

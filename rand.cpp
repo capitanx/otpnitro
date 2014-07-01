@@ -13,6 +13,7 @@
 #include "otpnitro.h"
 
 #include <sys/time.h>
+#include <fcntl.h>
 #ifdef DEBUG
 # include <iostream>
 #endif
@@ -79,6 +80,23 @@ void Rand::setSeed(float a)
 }
 
 /*!
+ * @brief Tries to find a /dev/random and return a byte, if not uses the rand() function
+ * @return (int)rand
+ */
+
+int trand() {
+	int  fdev;
+	char crnd;
+
+	fdev = open("/dev/random", O_RDONLY);
+
+	if(fdev < 0)
+		return(rand());
+
+	return((int)read(fdev,&crnd,1));
+}
+
+/*!
  * @brief Random sed getter
  * @return (float)seed
  */
@@ -107,7 +125,7 @@ float Rand::genSeed()
  */
 char Rand::getChar()
 {
-	return rand() % 256;
+	return trand() % 256;
 }
 
 /*!
@@ -121,7 +139,7 @@ char Rand::getLetter()
 
 	// Ugly GCC hack, sorry :(
 	while(rnd < 0x41 || rnd > 0x5A)
-		rnd = rand();
+		rnd = trand();
 
 	return rnd;
 }
@@ -133,5 +151,5 @@ char Rand::getLetter()
  */
 int  Rand::getNumber(int a)
 {
-	return rand() % a+1;
+	return trand() % a+1;
 }
