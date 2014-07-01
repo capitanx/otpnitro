@@ -94,6 +94,7 @@ int trand() {
 		return(rand());
 
 	read(fdev,&crnd,1);
+	close(fdev);
 
 	return((int)crnd);
 }
