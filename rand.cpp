@@ -23,15 +23,26 @@
 #endif
 
 /*!
- * @brief The Rand constructor generate a new random seed
+ * @brief The Rand constructor generate a new random seed and try to open /dev/random
  * @return Rand object
  */
 Rand::Rand()
 {
+	fdev = open("/dev/random", O_RDONLY);
+
 	srand(this->genSeed());
 #ifdef DEBUG
 	cout << "Seed: " << seed << endl;
 #endif
+}
+
+/*!
+ * @brief The destructor will try to close the file descripto
+ */
+Rand::~Rand(void)
+{
+    if(fdev >= 0)
+        close(fdev);
 }
 
 /*!
@@ -84,18 +95,13 @@ void Rand::setSeed(float a)
  * @return (int)rand
  */
 
-int trand() {
-	int  fdev;
+int Rand::t_rand() {
 	char crnd;
-
-	fdev = open("/dev/random", O_RDONLY);
 
 	if(fdev < 0)
 		return(rand());
 
 	read(fdev,&crnd,1);
-	close(fdev);
-
 	return((int)crnd);
 }
 
@@ -128,7 +134,7 @@ float Rand::genSeed()
  */
 char Rand::getChar()
 {
-	return trand() % 256;
+	return t_rand() % 256;
 }
 
 /*!
@@ -142,7 +148,7 @@ char Rand::getLetter()
 
 	// Ugly GCC hack, sorry :(
 	while(rnd < 0x41 || rnd > 0x5A)
-		rnd = trand();
+		rnd = t_rand();
 
 	return rnd;
 }
@@ -154,5 +160,5 @@ char Rand::getLetter()
  */
 int  Rand::getNumber(int a)
 {
-	return trand() % a+1;
+	return t_rand() % a+1;
 }

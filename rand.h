@@ -32,9 +32,12 @@
  */
 class Rand {
 	float seed;
+	int   fdev;
+	int   t_rand();
 
 	public:
 		Rand();
+		~Rand();
 		unsigned long getTicks();
 		void  setSeed(float);
 		float getSeed();
