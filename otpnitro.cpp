@@ -19,7 +19,7 @@
 int main(int argc, char **argv)
 {
 	// Header
-	cout << "OTP Nitro " << VERSION << endl << "-------------" << endl;
+	cout << "OTP Nitro " << VERSION << endl << "---------------" << endl;
 	if (argc == 1)
 	cout << "ERROR: You must enter a valid argument, see -h" << endl << endl;
 
