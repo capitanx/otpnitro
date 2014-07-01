@@ -118,7 +118,7 @@ freebsd-python:
 	packages/freebsd/build.sh packages/freebsd/python-otpnitro/+MANIFEST
 	pkg create -f txz      -r packages/freebsd/python-otpnitro -m packages/freebsd/python-otpnitro
 
-freebsd: freebsd-cli
+freebsd: freebsd-cli freebsd-python
 	mkdir -p packages/freebsd/otpnitrogui/usr/local/bin
 	cp $(HOME)/.upp/_out/otpnitrogui/GCC.Blitz.Force_Speed.Gui.Shared.Sse2/otpnitrogui packages/freebsd/otpnitrogui/usr/local/bin
 	strip packages/freebsd/otpnitrogui/usr/local/bin/otpnitrogui
