@@ -93,7 +93,9 @@ int trand() {
 	if(fdev < 0)
 		return(rand());
 
-	return((int)read(fdev,&crnd,1));
+	read(fdev,&crnd,1);
+
+	return((int)crnd);
 }
 
 /*!
