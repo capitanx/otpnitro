@@ -2,6 +2,9 @@
 
 MANIFEST=$1
 VERSION=$(grep VERSION Makefile | head -1 | awk '{print $3}')
+
+cp -f $MANIFEST $MANIFEST.orig
+
 for FILE in $(grep SHA256 $MANIFEST | awk -F":" '{print $1":"$2}' | tr -d '"' | tr -d ' ' | tr -d "\t" | awk -F"," '{print $1}'); do
 	REPLACE=${FILE##*:}
 	RFILE=${FILE%:*}

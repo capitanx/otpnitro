@@ -110,6 +110,7 @@ freebsd-cli: all
 	cp libotpnitro.so         packages/freebsd/otpnitro/usr/local/lib
 	packages/freebsd/build.sh packages/freebsd/otpnitro/+MANIFEST
 	pkg create -f txz      -r packages/freebsd/otpnitro -m packages/freebsd/otpnitro
+	mv -f packages/freebsd/otpnitro/+MANIFEST.orig packages/freebsd/otpnitro/+MANIFEST
 
 freebsd-python:
 	mkdir -p                  packages/freebsd/python-otpnitro/usr/local/lib/python2.7/site-packages
@@ -117,6 +118,7 @@ freebsd-python:
 	cp bindings/otpnitro.py   packages/freebsd/python-otpnitro/usr/local/lib/python2.7/site-packages
 	packages/freebsd/build.sh packages/freebsd/python-otpnitro/+MANIFEST
 	pkg create -f txz      -r packages/freebsd/python-otpnitro -m packages/freebsd/python-otpnitro
+	mv -f packages/freebsd/python-otpnitro/+MANIFEST.orig packages/freebsd/python-otpnitro/+MANIFEST
 
 freebsd: freebsd-cli freebsd-python
 	mkdir -p packages/freebsd/otpnitrogui/usr/local/bin
@@ -124,6 +126,7 @@ freebsd: freebsd-cli freebsd-python
 	strip packages/freebsd/otpnitrogui/usr/local/bin/otpnitrogui
 	packages/freebsd/build.sh packages/freebsd/otpnitrogui/+MANIFEST
 	pkg create -f txz -r packages/freebsd/otpnitrogui -m packages/freebsd/otpnitrogui
+	mv -f packages/freebsd/otpnitrogui/+MANIFEST.orig packages/freebsd/otpnitrogui/+MANIFEST
 
 debian-cli: all
 	mkdir -p                  packages/debian/otpnitro/usr/bin
