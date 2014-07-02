@@ -31,14 +31,17 @@ using namespace std;
  */
 class Config {
 		char	REL_PATH[MAX_PATH];
+		char	RND_DEV[MAX_PATH];
 		int		MAX_CHARS;
 		int		MAX_PAGES;
 
 	public:
 				Config(void);
+		char *	getRndDev();
 		int		getChars();
 		int		getPages();
 		char *	getPath();
+		void	setRndDev(char *);
 		void	setChars(int);
 		void	setPages(int);
 		void	setPath( char * );

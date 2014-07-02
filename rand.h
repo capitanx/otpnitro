@@ -23,6 +23,8 @@
 //using namespace std;
 
 #ifdef WIN32
+# include <WINDOWS.H>
+# include <WINCRYPT.H>
 # include <process.h>
 # define getpid _getpid
 #endif

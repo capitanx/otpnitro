@@ -55,7 +55,7 @@ else
 	PYLIBEX = .so
 	EXTRAS  =
 	CXXFLAGS += -fPIC
-	INSTALL = cp -f otpnitro $(PREFIX)/bin && cp -f libotpnitro.so $(PREFIX)/lib
+	INSTALL = cp -f otpnitro $(PREFIX)/bin && cp -f base24 $(PREFIX)/bin && cp -f libotpnitro.so $(PREFIX)/lib
 endif
 
 MODULES  = rand.o page.o crypto.o text.o config.o

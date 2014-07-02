@@ -10,7 +10,7 @@
  */
 
 #include "rand.h"
-#include "otpnitro.h"
+#include "config.h"
 
 #include <sys/time.h>
 #include <fcntl.h>
@@ -28,9 +28,12 @@
  */
 Rand::Rand()
 {
-	fdev = open("/dev/random", O_RDONLY);
+	Config *cfg = new Config;
+	fdev = open(cfg->getRndDev(), O_RDONLY);
+	delete  cfg;
 
 	srand(this->genSeed());
+
 #ifdef DEBUG
 	cout << "Seed: " << seed << endl;
 #endif
@@ -91,18 +94,30 @@ void Rand::setSeed(float a)
 }
 
 /*!
- * @brief Tries to find a /dev/random and return a byte, if not uses the rand() function
+ * @brief Tries to find a /dev/random and return a byte, if not uses the rand() function or rand_s() in Windows
  * @return (int)rand
  */
 
 int Rand::t_rand() {
-	char crnd;
+	unsigned char crnd;
 
-	if(fdev < 0)
+	if(fdev < 0) {
+#ifdef WIN32
+		HCRYPTPROV     hCryptProv;
+		if (!::CryptAcquireContext(&hCryptProv, 0, 0, PROV_RSA_FULL,  CRYPT_VERIFYCONTEXT|CRYPT_SILENT))
+			return(rand());
+
+		CryptGenRandom(hCryptProv, 1, &crnd);
+		return(crnd);
+#else
 		return(rand());
+#endif
+	} else {
+		read(fdev,&crnd,1);
+		return((int)crnd);
+	}
 
-	read(fdev,&crnd,1);
-	return((int)crnd);
+	return -1;
 }
 
 /*!

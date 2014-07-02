@@ -13,7 +13,6 @@
 #include <stdlib.h>
 
 #include "config.h"
-#include "otpnitro.h"
 
 #ifdef __HAIKU__
 #include <sys/stat.h>
@@ -36,7 +35,8 @@ using namespace std;
 Config::Config(void)
 {
 	// Default values
-	strncpy(REL_PATH, "PAGES/", MAX_PATH - 1);
+	strncpy(REL_PATH, "PAGES/",       MAX_PATH - 1);
+	strncpy(RND_DEV,  "/dev/urandom", MAX_PATH - 1);
 	MAX_PAGES	= 1000;
 	MAX_CHARS	= 1020;
 
@@ -88,6 +88,8 @@ Config::Config(void)
 			MAX_PAGES = atoi(value.c_str());
 		else if (key.compare("chars") == 0)
 			MAX_CHARS = atoi(value.c_str());
+		else if (key.compare("rnddev") == 0)
+			strncpy(RND_DEV, value.c_str(), MAX_PATH - 1);
 	}
 
 	ifcfg.close();
@@ -119,12 +121,21 @@ void	Config::saveConfig(void) {
 	ofcfg << "# --------------------" << endl;
 	ofcfg << "# Please, use the format key=value whithout spaces near equal char." << endl;
 	ofcfg << "# The path must be terminated on '/' or '\\'" << endl << endl;
-	ofcfg << "[core]" << endl;
-	ofcfg << "path="  << REL_PATH  << endl;
-	ofcfg << "pages=" << MAX_PAGES << endl;
-	ofcfg << "chars=" << MAX_CHARS << endl;
+	ofcfg << "[core]"  << endl;
+	ofcfg << "path="   << REL_PATH  << endl;
+	ofcfg << "pages="  << MAX_PAGES << endl;
+	ofcfg << "chars="  << MAX_CHARS << endl;
+	ofcfg << "rnddev=" << RND_DEV   << endl;
 	ofcfg.close();
 
+}
+
+/*!
+ * @brief Returns the current RND device
+ */
+char *  Config::getRndDev()
+{
+	return RND_DEV;
 }
 
 /*!
@@ -154,9 +165,18 @@ int		Config::getPages()
 }
 
 /*!
+ * @brief Set a new RND device
+ */
+void    Config::setRndDev( char * rnd )
+{
+	strncpy(RND_DEV, rnd,  MAX_PATH - 1);
+}
+
+
+/*!
  * @brief Set a new PATH to be used
  */
-void	Config::setPath( char * path)
+void	Config::setPath( char * path )
 {
 	strncpy(REL_PATH, path, MAX_PATH - 1);
 }

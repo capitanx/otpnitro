@@ -13,7 +13,6 @@
 
 #include "page.h"
 #include "config.h"
-#include "otpnitro.h"
 
 #ifdef __HAIKU__
 #include <sys/stat.h>

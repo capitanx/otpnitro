@@ -12,7 +12,6 @@
 #include <algorithm>
 
 #include "crypto.h"
-#include "otpnitro.h"
 
 /*!
  * replaceAll( str, from, to ) \n
