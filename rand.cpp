@@ -32,7 +32,7 @@ Rand::Rand()
 	fdev = open(cfg->getRndDev(), O_RDONLY);
 	delete  cfg;
 
-	srand(this->genSeed());
+	srand((unsigned int)this->genSeed());
 
 #ifdef DEBUG
 	cout << "Seed: " << seed << endl;
@@ -87,7 +87,7 @@ unsigned long Rand::getTicks()
 void Rand::setSeed(float a)
 {
 	seed = a;
-	srand(seed);
+	srand((unsigned int)seed);
 #ifdef DEBUG
 	cout << "Seed: " << seed << endl;
 #endif

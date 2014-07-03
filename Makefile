@@ -58,6 +58,10 @@ else
 	INSTALL = cp -f otpnitro $(PREFIX)/bin && cp -f base24 $(PREFIX)/bin && cp -f libotpnitro.so $(PREFIX)/lib
 endif
 
+ifdef BE_HOST_CPU
+	PYINDIR = $(shell python-config --includes)
+endif
+
 MODULES  = rand.o page.o crypto.o text.o config.o
 
 Debug: all
@@ -147,6 +151,17 @@ debian: debian-cli debian-python
 	cp $(HOME)/.upp/_out/otpnitrogui/CLANG.Blitz.Force_Speed.Gui.Shared.Sse2/otpnitrogui packages/debian/otpnitrogui/usr/bin
 	strip packages/debian/otpnitrogui/usr/bin/otpnitrogui
 	fakeroot dpkg-deb --build packages/debian/otpnitrogui otpnitrogui_$(VERSION)_amd64.deb
+
+haiku:
+	mkdir -p packages/haiku/develop/headers/otpnitro/
+	mkdir -p packages/haiku/apps/otpnitro/
+	mkdir -p packages/haiku/bin/
+	mkdir -p packages/haiku/lib/x86/
+	cp *.h packages/haiku/develop/headers/otpnitro/
+	cp -fr doc packages/haiku/apps/otpnitro/
+	cp base24 otpnitro packages/haiku/bin/
+	cp libotpnitro.so packages/haiku/lib/x86/
+	package create -C packages/haiku/ otpnitro-$(VERSION)-x86_gcc2.hpkg
 
 osx-cli: all
 	tar -zcf otpnitro-$(VERSION)-osx.tgz otpnitro base24 libotpnitro.so

@@ -135,6 +135,10 @@ CLI compile guide
 2) FreeBSD::
 
 	CXX=clang++ gmake
+
+3) Haiku::
+
+	CXX=g++-x86 gmake
 	
 **Install:**
 
@@ -144,11 +148,15 @@ CLI compile guide
 
 2) FreeBSD::
 
-	CXX=clang++ gmake freebsd-cli
+	CXX=clang++ gmake freebsd
 
 3) Debian::
 
-	make debian-cli
+	make debian
+
+4) Haiku::
+
+	CXX=g++-x86 make haiku
 
 
 GUI compile guide 
