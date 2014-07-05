@@ -103,6 +103,7 @@ doc:
 	doxygen doc/doxygen.conf
 
 windows: all
+	cmd /c copy E:\upp\out\otpnitrogui\MINGW.Blitz.Force_Speed.Gui.Shared.Sse2\otpnitrogui.exe .
 	candle packages\\windows\\otpnitro.wxs
 	light otpnitro.wixobj
 

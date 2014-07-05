@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<?define ProductVersion = "0.4.0"?>
-<?define ProductUpgradeCode = "15C8DF15-70E2-4ACC-9E25-00DB9D6AB537"?>
+<?define ProductVersion = "0.4.1"?>
+<?define ProductUpgradeCode = "15C8DF15-70E2-4ACC-9E25-00DB9D6AB536"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
    <Product Id="*" UpgradeCode="$(var.ProductUpgradeCode)" 
             Name="otpnitro" Version="$(var.ProductVersion)" Manufacturer="Haibane" Language="1033">
@@ -23,17 +23,21 @@
          <Directory Id="ProgramFilesFolder">
             <Directory Id="INSTALLDIR" Name="otpnitro">
                <Component Id="ApplicationFiles" Guid="15C8DF15-70E2-4ACC-9E25-00DB9D6AB538">
-                  <File Id="ApplicationFile1" Source="otpnitro.exe"/>
-				  <File Id="ApplicationFile2" Source="otpnitro.dll"/>
+                  <File Id="ApplicationFile1" Source="otpnitro.dll"/>
+		  <File Id="ApplicationFile2" Source="otpnitro.exe"/>
+		  <File Id="ApplicationFile3" Source="otpnitrogui.exe"/>
+		  <File Id="ApplicationFile4" Source="base24.exe"/>
                </Component>
             </Directory>
          </Directory>
  
          <Directory Id="ProgramMenuFolder">
-            <Directory Id="ProgramMenuSubfolder" Name="otpnitro">
-               <Component Id="ApplicationShortcuts" Guid="15C8DF15-70E2-4ACC-9E25-00DB9D6AB539">
-                  <Shortcut Id="ApplicationShortcut1" Name="otpnitro" Description="otpnitro" 
-                            Target="[SystemFolder]cmd.exe" Arguments="/k set PATH=%PROGRAMFILES%/otpnitro" WorkingDirectory="PersonalFolder"/>
+            <Directory Id="ProgramMenuSubfolder" Name="OTPNitro">
+               <Component Id="ApplicationShortcuts" Guid="15C8DF15-70E2-4ACC-9E25-00DB9D6AB537">
+                  <Shortcut Id="ApplicationShortcut1" Name="OTPNitro CLI" Description="otpnitro" 
+                            Target="[SystemFolder]cmd.exe" Arguments="/k otpnitro.exe -h" WorkingDirectory='INSTALLDIR'/>
+                  <Shortcut Id="ApplicationShortcut2" Name="OTPNitro GUI" Description="otpnitrogui" 
+                            Target="[INSTALLDIR]otpnitrogui.exe" WorkingDirectory='INSTALLDIR'/>
                   <RegistryValue Root="HKCU" Key="Software\Haibane\otpnitro" 
                             Name="installed" Type="integer" Value="1" KeyPath="yes"/>
                   <RemoveFolder Id="ProgramMenuSubfolder" On="uninstall"/>
