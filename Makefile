@@ -190,6 +190,13 @@ haiku-gui:
 	mkdir -p               packages/haiku/qotpnitro/bin/
 	cp qotpnitro/qotpnitro packages/haiku/qotpnitro/bin/
 	package create -C  packages/haiku/qotpnitro qotpnitro-$(VERSION)-x86_gcc2.hpkg
+	
+os2:
+	set CXX=g++ && make
+	
+os2-gui:
+	cd qotpnitro && qmake
+	cd qotpnitro && make
 
 osx-cli: all
 	tar -zcf otpnitro-$(VERSION)-osx.tgz otpnitro base24 libotpnitro.so

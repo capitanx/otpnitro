@@ -11,7 +11,8 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = qotpnitro
 TEMPLATE = app
 
-RC_FILE = qotpnitro.rc
+os2:RC_FILE = qotpnitro_os2.rc
+win32:RC_FILE = qotpnitro_w32.rc
 
 LIBS += -L.. -lotpnitro
 
