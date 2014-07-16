@@ -46,6 +46,17 @@ ifdef SystemRoot
 	PYLIBEX = .pyd
 	EXTRAS  = -static-libgcc -static-libstdc++
 	INSTALL = cmd /c echo See make windows
+	STRIPCM = strip
+else ifdef COMSPEC
+	RM = del otpnitro.exe
+	LIBNAME = otpnitro.dll
+	EXENAME = otpnitro.exe
+	BASNAME = base24.exe
+	PYINDIR =
+	PYLIBEX =
+	EXTRAS  =
+	INSTALL = echo TODO: OS/2 INSTALL
+	STRIPCM = ar cr otpnitro.a *.o | echo
 else
 	RM = rm -f otpnitro
 	LIBNAME = libotpnitro.so
@@ -56,6 +67,7 @@ else
 	EXTRAS  =
 	CXXFLAGS += -fPIC
 	INSTALL = cp -f otpnitro $(PREFIX)/bin && cp -f base24 $(PREFIX)/bin && cp -f libotpnitro.so $(PREFIX)/lib
+	STRIPCM = strip
 endif
 
 ifdef BE_HOST_CPU
@@ -64,6 +76,8 @@ endif
 
 MODULES  = rand.o page.o crypto.o text.o config.o
 
+.PHONY: base24 doc
+
 Debug: all
 
 Release: all
@@ -71,26 +85,26 @@ Release: all
 all: $(MODULES) otpnitro-lib otpnitro base24
 
 otpnitro: otpnitro-lib
-	$(CXX)  $(CXXFLAGS) -L. otpnitro.cpp  $(EXTRAS) -o otpnitro -lotpnitro
-	strip   $(EXENAME)
+	$(CXX)  $(CXXFLAGS) -L. otpnitro.cpp  $(EXTRAS) -o $(EXENAME) -lotpnitro
+	$(STRIPCM) $(EXENAME)
 
 bindings: otpnitro-lib
 	$(CXX)  $(CXXFLAGS) -shared $(EXTRAS) $(MODULES) bindings/otpnitro_wrap.cxx $(PYINDIR) -o bindings/_otpnitro${PYLIBEX}
-	strip -x bindings/_otpnitro${PYLIBEX}
+	$(STRIPCM) -x bindings/_otpnitro${PYLIBEX}
 
 swig:
 	swig -Wall -c++ -python bindings/otpnitro.i
 
 base24:
-	$(CXX)  $(CXXFLAGS) -L. base24.cpp    $(EXTRAS) -o base24   -lotpnitro
-	strip   $(BASNAME)
+	$(CXX)  $(CXXFLAGS) -L. base24.cpp    $(EXTRAS) -o $(BASNAME) -lotpnitro
+	$(STRIPCM) $(BASNAME)
 
 prngtest:
 	$(CXX)  $(CXXFLAGS) -L. prngtest.cpp  $(EXTRAS) -o prngtest -lotpnitro
 
 otpnitro-lib:
 	$(CXX)  $(CXXFLAGS) -shared $(EXTRAS) $(MODULES) -o $(LIBNAME)
-	strip -x $(LIBNAME)
+	$(STRIPCM) -x $(LIBNAME)
 
 install:
 	$(INSTALL)
@@ -98,7 +112,6 @@ install:
 clean:
 	$(RM) $(MODULES) $(LIBNAME) $(EXENAME) $(BASNAME)
 
-.PHONY : doc
 doc:
 	doxygen doc/doxygen.conf
 

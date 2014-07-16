@@ -15,19 +15,19 @@
 #ifdef __unix__
 # include <sys/types.h>
 # include <unistd.h>
-#elif __APPLE__
+#elif  __APPLE__
 # include <sys/types.h>
 # include <unistd.h>
-#endif
-
-//using namespace std;
-
-#ifdef WIN32
+#elif  WIN32
 # include <WINDOWS.H>
 # include <WINCRYPT.H>
 # include <process.h>
 # define getpid _getpid
+#elif  __OS2__
+# include <process.h>
+# include <unistd.h>
 #endif
+
 
 /*!
  * @brief This class provides all secure random rutines
