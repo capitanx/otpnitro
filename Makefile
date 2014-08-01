@@ -12,7 +12,7 @@
 #
 
 PACKAGE = otpnitro
-VERSION = 0.4.1
+VERSION = 0.5.0
 
 ifndef PREFIX
 	PREFIX = /usr
@@ -167,15 +167,23 @@ debian: debian-cli debian-python
 	fakeroot dpkg-deb --build packages/debian/otpnitrogui otpnitrogui_$(VERSION)_amd64.deb
 
 haiku:
-	mkdir -p packages/haiku/develop/headers/otpnitro/
-	mkdir -p packages/haiku/apps/otpnitro/
-	mkdir -p packages/haiku/bin/
-	mkdir -p packages/haiku/lib/x86/
-	cp *.h packages/haiku/develop/headers/otpnitro/
-	cp -fr doc packages/haiku/apps/otpnitro/
-	cp base24 otpnitro packages/haiku/bin/
-	cp libotpnitro.so packages/haiku/lib/x86/
-	package create -C packages/haiku/ otpnitro-$(VERSION)-x86_gcc2.hpkg
+	CXX=g++-x86 make
+	mkdir -p           packages/haiku/otpnitro/develop/headers/otpnitro/
+	mkdir -p           packages/haiku/otpnitro/apps/otpnitro/
+	mkdir -p           packages/haiku/otpnitro/bin/
+	mkdir -p           packages/haiku/otpnitro/lib/x86/
+	cp *.h             packages/haiku/otpnitro/develop/headers/otpnitro/
+	cp -fr doc         packages/haiku/otpnitro/apps/otpnitro/
+	cp base24 otpnitro packages/haiku/otpnitro/bin/
+	cp libotpnitro.so  packages/haiku/otpnitro/lib/x86/
+	package create -C  packages/haiku/otpnitro  otpnitro-$(VERSION)-x86_gcc2.hpkg
+
+haiku-gui:
+	cd qotpnitro && qmake-x86 QMAKE_CC=gcc-x86 QMAKE_CXX=g++-x86 QMAKE_LINK=g++-x86
+	cd qotpnitro && make
+	mkdir -p               packages/haiku/qotpnitro/bin/
+	cp qotpnitro/qotpnitro packages/haiku/qotpnitro/bin/
+	package create -C  packages/haiku/qotpnitro qotpnitro-$(VERSION)-x86_gcc2.hpkg
 
 osx-cli: all
 	tar -zcf otpnitro-$(VERSION)-osx.tgz otpnitro base24 libotpnitro.so

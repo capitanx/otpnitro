@@ -9,6 +9,6 @@
  * @license GPL-3.0 <http://www.gnu.org/licenses/gpl-3.0.txt>
  */
 
-#define VERSION		"0.4.1"
+#define VERSION		"0.5.0"
 #define SPACING		5
 #define MAX_PATH	256
