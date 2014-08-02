@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>burnDialog</class>
+ <widget class="QDialog" name="burnDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>194</width>
+    <height>95</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Burn page</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="icons.qrc">
+    <normaloff>:/icons/burn.png</normaloff>:/icons/burn.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Select book</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QComboBox" name="cbBook"/>
+     </item>
+     <item row="1" column="1">
+      <widget class="QSpinBox" name="sbPage"/>
+     </item>
+     <item row="2" column="0">
+      <widget class="QPushButton" name="btClose">
+       <property name="text">
+        <string>Close</string>
+       </property>
+       <property name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/icons/cancel.png</normaloff>:/icons/cancel.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QPushButton" name="btBurn">
+       <property name="text">
+        <string>Burn</string>
+       </property>
+       <property name="icon">
+        <iconset resource="icons.qrc">
+         <normaloff>:/icons/burn.png</normaloff>:/icons/burn.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>page num</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>btClose</sender>
+   <signal>clicked()</signal>
+   <receiver>burnDialog</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>51</x>
+     <y>72</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>96</x>
+     <y>47</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

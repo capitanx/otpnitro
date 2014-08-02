@@ -1,0 +1,25 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/about.png</file>
+        <file>icons/burn.png</file>
+        <file>icons/burn_old.png</file>
+        <file>icons/cancel.png</file>
+        <file>icons/clear.png</file>
+        <file>icons/config.png</file>
+        <file>icons/crypt.png</file>
+        <file>icons/decod.png</file>
+        <file>icons/decrypt.png</file>
+        <file>icons/encod.png</file>
+        <file>icons/encode.png</file>
+        <file>icons/exit.png</file>
+        <file>icons/generate.png</file>
+        <file>icons/help.png</file>
+        <file>icons/icons.qrc</file>
+        <file>icons/main_icon_32.png</file>
+        <file>icons/main_icon_48.png</file>
+        <file>icons/ok.png</file>
+        <file>icons/open.png</file>
+        <file>icons/refresh.png</file>
+        <file>icons/save.png</file>
+    </qresource>
+</RCC>

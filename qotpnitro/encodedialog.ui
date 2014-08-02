@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>encodeDialog</class>
+ <widget class="QDialog" name="encodeDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>784</width>
+    <height>361</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Encode and decode text</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="icons.qrc">
+    <normaloff>:/icons/encode.png</normaloff>:/icons/encode.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_3">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QGroupBox" name="groupBox">
+       <property name="title">
+        <string>Decoded data</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QToolButton" name="tbDecBinary">
+            <property name="toolTip">
+             <string>Encoded binary file to decoded file</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="icons.qrc">
+              <normaloff>:/icons/encod.png</normaloff>:/icons/encod.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="tbDecOpen">
+            <property name="toolTip">
+             <string>Open text to encode</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="icons.qrc">
+              <normaloff>:/icons/open.png</normaloff>:/icons/open.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="tbDecSave">
+            <property name="toolTip">
+             <string>Save decoded text</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="icons.qrc">
+              <normaloff>:/icons/save.png</normaloff>:/icons/save.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="tbDecClear">
+            <property name="toolTip">
+             <string>Clear decoded text</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="icons.qrc">
+              <normaloff>:/icons/clear.png</normaloff>:/icons/clear.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QPlainTextEdit" name="teDecoded"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btEncode">
+          <property name="text">
+           <string>Encode</string>
+          </property>
+          <property name="icon">
+           <iconset resource="icons.qrc">
+            <normaloff>:/icons/crypt.png</normaloff>:/icons/crypt.png</iconset>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox_2">
+       <property name="title">
+        <string>Encoded data</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QToolButton" name="tbEncBinary">
+            <property name="toolTip">
+             <string>Decoded binary file to encoded file</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="icons.qrc">
+              <normaloff>:/icons/decod.png</normaloff>:/icons/decod.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="tbEncOpen">
+            <property name="toolTip">
+             <string>Open text to decode</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="icons.qrc">
+              <normaloff>:/icons/open.png</normaloff>:/icons/open.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="tbEncSave">
+            <property name="toolTip">
+             <string>Save encoded text</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="icons.qrc">
+              <normaloff>:/icons/save.png</normaloff>:/icons/save.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="tbEncClear">
+            <property name="toolTip">
+             <string>Clear encoded text</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="icons.qrc">
+              <normaloff>:/icons/clear.png</normaloff>:/icons/clear.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QPlainTextEdit" name="teEncoded"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btDecode">
+          <property name="text">
+           <string>Decode</string>
+          </property>
+          <property name="icon">
+           <iconset resource="icons.qrc">
+            <normaloff>:/icons/decrypt.png</normaloff>:/icons/decrypt.png</iconset>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>tbDecClear</sender>
+   <signal>clicked()</signal>
+   <receiver>teDecoded</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>361</x>
+     <y>50</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>186</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tbEncClear</sender>
+   <signal>clicked()</signal>
+   <receiver>teEncoded</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>746</x>
+     <y>50</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>584</x>
+     <y>186</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

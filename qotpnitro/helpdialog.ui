@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>helpDialog</class>
+ <widget class="QDialog" name="helpDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>730</width>
+    <height>562</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>OTPNitro - Help</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="icons.qrc">
+    <normaloff>:/icons/help.png</normaloff>:/icons/help.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QTextBrowser" name="textBrowser">
+     <property name="html">
+      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:18px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:xx-large; font-weight:600;&quot;&gt;GUI Usage&lt;/span&gt;&lt;/p&gt;
+&lt;ol style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Introduction&lt;/span&gt;&lt;/li&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:30px; margin-right:0px; -qt-block-indent:1; text-indent:0px;&quot;&gt;OTP&lt;span style=&quot; vertical-align:sub;&quot;&gt;NITRO&lt;/span&gt; is a secure One Time Pad implementation to use on computers or as assistant on manual operation.&lt;/p&gt;
+&lt;li align=&quot;justify&quot; style=&quot; margin-top:8px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Concepts&lt;/span&gt;&lt;/li&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:30px; margin-right:0px; -qt-block-indent:1; text-indent:0px;&quot;&gt;In this chapter we describe the basic concepts to use in this app.&lt;/p&gt;
+&lt;ol style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 2;&quot;&gt;&lt;li align=&quot;justify&quot; style=&quot; margin-top:8px; margin-bottom:0px; margin-left:30px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Books&lt;/span&gt;&lt;/li&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:60px; margin-right:0px; -qt-block-indent:2; text-indent:0px;&quot;&gt;The cipher data is stored on books, every book have &amp;quot;pages&amp;quot; where the data is generated. The books usually have very short names, from 3 to 5 characters.&lt;/p&gt;
+&lt;li align=&quot;justify&quot; style=&quot; margin-top:8px; margin-bottom:0px; margin-left:30px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Pages&lt;/span&gt;&lt;/li&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:60px; margin-right:0px; -qt-block-indent:2; text-indent:0px;&quot;&gt;The pages store the cipher to crypt and decrypt, every page is unique and after use it you must burn the used page.&lt;/p&gt;
+&lt;li align=&quot;justify&quot; style=&quot; margin-top:8px; margin-bottom:0px; margin-left:30px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;From field&lt;/span&gt;&lt;/li&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:60px; margin-right:0px; -qt-block-indent:2; text-indent:0px;&quot;&gt;The recipient is anyone who have the same book than you used to crypt the message and you must identify yourself as sender in the from field. The IDs usually have very short names, from 3 to 5 characters.&lt;/p&gt;
+&lt;li align=&quot;justify&quot; style=&quot; margin-top:8px; margin-bottom:0px; margin-left:30px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Formatted message&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:60px; margin-right:0px; -qt-block-indent:2; text-indent:0px;&quot;&gt;To have a send/receive standar format, please use this one:&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:60px; margin-right:0px; -qt-block-indent:2; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Courier New,courier';&quot;&gt;&amp;lt;BOOK&amp;gt; DE &amp;lt;FROM&amp;gt; &amp;lt;PAGE&amp;gt; = &amp;lt;MESSAGE&amp;gt; =&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:60px; margin-right:0px; -qt-block-indent:2; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Example&lt;/span&gt;:&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:60px; margin-right:0px; -qt-block-indent:2; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Courier New,courier';&quot;&gt;TST DE CPX 2 = QSZBO IGFIY NVTVY BFXCB KROAP =&lt;/span&gt;&lt;/p&gt;
+&lt;li align=&quot;justify&quot; style=&quot; margin-top:8px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Operations&lt;/span&gt;&lt;/li&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:30px; margin-right:0px; -qt-block-indent:1; text-indent:0px;&quot;&gt;In this chapter we describe the basic operations.&lt;/p&gt;
+&lt;ol style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 2;&quot;&gt;&lt;li align=&quot;justify&quot; style=&quot; margin-top:8px; margin-bottom:0px; margin-left:30px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Generate a book&lt;/span&gt;&lt;/li&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:60px; margin-right:0px; -qt-block-indent:2; text-indent:0px;&quot;&gt;The first operation is generate a book, to do this, please use the menu: Books -&amp;gt; Generate Book or press CTRL + G keys.&lt;/p&gt;
+&lt;li align=&quot;justify&quot; style=&quot; margin-top:8px; margin-bottom:0px; margin-left:30px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Crypt&lt;/span&gt;&lt;/li&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:60px; margin-right:0px; -qt-block-indent:2; text-indent:0px;&quot;&gt;To crypt a message you must provide a valid book in the selector, an arbitrary ID in the form field and a message unformated to crypt. The page will be selected automatically. Later you must use the menu: Crypto -&amp;gt; Crypt or press CTRL + E keys.&lt;/p&gt;
+&lt;li align=&quot;justify&quot; style=&quot; margin-top:8px; margin-bottom:0px; margin-left:30px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Decrypt&lt;/span&gt;&lt;/li&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:60px; margin-right:0px; -qt-block-indent:2; text-indent:0px;&quot;&gt;To decrypt a message you can provide a formatted message, in this case you only must select the &amp;quot;Formatted msg&amp;quot; option. If you dont have the format, you can enter all fields manually. Later you must use the menu: Crypto -&amp;gt; Decrypt or press CTRL + D keys.&lt;/p&gt;
+&lt;li align=&quot;justify&quot; style=&quot; margin-top:8px; margin-bottom:0px; margin-left:30px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Burn page&lt;/span&gt;&lt;/li&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:60px; margin-right:0px; -qt-block-indent:2; text-indent:0px;&quot;&gt;It is recommended to burn the page after use, but if you want to do this manually (or later) you can use the menu: Crypto -&amp;gt; Burn page or press CTRL + B keys.&lt;/p&gt;
+&lt;li align=&quot;justify&quot; style=&quot; margin-top:8px; margin-bottom:0px; margin-left:30px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Refresh books&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:60px; margin-right:0px; -qt-block-indent:2; text-indent:0px;&quot;&gt;If you modify or delete any book in the filesystem you must refresh the books in the app. To do that you can use the menu: Crypto -&amp;gt; Refresh books or press CTRL + R keys.&lt;/p&gt;
+&lt;li align=&quot;justify&quot; style=&quot; margin-top:8px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Internals&lt;/span&gt;&lt;/li&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:30px; margin-right:0px; -qt-block-indent:1; text-indent:0px;&quot;&gt;In this chapter we describe internal operations, know bugs or missing features.&lt;/p&gt;
+&lt;ol style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 2;&quot;&gt;&lt;li align=&quot;justify&quot; style=&quot; margin-top:8px; margin-bottom:0px; margin-left:30px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Settings&lt;/span&gt;&lt;/li&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:60px; margin-right:0px; -qt-block-indent:2; text-indent:0px;&quot;&gt;The settings/config file must be located on %APPDATA%/.otpnitro/otpnitro.ini or $HOME/.otpnitro/otpnitro.ini&lt;/p&gt;
+&lt;li align=&quot;justify&quot; style=&quot; margin-top:8px; margin-bottom:0px; margin-left:30px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Book storing&lt;/span&gt;&lt;/li&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:60px; margin-right:0px; -qt-block-indent:2; text-indent:0px;&quot;&gt;By default the books are stored on %APPDATA%/.otpnitro/PAGES or $HOME/.otpnitro/PAGES (this can be changed in the config file)&lt;/p&gt;
+&lt;li align=&quot;justify&quot; style=&quot; margin-top:8px; margin-bottom:0px; margin-left:30px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Max pages parameter&lt;/span&gt;&lt;/li&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:60px; margin-right:0px; -qt-block-indent:2; text-indent:0px;&quot;&gt;Is the number of pages generated for book. (this value limits the number of messages to be crypted on a book)&lt;/p&gt;
+&lt;li align=&quot;justify&quot; style=&quot; margin-top:8px; margin-bottom:0px; margin-left:30px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Max chars parameter&lt;/span&gt;&lt;/li&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:60px; margin-right:0px; -qt-block-indent:2; text-indent:0px;&quot;&gt;Is the number of characters generated for page. (this value limits the number of text to be crypted)&lt;/p&gt;
+&lt;li align=&quot;justify&quot; style=&quot; margin-top:8px; margin-bottom:0px; margin-left:30px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Project URL&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:60px; margin-right:0px; -qt-block-indent:2; text-indent:0px;&quot;&gt;For more information, updates, etc. you can visit the project &lt;a href=&quot;https://code.haibane.org/crypto/otpnitro&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;homepage&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;li align=&quot;justify&quot; style=&quot; margin-top:8px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;License&lt;/span&gt;&lt;/li&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:30px; margin-right:0px; -qt-block-indent:1; text-indent:0px;&quot;&gt;This program is under the GPLv3 license.&lt;/p&gt;
+&lt;li align=&quot;justify&quot; style=&quot; margin-top:8px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Authors&lt;/span&gt;&lt;/li&gt;
+&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 2;&quot;&gt;&lt;li align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:30px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://twitter.com/capi_x&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;@capi_x&lt;/span&gt;&lt;/a&gt; &amp;lt;&lt;a href=&quot;mailto:capi_x@haibane.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;capi_x@haibane.org&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;li align=&quot;justify&quot; style=&quot; margin-top:8px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Acknowledges&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;
+&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 2;&quot;&gt;&lt;li align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:30px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://twitter.com/mario_vilas&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;@Mario_vilas&lt;/span&gt;&lt;/a&gt; - Thanks for GUI and crypto testing.&lt;/li&gt;
+&lt;li align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:30px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://twitter.com/sha0coder&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;@sha0coder&lt;/span&gt;&lt;/a&gt; - Thanks for CLI and GUI testing.&lt;/li&gt;
+&lt;li align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:30px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://twitter.com/AloneInTheShell&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;@AloneInTheShell&lt;/span&gt;&lt;/a&gt; - Thanks for CLI and LIB testing.&lt;/li&gt;&lt;/ul&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
+ <connections/>
+</ui>
