@@ -25,8 +25,13 @@
                <Component Id="ApplicationFiles" Guid="15C8DF15-70E2-4ACC-9E25-00DB9D6AB538">
                   <File Id="ApplicationFile1" Source="otpnitro.dll"/>
 		  <File Id="ApplicationFile2" Source="otpnitro.exe"/>
-		  <File Id="ApplicationFile3" Source="otpnitrogui.exe"/>
+		  <File Id="ApplicationFile3" Source="qotpnitro.exe"/>
 		  <File Id="ApplicationFile4" Source="base24.exe"/>
+		  <File Id="ApplicationFile5" Source="libgcc_s_dw2-1.dll"/>
+		  <File Id="ApplicationFile6" Source="libstdc++-6.dll"/>
+		  <File Id="ApplicationFile7" Source="Qt5Core.dll"/>
+		  <File Id="ApplicationFile8" Source="Qt5Gui.dll"/>
+		  <File Id="ApplicationFile9" Source="Qt5Widgets.dll"/>
                </Component>
             </Directory>
          </Directory>
@@ -36,8 +41,8 @@
                <Component Id="ApplicationShortcuts" Guid="15C8DF15-70E2-4ACC-9E25-00DB9D6AB537">
                   <Shortcut Id="ApplicationShortcut1" Name="OTPNitro CLI" Description="otpnitro" 
                             Target="[SystemFolder]cmd.exe" Arguments="/k otpnitro.exe -h" WorkingDirectory='INSTALLDIR'/>
-                  <Shortcut Id="ApplicationShortcut2" Name="OTPNitro GUI" Description="otpnitrogui" 
-                            Target="[INSTALLDIR]otpnitrogui.exe" WorkingDirectory='INSTALLDIR'/>
+                  <Shortcut Id="ApplicationShortcut2" Name="OTPNitro GUI" Description="qotpnitro" 
+                            Target="[INSTALLDIR]qotpnitro.exe" WorkingDirectory='INSTALLDIR'/>
                   <RegistryValue Root="HKCU" Key="Software\Haibane\otpnitro" 
                             Name="installed" Type="integer" Value="1" KeyPath="yes"/>
                   <RemoveFolder Id="ProgramMenuSubfolder" On="uninstall"/>
