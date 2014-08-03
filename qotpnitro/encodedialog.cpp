@@ -78,7 +78,7 @@ void encodeDialog::on_tbDecSave_clicked()
 
     QFile fdText(fileName);
     fdText.open(QIODevice::WriteOnly);
-    fdText.write(ui->teDecoded->toPlainText().toAscii());
+    fdText.write(ui->teDecoded->toPlainText().toStdString().c_str());
     fdText.close();
 }
 
@@ -145,7 +145,7 @@ void encodeDialog::on_tbEncSave_clicked()
 
     QFile fdText(fileName);
     fdText.open(QIODevice::WriteOnly);
-    fdText.write(ui->teEncoded->toPlainText().toAscii());
+    fdText.write(ui->teEncoded->toPlainText().toStdString().c_str());
     fdText.close();
 }
 

@@ -47,7 +47,8 @@ ifdef SystemRoot
 	EXTRAS  = -static-libgcc -static-libstdc++
 	INSTALL = cmd /c echo See make windows
 	STRIPCM = strip
-else ifdef COMSPEC
+else 
+ifdef COMSPEC
 	RM = del otpnitro.exe
 	LIBNAME = otpnitro.dll
 	EXENAME = otpnitro.exe
@@ -68,6 +69,7 @@ else
 	CXXFLAGS += -fPIC
 	INSTALL = cp -f otpnitro $(PREFIX)/bin && cp -f base24 $(PREFIX)/bin && cp -f libotpnitro.so $(PREFIX)/lib
 	STRIPCM = strip
+endif
 endif
 
 ifdef BE_HOST_CPU
@@ -119,6 +121,10 @@ windows: all
 	cmd /c copy E:\upp\out\otpnitrogui\MINGW.Blitz.Force_Speed.Gui.Shared.Sse2\otpnitrogui.exe .
 	candle packages\\windows\\otpnitro.wxs
 	light otpnitro.wixobj
+
+windows-gui:
+	cmd /s /c 'cd qotpnitro && qmake'
+	cmd /s /c 'cd qotpnitro && mingw32-make'
 
 freebsd-cli: all
 	mkdir -p                  packages/freebsd/otpnitro/usr/local/bin

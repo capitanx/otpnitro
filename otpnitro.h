@@ -11,4 +11,6 @@
 
 #define VERSION		"0.5.0"
 #define SPACING		5
-#define MAX_PATH	256
+#ifndef MAX_PATH
+# define MAX_PATH	256
+#endif
