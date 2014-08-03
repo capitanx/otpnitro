@@ -187,8 +187,13 @@ haiku:
 haiku-gui:
 	cd qotpnitro && qmake-x86 QMAKE_CC=gcc-x86 QMAKE_CXX=g++-x86 QMAKE_LINK=g++-x86
 	cd qotpnitro && make
+	rc   -o qotpnitro/qotpnitro qotpnitro/qotpnitro.rdef
+	xres -o qotpnitro/qotpnitro qotpnitro/qotpnitro.rsrc
+	mimeset -f qotpnitro/qotpnitro
 	mkdir -p               packages/haiku/qotpnitro/bin/
 	cp qotpnitro/qotpnitro packages/haiku/qotpnitro/bin/
+	mkdir -p               packages/haiku/qotpnitro/data/deskbar/menu/Applications/
+	ln -f -s /boot/home/config/bin/qotpnitro packages/haiku/qotpnitro/data/deskbar/menu/Applications/OTPNitro
 	package create -C  packages/haiku/qotpnitro qotpnitro-$(VERSION)-x86_gcc2.hpkg
 	
 os2:
