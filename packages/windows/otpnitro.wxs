@@ -3,7 +3,7 @@
 <?define ProductUpgradeCode = "15C8DF15-70E2-4ACC-9E25-00DB9D6AB536"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
    <Product Id="*" UpgradeCode="$(var.ProductUpgradeCode)" 
-            Name="otpnitro" Version="$(var.ProductVersion)" Manufacturer="Haibane" Language="1033">
+            Name="OTPNitro" Version="$(var.ProductVersion)" Manufacturer="Haibane" Language="1033">
       <Package InstallerVersion="200" Compressed="yes" Comments="Windows Installer Package"/>
       <Media Id="1" Cabinet="product.cab" EmbedCab="yes"/>
       <Icon Id="ProductIcon" SourceFile="otpnitro.ico"/>

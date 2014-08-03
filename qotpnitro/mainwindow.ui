@@ -44,7 +44,7 @@
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>File</string>
+     <string>&amp;File</string>
     </property>
     <addaction name="actionClear"/>
     <addaction name="separator"/>
@@ -57,7 +57,7 @@
    </widget>
    <widget class="QMenu" name="menuCrypto">
     <property name="title">
-     <string>Crypto</string>
+     <string>&amp;Crypto</string>
     </property>
     <addaction name="actionCrypt"/>
     <addaction name="actionDecrypt"/>
@@ -66,7 +66,7 @@
    </widget>
    <widget class="QMenu" name="menuBooks">
     <property name="title">
-     <string>Books</string>
+     <string>&amp;Books</string>
     </property>
     <addaction name="actionRefresh_books"/>
     <addaction name="actionGenerate_book"/>
@@ -75,7 +75,7 @@
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
-     <string>Help</string>
+     <string>&amp;Help</string>
     </property>
     <addaction name="actionHelp"/>
     <addaction name="separator"/>
@@ -101,7 +101,7 @@
      <normaloff>:/icons/clear.png</normaloff>:/icons/clear.png</iconset>
    </property>
    <property name="text">
-    <string>Clear</string>
+    <string>C&amp;lear</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+K</string>
@@ -113,7 +113,7 @@
      <normaloff>:/icons/open.png</normaloff>:/icons/open.png</iconset>
    </property>
    <property name="text">
-    <string>Open</string>
+    <string>&amp;Open</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
@@ -125,7 +125,7 @@
      <normaloff>:/icons/save.png</normaloff>:/icons/save.png</iconset>
    </property>
    <property name="text">
-    <string>Save</string>
+    <string>&amp;Save</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
@@ -137,7 +137,7 @@
      <normaloff>:/icons/config.png</normaloff>:/icons/config.png</iconset>
    </property>
    <property name="text">
-    <string>Settings</string>
+    <string>Se&amp;ttings</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+T</string>
@@ -149,7 +149,7 @@
      <normaloff>:/icons/exit.png</normaloff>:/icons/exit.png</iconset>
    </property>
    <property name="text">
-    <string>Exit</string>
+    <string>E&amp;xit</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
@@ -161,7 +161,7 @@
      <normaloff>:/icons/crypt.png</normaloff>:/icons/crypt.png</iconset>
    </property>
    <property name="text">
-    <string>Crypt</string>
+    <string>Cr&amp;ypt</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+E</string>
@@ -173,7 +173,7 @@
      <normaloff>:/icons/decrypt.png</normaloff>:/icons/decrypt.png</iconset>
    </property>
    <property name="text">
-    <string>Decrypt</string>
+    <string>&amp;Decrypt</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+D</string>
@@ -185,7 +185,7 @@
      <normaloff>:/icons/encode.png</normaloff>:/icons/encode.png</iconset>
    </property>
    <property name="text">
-    <string>Encode</string>
+    <string>&amp;Encode</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
@@ -197,7 +197,7 @@
      <normaloff>:/icons/refresh.png</normaloff>:/icons/refresh.png</iconset>
    </property>
    <property name="text">
-    <string>Refresh books</string>
+    <string>&amp;Refresh books</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+R</string>
@@ -209,7 +209,7 @@
      <normaloff>:/icons/generate.png</normaloff>:/icons/generate.png</iconset>
    </property>
    <property name="text">
-    <string>Generate book</string>
+    <string>&amp;Generate book</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+G</string>
@@ -221,7 +221,7 @@
      <normaloff>:/icons/burn.png</normaloff>:/icons/burn.png</iconset>
    </property>
    <property name="text">
-    <string>Burn page</string>
+    <string>Bu&amp;rn page</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+B</string>
@@ -233,7 +233,7 @@
      <normaloff>:/icons/help.png</normaloff>:/icons/help.png</iconset>
    </property>
    <property name="text">
-    <string>Help</string>
+    <string>Hel&amp;p</string>
    </property>
    <property name="shortcut">
     <string>F1</string>
@@ -245,7 +245,7 @@
      <normaloff>:/icons/about.png</normaloff>:/icons/about.png</iconset>
    </property>
    <property name="text">
-    <string>About</string>
+    <string>&amp;About</string>
    </property>
   </action>
  </widget>
