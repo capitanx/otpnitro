@@ -137,7 +137,7 @@ bool	Page::write(int page, string id, string ciphertext)
 #if	defined(__unix__) || defined(__APPLE__) || defined(__HAIKU__)
 	mkdir(dirPath(id).c_str(), S_IRWXU|S_IRGRP|S_IXGRP);
 #elif   __OS2__
-        mkdir(REL_PATH, 0777);
+	mkdir(REL_PATH, 0777);
 #else
 	mkdir(dirPath(id).c_str());
 #endif
@@ -218,13 +218,11 @@ bool	Page::generate(string id)
 string	Page::list()
 {
 	string files;
-
 	DIR *pDIR;
-	struct dirent *entry;
 	string path = REL_PATH;
-//	TODO: add support for list pages for a id
-//	path.append("/").append(id);
+	
 	if( (pDIR = opendir(path.c_str())) != 0 ){
+		struct dirent *entry;
 		while((entry = readdir(pDIR)) != 0 ){
 			if( (strcmp(entry->d_name, ".") != 0) && (strcmp(entry->d_name, "..") != 0) && (strcmp(entry->d_name, ".dummy") != 0) ) {
 				files.append(entry->d_name);
