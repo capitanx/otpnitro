@@ -1,10 +1,10 @@
 [Desktop Entry]
 Hidden=false
-Exec=otpnitrogui
-Icon=/usr/local/share/otpnitrogui/main_icon_32.png
+Exec=qotpnitro
+Icon=/usr/share/otpnitrogui/main_icon_64.png
 Type=Application
 NoDisplay=false
-Version=0.4
+Version=0.5
 StartupNotify=false
 Terminal=false
 Name=OTPNitro

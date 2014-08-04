@@ -126,7 +126,7 @@ windows-gui:
 	cmd /s /c 'cd qotpnitro && qmake'
 	cmd /s /c 'cd qotpnitro && mingw32-make'
 
-freebsd-cli: all
+freebsd: all
 	mkdir -p                  packages/freebsd/otpnitro/usr/local/bin
 	mkdir -p                  packages/freebsd/otpnitro/usr/local/lib
 	cp otpnitro               packages/freebsd/otpnitro/usr/local/bin
@@ -144,15 +144,17 @@ freebsd-python:
 	pkg create -f txz      -r packages/freebsd/python-otpnitro -m packages/freebsd/python-otpnitro
 	mv -f packages/freebsd/python-otpnitro/+MANIFEST.orig packages/freebsd/python-otpnitro/+MANIFEST
 
-freebsd: freebsd-cli freebsd-python
-	mkdir -p packages/freebsd/otpnitrogui/usr/local/bin
-	cp $(HOME)/.upp/_out/otpnitrogui/GCC.Blitz.Force_Speed.Gui.Shared.Sse2/otpnitrogui packages/freebsd/otpnitrogui/usr/local/bin
-	strip packages/freebsd/otpnitrogui/usr/local/bin/otpnitrogui
-	packages/freebsd/build.sh packages/freebsd/otpnitrogui/+MANIFEST
-	pkg create -f txz -r packages/freebsd/otpnitrogui -m packages/freebsd/otpnitrogui
-	mv -f packages/freebsd/otpnitrogui/+MANIFEST.orig packages/freebsd/otpnitrogui/+MANIFEST
+freebsd-gui: freebsd-cli freebsd-python
+	cd qotpnitro && qmake
+	cd qotpnitro && make
+	mkdir -p packages/freebsd/qotpnitro/usr/local/bin
+	cp qotpnitro/qotpnitro packages/freebsd/qotpnitro/usr/local/bin
+	strip packages/freebsd/qotpnitro/usr/local/bin/qotpnitro
+	packages/freebsd/build.sh packages/freebsd/qotpnitro/+MANIFEST
+	pkg create -f txz -r packages/freebsd/qotpnitro -m packages/freebsd/qotpnitro
+	mv -f packages/freebsd/qotpnitro/+MANIFEST.orig packages/freebsd/qotpnitro/+MANIFEST
 
-debian-cli: all
+debian: all
 	mkdir -p                  packages/debian/otpnitro/usr/bin
 	mkdir -p                  packages/debian/otpnitro/usr/lib
 	cp otpnitro               packages/debian/otpnitro/usr/bin
@@ -166,11 +168,13 @@ debian-python:
 	cp bindings/_otpnitro.so  packages/debian/python-otpnitro/usr/lib/python2.7/dist-packages
 	fakeroot dpkg-deb --build packages/debian/python-otpnitro python-otpnitro_$(VERSION)_amd64.deb
 
-debian: debian-cli debian-python
-	mkdir -p packages/debian/otpnitrogui/usr/bin
-	cp $(HOME)/.upp/_out/otpnitrogui/CLANG.Blitz.Force_Speed.Gui.Shared.Sse2/otpnitrogui packages/debian/otpnitrogui/usr/bin
-	strip packages/debian/otpnitrogui/usr/bin/otpnitrogui
-	fakeroot dpkg-deb --build packages/debian/otpnitrogui otpnitrogui_$(VERSION)_amd64.deb
+debian-gui: debian-cli debian-python
+	cd qotpnitro && qmake
+	cd qotpnitro && make
+	mkdir -p packages/debian/qotpnitro/usr/bin
+	cp qotpnitro/qotpnitro packages/debian/qotpnitro/usr/bin
+	strip packages/debian/qotpnitro/usr/bin/qotpnitro
+	fakeroot dpkg-deb --build packages/debian/qotpnitro qotpnitro_$(VERSION)_amd64.deb
 
 haiku:
 	CXX=g++-x86 make
