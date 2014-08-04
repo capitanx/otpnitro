@@ -23,16 +23,25 @@
          <Directory Id="ProgramFilesFolder">
             <Directory Id="INSTALLDIR" Name="otpnitro">
                <Component Id="ApplicationFiles" Guid="15C8DF15-70E2-4ACC-9E25-00DB9D6AB538">
-                  <File Id="ApplicationFile1" Source="otpnitro.dll"/>
-		  <File Id="ApplicationFile2" Source="otpnitro.exe"/>
-		  <File Id="ApplicationFile3" Source="qotpnitro.exe"/>
-		  <File Id="ApplicationFile4" Source="base24.exe"/>
-		  <File Id="ApplicationFile5" Source="libgcc_s_dw2-1.dll"/>
-		  <File Id="ApplicationFile6" Source="libstdc++-6.dll"/>
-		  <File Id="ApplicationFile7" Source="Qt5Core.dll"/>
-		  <File Id="ApplicationFile8" Source="Qt5Gui.dll"/>
-		  <File Id="ApplicationFile9" Source="Qt5Widgets.dll"/>
-               </Component>
+                  <File Id="ApplicationFile1"  Source="otpnitro.dll"/>
+		  <File Id="ApplicationFile2"  Source="otpnitro.exe"/>
+		  <File Id="ApplicationFile3"  Source="qotpnitro.exe"/>
+		  <File Id="ApplicationFile4"  Source="base24.exe"/>
+		  <File Id="ApplicationFile5"  Source="libgcc_s_dw2-1.dll"/>
+		  <File Id="ApplicationFile6"  Source="libstdc++-6.dll"/>
+		  <File Id="ApplicationFile7"  Source="Qt5Core.dll"/>
+		  <File Id="ApplicationFile8"  Source="Qt5Gui.dll"/>
+		  <File Id="ApplicationFile9"  Source="Qt5Widgets.dll"/>
+		  <File Id="ApplicationFile10" Source="libwinpthread-1.dll"/>
+		  <File Id="ApplicationFile11" Source="icudt52.dll"/>
+		  <File Id="ApplicationFile12" Source="icuin52.dll"/>
+		  <File Id="ApplicationFile13" Source="icuuc52.dll"/>
+	       </Component>
+	       <Directory Id="PLATFORMSDIR" Name="platforms">
+                   <Component Id="ProductComponents" Guid="15C8DF15-70E2-4ACC-9E25-00DB9D6AB539">
+		      <File Id="ProductComponent1" Source="qwindows.dll"/>
+                   </Component>
+               </Directory>
             </Directory>
          </Directory>
  
@@ -57,7 +66,8 @@
  
       <Feature Id="DefaultFeature" Level="1">
          <ComponentRef Id="ApplicationFiles"/>
-         <ComponentRef Id="ApplicationShortcuts"/>		 
+         <ComponentRef Id="ApplicationShortcuts"/>
+         <ComponentRef Id="ProductComponents"/>		 
       </Feature>
    </Product>
 </Wix>

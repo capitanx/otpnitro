@@ -108,6 +108,7 @@ int Rand::t_rand() {
 			return(rand());
 
 		CryptGenRandom(hCryptProv, 1, &crnd);
+		CryptReleaseContext(hCryptProv, 0);
 		return(crnd);
 #else
 		return(rand());

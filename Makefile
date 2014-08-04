@@ -118,13 +118,13 @@ doc:
 	doxygen doc/doxygen.conf
 
 windows: all
-	cmd /c copy qotpnitro\release\qotpnitro.exe .
-	candle packages\\windows\\otpnitro.wxs
-	light otpnitro.wixobj
 
 windows-gui: windows
 	cmd /s /c 'cd qotpnitro && qmake'
 	cmd /s /c 'cd qotpnitro && mingw32-make'
+	cmd /c copy qotpnitro\release\qotpnitro.exe .
+	candle packages\\windows\\otpnitro.wxs
+	light otpnitro.wixobj
 
 freebsd: all
 	mkdir -p                  packages/freebsd/otpnitro/usr/local/bin
