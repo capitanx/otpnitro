@@ -145,7 +145,7 @@ freebsd-python: bindings
 	mv -f packages/freebsd/python-otpnitro/+MANIFEST.orig packages/freebsd/python-otpnitro/+MANIFEST
 
 freebsd-gui: freebsd freebsd-python
-	cd qotpnitro && qmake
+	cd qotpnitro && qmake-qt4
 	cd qotpnitro && make
 	mkdir -p packages/freebsd/qotpnitro/usr/local/bin
 	cp qotpnitro/qotpnitro packages/freebsd/qotpnitro/usr/local/bin
