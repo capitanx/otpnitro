@@ -127,57 +127,58 @@ GUI Usage
 CLI compile guide
 -----------------
 
-1) Generic::
+1) **Generic**::
 
 	make
 
-2) Debian::
+2) **Debian**::
 
 	make debian
 
-2) FreeBSD::
+2) **FreeBSD**::
 
 	CXX=clang++ gmake freebsd
 
-3) Haiku::
+3) **Haiku**::
 
 	make haiku
 
-4) Windows::
-
-	make windows
-
-5) OS/2::
+4) **OS/2**::
 
 	make os2
+
+5) **Windows**::
+
+	make windows
 
 
 GUI compile guide 
 -----------------
 
-1) Generic::
+1) **Generic**::
 
 	cd qotpnitro && qmake && make
 
-2) Debian::
+2) **Debian**::
 
 	make debian-gui
 
-2) FreeBSD::
+2) **FreeBSD**::
 
 	CXX=clang++ gmake freebsd-gui
 
-3) Haiku::
+3) **Haiku**::
 
 	make haiku-gui
 
-4) Windows::
+4) **OS/2**::
+
+	make os2-gui
+
+5) **Windows**::
 
 	make windows-gui
 
-5) OS/2::
-
-	make os2-gui
 
 Bindings
 --------
