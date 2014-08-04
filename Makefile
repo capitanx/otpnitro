@@ -136,7 +136,7 @@ freebsd: all
 	pkg create -f txz      -r packages/freebsd/otpnitro -m packages/freebsd/otpnitro
 	mv -f packages/freebsd/otpnitro/+MANIFEST.orig packages/freebsd/otpnitro/+MANIFEST
 
-freebsd-python:
+freebsd-python: bindings
 	mkdir -p                  packages/freebsd/python-otpnitro/usr/local/lib/python2.7/site-packages
 	cp bindings/_otpnitro.so  packages/freebsd/python-otpnitro/usr/local/lib/python2.7/site-packages
 	cp bindings/otpnitro.py   packages/freebsd/python-otpnitro/usr/local/lib/python2.7/site-packages
@@ -164,7 +164,7 @@ debian: all
 	fakeroot dpkg-deb --build packages/debian/otpnitro otpnitro_$(shell packages/debian/build.sh --all).deb
 	mv -f packages/debian/otpnitro/DEBIAN/control.orig packages/debian/otpnitro/DEBIAN/control
 
-debian-python:
+debian-python: bindings
 	mkdir -p                  packages/debian/python-otpnitro/usr/lib/python2.7/dist-packages
 	cp bindings/otpnitro.py   packages/debian/python-otpnitro/usr/lib/python2.7/dist-packages
 	cp bindings/_otpnitro.so  packages/debian/python-otpnitro/usr/lib/python2.7/dist-packages
