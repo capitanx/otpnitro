@@ -1,8 +1,8 @@
 Package: python-otpnitro
-Architecture: amd64
+Architecture: #ARCH#
 Maintainer: capi_x <capi_x@haibane.org>
 Depends: python2.7-minimal (>= 2.7)
 Priority: extra
-Version: 0.4.1-1jessie0
+Version: #VERSION#-1#RELEASE#0
 Description: Python bindings for otpnitro
  OTP Nitro is a secure One Time Pad library and CLI to use on computers.

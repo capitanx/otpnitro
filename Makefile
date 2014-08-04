@@ -155,26 +155,35 @@ freebsd-gui: freebsd-cli freebsd-python
 	mv -f packages/freebsd/qotpnitro/+MANIFEST.orig packages/freebsd/qotpnitro/+MANIFEST
 
 debian: all
+	DEBVER = $(shell packages/debian/build.sh --all)
 	mkdir -p                  packages/debian/otpnitro/usr/bin
 	mkdir -p                  packages/debian/otpnitro/usr/lib
 	cp otpnitro               packages/debian/otpnitro/usr/bin
 	cp base24                 packages/debian/otpnitro/usr/bin
 	cp libotpnitro.so         packages/debian/otpnitro/usr/lib
-	fakeroot dpkg-deb --build packages/debian/otpnitro otpnitro_$(VERSION)_amd64.deb
+	packages/debian/build.sh  packages/debian/otpnitro/DEBIAN/control
+	fakeroot dpkg-deb --build packages/debian/otpnitro otpnitro_$(DEBVER).deb
+	mv -f packages/debian/otpnitro/DEBIAN/control.orig packages/debian/otpnitro/DEBIAN/control
 
 debian-python:
+	DEBVER = $(shell packages/debian/build.sh --all)
 	mkdir -p                  packages/debian/python-otpnitro/usr/lib/python2.7/dist-packages
 	cp bindings/otpnitro.py   packages/debian/python-otpnitro/usr/lib/python2.7/dist-packages
 	cp bindings/_otpnitro.so  packages/debian/python-otpnitro/usr/lib/python2.7/dist-packages
-	fakeroot dpkg-deb --build packages/debian/python-otpnitro python-otpnitro_$(VERSION)_amd64.deb
+	packages/debian/build.sh  packages/debian/python-otpnitro/DEBIAN/control
+	fakeroot dpkg-deb --build packages/debian/python-otpnitro python-otpnitro_$(DEBVER).deb
+	mv -f packages/debian/python-otpnitro/DEBIAN/control.orig packages/debian/python-otpnitro/DEBIAN/control
 
 debian-gui: debian-cli debian-python
+	DEBVER = $(shell packages/debian/build.sh --all)
 	cd qotpnitro && qmake
 	cd qotpnitro && make
-	mkdir -p packages/debian/qotpnitro/usr/bin
-	cp qotpnitro/qotpnitro packages/debian/qotpnitro/usr/bin
-	strip packages/debian/qotpnitro/usr/bin/qotpnitro
-	fakeroot dpkg-deb --build packages/debian/qotpnitro qotpnitro_$(VERSION)_amd64.deb
+	mkdir -p                  packages/debian/qotpnitro/usr/bin
+	cp qotpnitro/qotpnitro    packages/debian/qotpnitro/usr/bin
+	strip                     packages/debian/qotpnitro/usr/bin/qotpnitro
+	packages/debian/build.sh  packages/debian/qotpnitro/DEBIAN/control
+	fakeroot dpkg-deb --build packages/debian/qotpnitro qotpnitro_$(DEBVER).deb
+	mv -f packages/debian/qotpnitro/DEBIAN/control.orig packages/debian/qotpnitro/DEBIAN/control
 
 haiku:
 	CXX=g++-x86 make
