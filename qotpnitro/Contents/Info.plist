@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+	<key>CFBundleIconFile</key>
+	<string>qotpnitro.icns</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleGetInfoString</key>
+	<string>Info</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleExecutable</key>
+	<string>qotpnitro</string>
+	<key>CFBundleShortVersionString</key>
+	<string>3.8</string>
+	<key>CFBundleVersion</key>
+	<string>3.8</string>
+	<key>CFBundleIdentifier</key>
+	<string>org.haibane.qotpnitro</string>
+	<key>NOTE</key>
+	<string>OTPNitro</string>
+</dict>
+</plist>

@@ -203,8 +203,13 @@ os2-gui:
 	cd qotpnitro && qmake
 	cd qotpnitro && make
 
-osx-cli: all
+osx: all
 	tar -zcf otpnitro-$(VERSION)-osx.tgz otpnitro base24 libotpnitro.so
+
+osx-gui:
+	cd qotpnitro && qmake
+	cd qotpnitro && make
+	cd qotpnitro && tar -zcf ../qotpnitro-$(VERSION)-osx.tgz qotpnitro.app
 
 scan-build:
 	scan-build -v -o /tmp/otpnitro gmake

@@ -14,6 +14,13 @@ TEMPLATE = app
 os2:RC_FILE = qotpnitro_os2.rc
 win32:RC_FILE = qotpnitro_w32.rc
 
+mac:OSX_BUNDLE.files = Contents/Info.plist
+mac:OSX_BUNDLE.path = Contents
+mac:OSX_RESOURCES.files = Contents/Resources/qotpnitro.icns ../libotpnitro.so
+mac:OSX_RESOURCES.path = Contents/Resources
+mac:QMAKE_BUNDLE_DATA = OSX_BUNDLE OSX_RESOURCES
+mac:QMAKE_POST_LINK = install_name_tool -change libotpnitro.so @executable_path/../Resources/libotpnitro.so qotpnitro.app/Contents/MacOS/qotpnitro; macdeployqt qotpnitro.app
+
 LIBS += -L.. -lotpnitro
 
 INCLUDEPATH += ..
