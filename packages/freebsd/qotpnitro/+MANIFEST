@@ -16,10 +16,10 @@
 },
 "files":{
     "/usr/local/bin/qotpnitro":"#SHA256QOTPNITRO#","/usr/local/bin/qotpnitro",
-    "/usr/local/share/otpnitrogui/main_icon_16.png":"#SHA256ICON16#","/usr/local/share/otpnitrogui/main_icon_16.png",
-    "/usr/local/share/otpnitrogui/main_icon_32.png":"#SHA256ICON32#","/usr/local/share/otpnitrogui/main_icon_32.png",
-    "/usr/local/share/otpnitrogui/main_icon_48.png":"#SHA256ICON48#","/usr/local/share/otpnitrogui/main_icon_48.png",
-    "/usr/local/share/otpnitrogui/main_icon_48.png":"#SHA256ICON64#","/usr/local/share/otpnitrogui/main_icon_64.png",
+    "/usr/local/share/qotpnitro/main_icon_16.png":"#SHA256ICON16#","/usr/local/share/qotpnitro/main_icon_16.png",
+    "/usr/local/share/qotpnitro/main_icon_32.png":"#SHA256ICON32#","/usr/local/share/qotpnitro/main_icon_32.png",
+    "/usr/local/share/qotpnitro/main_icon_48.png":"#SHA256ICON48#","/usr/local/share/qotpnitro/main_icon_48.png",
+    "/usr/local/share/qotpnitro/main_icon_48.png":"#SHA256ICON64#","/usr/local/share/qotpnitro/main_icon_64.png",
     "/usr/local/share/applications/OTPNitro.desktop":"#SHA256DESKTOP","/usr/local/share/applications/OTPNitro.desktop"
 }
 }

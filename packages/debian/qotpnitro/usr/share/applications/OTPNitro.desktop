@@ -1,7 +1,7 @@
 [Desktop Entry]
 Hidden=false
 Exec=qotpnitro
-Icon=/usr/share/otpnitrogui/main_icon_64.png
+Icon=/usr/share/qotpnitro/main_icon_64.png
 Type=Application
 NoDisplay=false
 Version=0.5
