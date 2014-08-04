@@ -117,12 +117,12 @@ clean:
 doc:
 	doxygen doc/doxygen.conf
 
-windows: all windows-gui
+windows: all
 	cmd /c copy qotpnitro\release\qotpnitro.exe .
 	candle packages\\windows\\otpnitro.wxs
 	light otpnitro.wixobj
 
-windows-gui:
+windows-gui: windows
 	cmd /s /c 'cd qotpnitro && qmake'
 	cmd /s /c 'cd qotpnitro && mingw32-make'
 
@@ -144,7 +144,7 @@ freebsd-python:
 	pkg create -f txz      -r packages/freebsd/python-otpnitro -m packages/freebsd/python-otpnitro
 	mv -f packages/freebsd/python-otpnitro/+MANIFEST.orig packages/freebsd/python-otpnitro/+MANIFEST
 
-freebsd-gui: freebsd-cli freebsd-python
+freebsd-gui: freebsd freebsd-python
 	cd qotpnitro && qmake
 	cd qotpnitro && make
 	mkdir -p packages/freebsd/qotpnitro/usr/local/bin
@@ -172,7 +172,7 @@ debian-python:
 	fakeroot dpkg-deb --build packages/debian/python-otpnitro python-otpnitro_$(shell packages/debian/build.sh --all).deb
 	mv -f packages/debian/python-otpnitro/DEBIAN/control.orig packages/debian/python-otpnitro/DEBIAN/control
 
-debian-gui: debian-cli debian-python
+debian-gui: debian debian-python
 	cd qotpnitro && qmake
 	cd qotpnitro && make
 	mkdir -p                  packages/debian/qotpnitro/usr/bin
@@ -194,7 +194,7 @@ haiku:
 	cp libotpnitro.so  packages/haiku/otpnitro/lib/x86/
 	package create -C  packages/haiku/otpnitro  otpnitro-$(VERSION)-x86_gcc2.hpkg
 
-haiku-gui:
+haiku-gui: haiku
 	cd qotpnitro && qmake-x86 QMAKE_CC=gcc-x86 QMAKE_CXX=g++-x86 QMAKE_LINK=g++-x86
 	cd qotpnitro && make
 	rc   -o qotpnitro/qotpnitro qotpnitro/qotpnitro.rdef
@@ -216,7 +216,7 @@ os2-gui:
 osx: all
 	tar -zcf otpnitro-$(VERSION)-osx.tgz otpnitro base24 libotpnitro.so
 
-osx-gui:
+osx-gui: osx
 	cd qotpnitro && qmake
 	cd qotpnitro && make
 	cd qotpnitro && tar -zcf ../qotpnitro-$(VERSION)-osx.tgz qotpnitro.app
