@@ -126,81 +126,58 @@ GUI Usage
 
 CLI compile guide
 -----------------
-**Compile:**
-
-1) Generic / Debian::
-
-	make
-
-2) FreeBSD::
-
-	CXX=clang++ gmake
-
-3) Haiku::
-
-	CXX=g++-x86 gmake
-	
-**Install:**
 
 1) Generic::
 
-	make install
+	make
+
+2) Debian::
+
+	make debian
 
 2) FreeBSD::
 
 	CXX=clang++ gmake freebsd
 
-3) Debian::
+3) Haiku::
 
-	make debian
+	make haiku
 
-4) Haiku::
+4) Windows::
 
-	CXX=g++-x86 make haiku
+	make windows
+
+5) OS/2::
+
+	make os2
 
 
 GUI compile guide 
 -----------------
-First you must install the `U++ enviroment`_. Once installed you must add the otpnitrogui project. (Windows users also must install MinGW_)
-
-.. image:: http://www.haibane.org/files/otp00.png
-
-Next you must put the otpnitro path in the package textbox.
-
-.. image:: http://www.haibane.org/files/otp01.png
-
-Click on the output mode button.
-
-.. image:: http://www.haibane.org/files/otp02.png
-
-Fill all settings as in the image.
-
-.. image:: http://www.haibane.org/files/otp03.png
-
-Next select "Build methods" menu
-
-.. image:: http://www.haibane.org/files/otp04.png
-
-Again fill all options and add the otpnitro path to "lib directories"
-
-.. image:: http://www.haibane.org/files/otp05.png
-
-Ok, you can build all now pressing the F7 key. 
-
-**Install:**
 
 1) Generic::
 
-	make install
+	cd qotpnitro && qmake && make
+
+2) Debian::
+
+	make debian-gui
 
 2) FreeBSD::
 
-	CXX=clang++ gmake freebsd
+	CXX=clang++ gmake freebsd-gui
 
-3) Debian::
+3) Haiku::
 
-	make debian
+	make haiku-gui
 
+4) Windows::
+
+	make windows-gui
+
+5) OS/2::
+
+	make os2-gui
 
 Bindings
 --------
@@ -211,12 +188,23 @@ Bindings
 
 		make bindings
 
-	b) **Install**::
+	b) **Generic Compile**::
 
 		make python-otpnitro
-		( Install the .deb or .tzx package )
+	
+	c) **Debian Install**::
 
-	c) **Usage**
+		make debian-python
+
+	d) **FreeBSD Install**::
+
+		make freebsd-python
+
+	e) **PIP Install**::
+	
+		pip install otpnitro
+
+	f) **Usage**
 		Once installed::
 
 			>> import otpnitro
