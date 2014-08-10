@@ -169,7 +169,7 @@ void MainWindow::Decrypt()
     int    pnum = sbPage->value();
 
     // Auto-Check if the msg is formated
-    if ( (chkFormat->isChecked() != TRUE) && ( msg.contains("=")) )
+    if ( (chkFormat->isChecked() != true) && ( msg.contains("=")) )
     {
         if (QMessageBox::Yes == QMessageBox(QMessageBox::Information, "Formatted msg", "Is a formated msg? (XXX DE YYY N = AAAA =)", QMessageBox::Yes|QMessageBox::No).exec())
         {
