@@ -172,6 +172,18 @@ string	Page::read(int page, string id)
 }
 
 /*!
+ * @brief Get page length
+ * @param page Page num
+ * @param id Book ID
+ * @return ciphertext
+ */
+int	Page::getLength(int page, string id)
+{
+	// Return PAGE len
+	return this->read(page,id).size();
+}
+
+/*!
  * @brief Generate ciphertext page using the Rand class
  * @return ciphertext
  */ 

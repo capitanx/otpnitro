@@ -138,6 +138,17 @@ void MainWindow::Crypt()
     // Read page X from Book (RECV ID)
     string out = page->read(pnum,id.toStdString());
 
+    if (msg.toStdString().size() > out.size())
+    {
+        QString errInt = QString::number(msg.toStdString().size() - out.size());
+        QString errMsg = "You need ";
+        errMsg.append(errInt).append(" more bytes in the selected book page");
+        QMessageBox(QMessageBox::Critical, "Error", errMsg, QMessageBox::Ok).exec();
+        delete page;
+        delete crypto;
+        return;
+    }
+
     // Crypto
     string encrypted = crypto->encrypt(msg.toStdString(),out);
 
@@ -344,7 +355,7 @@ void MainWindow::on_actionHelp_triggered()
 
 void MainWindow::on_actionAbout_triggered()
 {
-    QMessageBox::about(this, "OTPNitro", "<h1>OTP<i>Nitro</i> <small>0.5.0</small></h1><h3 align=center>Is a secure One Time Pad implementation to use on computers or as assistant on manual operations.</h3><p>This project is licensed under the <a href='http://www.gnu.org/licenses/gpl-3.0.html'>GPLv3</a> license.<br>More information in the <a href='https://code.haibane.org/crypto/otpnitro'>project page</a>.</p><p>2013-2014 (c) <a href='mailto:capi_x@haibane.org'>capi_x@haibane.org</a></p>");
+    QMessageBox::about(this, "OTPNitro", "<h1>OTP<i>Nitro</i> <small>0.5.1</small></h1><h3 align=center>Is a secure One Time Pad implementation to use on computers or as assistant on manual operations.</h3><p>This project is licensed under the <a href='http://www.gnu.org/licenses/gpl-3.0.html'>GPLv3</a> license.<br>More information in the <a href='https://code.haibane.org/crypto/otpnitro'>project page</a>.</p><p>2013-2014 (c) <a href='mailto:capi_x@haibane.org'>capi_x@haibane.org</a></p>");
 }
 
 void MainWindow::on_actionExit_triggered()

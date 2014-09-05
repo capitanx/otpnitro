@@ -122,6 +122,14 @@ int main(int argc, char **argv)
 		// Read page X from Book (RECV ID)
 		string out = page->read(pnum,id);
 
+		if (msg.size() > out.size())
+		{
+			cout << "You need " << msg.size() - out.size() << " more bytes in the selected book page";
+		        delete page;
+		        delete crypto;
+		        exit(1);
+		}
+
 		// Crypto
 		string encrypted = crypto->encrypt(msg,out);
 
