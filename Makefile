@@ -125,6 +125,18 @@ windows-gui: windows
 	cmd /c copy qotpnitro\release\qotpnitro.exe .
 	candle packages\\windows\\otpnitro.wxs
 	light otpnitro.wixobj
+	
+windows-dll:
+	cmd /c copy C:\Qt\5.3\mingw482_32\bin\libgcc_s_dw2-1.dll .
+	cmd /c copy C:\Qt\5.3\mingw482_32\bin\libstdc*-6.dll .
+	cmd /c copy C:\Qt\5.3\mingw482_32\bin\Qt5Core.dll .
+	cmd /c copy C:\Qt\5.3\mingw482_32\bin\Qt5Gui.dll .
+	cmd /c copy C:\Qt\5.3\mingw482_32\bin\Qt5Widgets.dll .
+	cmd /c copy C:\Qt\5.3\mingw482_32\bin\libwinpthread-1.dll .
+	cmd /c copy C:\Qt\5.3\mingw482_32\bin\icudt52.dll .
+	cmd /c copy C:\Qt\5.3\mingw482_32\bin\icuin52.dll .
+	cmd /c copy C:\Qt\5.3\mingw482_32\bin\icuuc52.dll .
+	cmd /c copy C:\Qt\5.3\mingw482_32\plugins\platforms\qwindows.dll .
 
 freebsd: all
 	mkdir -p                  packages/freebsd/otpnitro/usr/local/bin
