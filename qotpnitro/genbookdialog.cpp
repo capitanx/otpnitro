@@ -17,28 +17,35 @@
 #include <QMessageBox>
 #include <QApplication>
 
+QString id;
+genBook * gen;
+
 genbookDialog::genbookDialog(QWidget *parent) :
-    QDialog(parent),
+    QDialog(parent, Qt::CustomizeWindowHint | Qt::WindowTitleHint),
     ui(new Ui::genbookDialog)
 {
+    gen = new genBook();
+    connect(gen, SIGNAL(finished()), this, SLOT(bookGen_finished()));
+
     ui->setupUi(this);
 }
 
 genbookDialog::~genbookDialog()
 {
+    delete gen;
     delete ui;
 }
 
 void genbookDialog::on_btGenerate_clicked()
 {
     ui->leBook->setText(ui->leBook->text().toUpper());
-    QString id = ui->leBook->text();
+    id = ui->leBook->text();
 
     if(id.length() == 0)
         QMessageBox(QMessageBox::Critical, "Burn page", "Please, this field cannot be empty.", QMessageBox::Ok).exec();
     else
     {
-        ui->lbBook->setText("Generating book...");
+        ui->lbBook->setText("Generating... it can take 30min!");
         ui->leBook->setEnabled(0);
 
         // Busy progress bar
@@ -50,13 +57,25 @@ void genbookDialog::on_btGenerate_clicked()
         qApp->processEvents();
 
         // Generate book
-        Page * page = new Page;
-        page->generate(id.toStdString());
-        delete page;
+        gen->start();
 
-        // Update cbBooks in Main
-        emit updateBooks();
-
-        this->close();
+        ui->btCancel->setEnabled(0);
+        ui->btGenerate->setEnabled(0);
     }
+}
+
+void genbookDialog::bookGen_finished()
+{
+    QMessageBox(QMessageBox::Information, "OTPNitro GUI", "Book generated :)", QMessageBox::Ok).exec();
+
+    // Update cbBooks in Main
+    emit updateBooks();
+    this->close();
+}
+
+void genBook::run()
+{
+    Page * page = new Page;
+    page->generate(id.toStdString());
+    delete page;
 }

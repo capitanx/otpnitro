@@ -13,6 +13,7 @@
 #define GENBOOKDIALOG_H
 
 #include <QDialog>
+#include <QThread>
 
 namespace Ui {
 class genbookDialog;
@@ -28,12 +29,21 @@ public:
     
 private slots:
     void on_btGenerate_clicked();
+    void bookGen_finished();
 
 signals:
     void updateBooks();
 
 private:
     Ui::genbookDialog *ui;
+};
+
+class genBook : public QThread
+{
+    Q_OBJECT
+
+protected:
+    void run();
 };
 
 #endif // GENBOOKDIALOG_H
