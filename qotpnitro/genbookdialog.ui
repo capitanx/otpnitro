@@ -37,10 +37,10 @@
       <number>100</number>
      </property>
      <property name="value">
-      <number>-1</number>
+      <number>0</number>
      </property>
      <property name="textVisible">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
     </widget>
    </item>
@@ -114,22 +114,5 @@
  <resources>
   <include location="icons.qrc"/>
  </resources>
- <connections>
-  <connection>
-   <sender>btCancel</sender>
-   <signal>clicked()</signal>
-   <receiver>genbookDialog</receiver>
-   <slot>close()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>71</x>
-     <y>72</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>130</x>
-     <y>47</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

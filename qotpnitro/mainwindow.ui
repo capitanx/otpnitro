@@ -70,6 +70,7 @@
     </property>
     <addaction name="actionRefresh_books"/>
     <addaction name="actionGenerate_book"/>
+    <addaction name="actionOpen_books_dir"/>
     <addaction name="separator"/>
     <addaction name="actionBurn_page"/>
    </widget>
@@ -246,6 +247,18 @@
    </property>
    <property name="text">
     <string>&amp;About</string>
+   </property>
+  </action>
+  <action name="actionOpen_books_dir">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/open.png</normaloff>:/icons/open.png</iconset>
+   </property>
+   <property name="text">
+    <string>O&amp;pen books folder</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
    </property>
   </action>
  </widget>

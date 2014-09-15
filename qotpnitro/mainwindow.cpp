@@ -25,6 +25,9 @@
 #include <crypto.h>
 #include <page.h>
 #include <text.h>
+#include <config.h>
+
+#include <QDesktopServices>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -44,7 +47,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
     lbBook->setText("BOOK  ");
     lbFrom->setText("FROM  ");
+    cbBook->setMaximumWidth(60);
     leFrom->setMaximumWidth(60);
+
+    QRegExp fromRegex("([A-Za-z]+)");
+    QRegExpValidator *fromValidator = new QRegExpValidator(fromRegex, this);
+    leFrom->setValidator(fromValidator);
+    leFrom->setMaxLength(5);
+
     lbPage->setText("PAGE  ");
     sbPage->setMaximum(9999);
     chkFormat->setText("Formatted msg  ");
@@ -137,10 +147,11 @@ void MainWindow::Crypt()
 
     // Read page X from Book (RECV ID)
     string out = page->read(pnum,id.toStdString());
+    string msgSpace = msg.replace(" ","XX").toStdString();
 
-    if (msg.toStdString().size() > out.size())
+    if (msgSpace.size() > out.size())
     {
-        QString errInt = QString::number(msg.toStdString().size() - out.size());
+        QString errInt = QString::number(msgSpace.size() - out.size());
         QString errMsg = "You need ";
         errMsg.append(errInt).append(" more bytes in the selected book page");
         QMessageBox(QMessageBox::Critical, "Error", errMsg, QMessageBox::Ok).exec();
@@ -355,10 +366,19 @@ void MainWindow::on_actionHelp_triggered()
 
 void MainWindow::on_actionAbout_triggered()
 {
-    QMessageBox::about(this, "OTPNitro", "<h1>OTP<i>Nitro</i> <small>0.5.1</small></h1><h3 align=center>Is a secure One Time Pad implementation to use on computers or as assistant on manual operations.</h3><p>This project is licensed under the <a href='http://www.gnu.org/licenses/gpl-3.0.html'>GPLv3</a> license.<br>More information in the <a href='https://code.haibane.org/crypto/otpnitro'>project page</a>.</p><p>2013-2014 (c) <a href='mailto:capi_x@haibane.org'>capi_x@haibane.org</a></p>");
+    QMessageBox::about(this, "OTPNitro", "<h1>OTP<i>Nitro</i> <small>" VERSION "</small></h1><h3 align=center>Is a secure One Time Pad implementation to use on computers or as assistant on manual operations.</h3><p>This project is licensed under the <a href='http://www.gnu.org/licenses/gpl-3.0.html'>GPLv3</a> license.<br>More information in the <a href='https://code.haibane.org/crypto/otpnitro'>project page</a>.</p><p>2013-2014 (c) <a href='mailto:capi_x@haibane.org'>capi_x@haibane.org</a></p>");
 }
 
 void MainWindow::on_actionExit_triggered()
 {
     this->close();
+}
+
+void MainWindow::on_actionOpen_books_dir_triggered()
+{
+    Config *cfg = new Config();
+    QString path = "file:///";
+    path.append(cfg->getPath());
+    delete cfg;
+    QDesktopServices::openUrl(QUrl(path, QUrl::TolerantMode));
 }

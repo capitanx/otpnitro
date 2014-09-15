@@ -3,7 +3,7 @@
  *
  *  Copyright 2014 by capi_x <capi_x@haibane.org>
  *
- *  Licensed under GNU General Public License 3.0 or later. 
+ *  Licensed under GNU General Public License 3.0 or later.
  *  Some rights reserved. See COPYING, AUTHORS.
  *
  * @license GPL-3.0 <http://www.gnu.org/licenses/gpl-3.0.txt>
@@ -130,6 +130,40 @@ int	Page::next(string id)
 	return atoi(filename.substr(0,pos).c_str());
 }
 
+/*!
+ * @brief Returns the last generated page num for a book
+ * @param id Book ID
+ * @return (int)pagenum
+ */
+int	Page::last(string id)
+{
+	string filename;
+	DIR *pDIR;
+	struct dirent *entry;
+	string path = REL_PATH;
+	unsigned pos = 0;
+	unsigned pgn = 0;
+	unsigned cur = 0;
+
+	path.append("/").append(id);
+	if( (pDIR = opendir(path.c_str())) != 0 ){
+		while((entry = readdir(pDIR)) != 0 ) {
+            filename = entry->d_name;
+            pos = filename.find(".");
+            cur = atoi(filename.substr(0,pos).c_str());
+            if (pgn < cur)
+                pgn = cur;
+		}
+	} else
+		return -1;
+
+	closedir(pDIR);
+
+	if (filename.length() == 0)
+		return -1;
+
+    return pgn;
+}
 
 bool	Page::write(int page, string id, string ciphertext)
 {
@@ -186,7 +220,7 @@ int	Page::getLength(int page, string id)
 /*!
  * @brief Generate ciphertext page using the Rand class
  * @return ciphertext
- */ 
+ */
 string	Page::get()
 {
 	string ciphtext;
@@ -214,7 +248,12 @@ bool	Page::generate(string id)
 	mkdir(REL_PATH);
 #endif
 
-	for (int pagenum = 0; pagenum < MAX_PAGES; pagenum++) {
+    int pagenum = 0;
+
+    if (this->last(id) >= 0)
+        pagenum = this->last(id);
+
+	for (; pagenum < MAX_PAGES; pagenum++) {
 		clock_t goal = 1 + clock();
 		while (goal > clock());
 		string pagetext = this->get();
@@ -232,7 +271,7 @@ string	Page::list()
 	string files;
 	DIR *pDIR;
 	string path = REL_PATH;
-	
+
 	if( (pDIR = opendir(path.c_str())) != 0 ){
 		struct dirent *entry;
 		while((entry = readdir(pDIR)) != 0 ){

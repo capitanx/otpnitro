@@ -19,6 +19,17 @@ namespace Ui {
 class genbookDialog;
 }
 
+class genBook : public QThread
+{
+    Q_OBJECT
+
+public:
+    QString  id;
+
+protected:
+    void run();
+};
+
 class genbookDialog : public QDialog
 {
     Q_OBJECT
@@ -26,24 +37,23 @@ class genbookDialog : public QDialog
 public:
     explicit genbookDialog(QWidget *parent = 0);
     ~genbookDialog();
+    QTimer  *timer;
     
 private slots:
     void on_btGenerate_clicked();
     void bookGen_finished();
+    void pb_update();
+
+    void on_btCancel_clicked();
 
 signals:
     void updateBooks();
 
 private:
     Ui::genbookDialog *ui;
-};
+    QString  id;
+    genBook *gen;
 
-class genBook : public QThread
-{
-    Q_OBJECT
-
-protected:
-    void run();
 };
 
 #endif // GENBOOKDIALOG_H

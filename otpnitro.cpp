@@ -3,7 +3,7 @@
  *
  *  Copyright 2014 by capi_x <capi_x@haibane.org>
  *
- *  Licensed under GNU General Public License 3.0 or later. 
+ *  Licensed under GNU General Public License 3.0 or later.
  *  Some rights reserved. See COPYING, AUTHORS.
  *
  * @license GPL-3.0 <http://www.gnu.org/licenses/gpl-3.0.txt>
@@ -76,9 +76,9 @@ int main(int argc, char **argv)
 		case '?':
 			printf("\n"
 				"Modes:\n"			\
-				"\t-g	Write pages	[-r]\n"	\
-				"\t-l	List  pages	\n"	\
-				"\t-b	Burn  page	[-r -p]\n"	\
+				"\t-l	List Books	\n"	\
+				"\t-g	Gen. Book	[-r]\n"	\
+				"\t-b	Burn page	[-r -p]\n"	\
 				"\t-e	Encrypt		[-s -r -m]\n"		\
 				"\t-d	Decrypt		[-s -r -m -p] [-f]\n"	\
 				"\n"				\
