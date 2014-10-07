@@ -147,9 +147,10 @@ void MainWindow::Crypt()
 
     // Read page X from Book (RECV ID)
     string out = page->read(pnum,id.toStdString());
-    string msgSpace = msg.replace(" ","XX").toStdString();
+    QString msgSpace = msg;
+    msgSpace.replace(" ","XX");
 
-    if (msgSpace.size() > out.size())
+    if (msgSpace.toStdString().size() > out.size())
     {
         QString errInt = QString::number(msgSpace.size() - out.size());
         QString errMsg = "You need ";

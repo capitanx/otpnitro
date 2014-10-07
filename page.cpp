@@ -275,7 +275,7 @@ string	Page::list()
 	if( (pDIR = opendir(path.c_str())) != 0 ){
 		struct dirent *entry;
 		while((entry = readdir(pDIR)) != 0 ){
-			if( (strcmp(entry->d_name, ".") != 0) && (strcmp(entry->d_name, "..") != 0) && (strcmp(entry->d_name, ".dummy") != 0) ) {
+			if( (strcmp(entry->d_name, ".") != 0) && (strcmp(entry->d_name, "..") != 0) && (strcmp(entry->d_name, ".dummy") != 0) && (strcmp(entry->d_name, ".DS_Store") != 0) ) {
 				files.append(entry->d_name);
 				files.append("\n");
 				continue;
