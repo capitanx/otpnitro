@@ -1,7 +1,7 @@
 /**
  * OTPNitro
  *
- *  Copyright 2014 by capi_x <capi_x@haibane.org>
+ *  Copyright 2014-2015 by capi_x <capi_x@haibane.org>
  *
  *  Licensed under GNU General Public License 3.0 or later.
  *  Some rights reserved. See COPYING, AUTHORS.
@@ -367,7 +367,7 @@ void MainWindow::on_actionHelp_triggered()
 
 void MainWindow::on_actionAbout_triggered()
 {
-    QMessageBox::about(this, "OTPNitro", "<h1>OTP<i>Nitro</i> <small>" VERSION "</small></h1><h3 align=center>Is a secure One Time Pad implementation to use on computers or as assistant on manual operations.</h3><p>This project is licensed under the <a href='http://www.gnu.org/licenses/gpl-3.0.html'>GPLv3</a> license.<br>More information in the <a href='https://code.haibane.org/crypto/otpnitro'>project page</a>.</p><p>2013-2014 (c) <a href='mailto:capi_x@haibane.org'>capi_x@haibane.org</a></p>");
+    QMessageBox::about(this, "OTPNitro", "<h1>OTP<i>Nitro</i> <small>" VERSION "</small></h1><h3 align=center>Is a secure One Time Pad implementation to use on computers or as assistant on manual operations.</h3><p>This project is licensed under the <a href='http://www.gnu.org/licenses/gpl-3.0.html'>GPLv3</a> license.<br>More information in the <a href='https://code.haibane.org/crypto/otpnitro'>project page</a>.</p><p>2013-2015 (c) <a href='mailto:capi_x@haibane.org'>capi_x@haibane.org</a></p>");
 }
 
 void MainWindow::on_actionExit_triggered()

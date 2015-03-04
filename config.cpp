@@ -1,7 +1,7 @@
 /**
  * OTPNitro
  *
- *  Copyright 2014 by capi_x <capi_x@haibane.org>
+ *  Copyright 2014-2015 by capi_x <capi_x@haibane.org>
  *
  *  Licensed under GNU General Public License 3.0 or later. 
  *  Some rights reserved. See COPYING, AUTHORS.

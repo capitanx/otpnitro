@@ -1,7 +1,7 @@
 /**
  * OTPNitro
  *
- *  Copyright 2014 by capi_x <capi_x@haibane.org>
+ *  Copyright 2014-2015 by capi_x <capi_x@haibane.org>
  *
  *  Licensed under GNU General Public License 3.0 or later.
  *  Some rights reserved. See COPYING, AUTHORS.
@@ -44,6 +44,27 @@ string	Page::dirPath(string id)
 
 	return(dirpath);
 }
+
+/*!
+* @brief Make the PATH of a given book (mkdir)
+* @param id ID of a valid book
+* @return ret
+*/
+int	Page::genPath(string id)
+{
+	int ret = 0;
+
+	// Create OTP folder for ID
+#if     defined(__unix__) || defined(__APPLE__) || defined(__HAIKU__)
+	ret = mkdir(dirPath(id).c_str(), S_IRWXU|S_IRGRP|S_IXGRP);
+#elif   __OS2__
+	ret = mkdir(dirPath(id).c_str(), 0777);
+#else
+	ret = mkdir(dirPath(id).c_str());
+#endif
+	return(ret);
+}
+
 
 /*!
  * @brief Returns the file path of a book for a given page
@@ -167,15 +188,6 @@ int	Page::last(string id)
 
 bool	Page::write(int page, string id, string ciphertext)
 {
-	// Create OTP folder for ID
-#if	defined(__unix__) || defined(__APPLE__) || defined(__HAIKU__)
-	mkdir(dirPath(id).c_str(), S_IRWXU|S_IRGRP|S_IXGRP);
-#elif   __OS2__
-	mkdir(REL_PATH, 0777);
-#else
-	mkdir(dirPath(id).c_str());
-#endif
-
 	// Write PAGE
 	ofstream fpage;
 	fpage.open(filePath(page, id).c_str());
@@ -240,13 +252,8 @@ string	Page::get()
  */
 bool	Page::generate(string id)
 {
-#if	defined(__unix__) || defined(__APPLE__) || defined(__HAIKU__)
-	mkdir(REL_PATH, S_IRWXU|S_IRGRP|S_IXGRP);
-#elif   __OS2__
-        mkdir(REL_PATH, 0777);
-#else
-	mkdir(REL_PATH);
-#endif
+    // Create new dir
+    genPath(id);
 
     int pagenum = 0;
 
