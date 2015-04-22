@@ -150,6 +150,10 @@ CLI compile guide
 5) **Windows**::
 
 	make windows
+	
+6) **DOS**::
+
+	make dos
 
 
 GUI compile guide 
