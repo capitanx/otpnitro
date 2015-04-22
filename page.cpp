@@ -10,6 +10,7 @@
  */
 
 #include <iostream>
+#include <algorithm>
 
 #include "page.h"
 #include "config.h"
@@ -292,5 +293,7 @@ string	Page::list()
 		return "";
 
 	closedir(pDIR);
+	
+	transform(files.begin(), files.end(), files.begin(), ::toupper);
 	return(files);
 }

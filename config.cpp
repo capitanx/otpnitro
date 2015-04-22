@@ -41,7 +41,7 @@ Config::Config(void)
 	MAX_CHARS	= 1020;
 
 	// Unix and windows path
-#if	defined(__unix__) || defined(__APPLE__) || defined(__HAIKU__)
+#if	!defined(__DJGPP__) && (defined(__unix__) || defined(__APPLE__) || defined(__HAIKU__))
 	string cfgPath = getenv("HOME");
 	cfgPath.append("/.otpnitro");
 	string pagesPath = cfgPath;
@@ -57,7 +57,7 @@ Config::Config(void)
 	strncpy(REL_PATH, pagesPath.c_str(), MAX_PATH - 1);
 	mkdir(cfgPath.c_str(), 0777);
 	cfgPath.append("\\otpnitro.ini");
-#else
+#elif	_WIN32
 	string cfgPath = getenv("APPDATA");
 	cfgPath.append("\\otpnitro");
 	string pagesPath = cfgPath;
@@ -65,14 +65,23 @@ Config::Config(void)
 	strncpy(REL_PATH, pagesPath.c_str(), MAX_PATH - 1);
 	mkdir(cfgPath.c_str());
 	cfgPath.append("\\otpnitro.ini");
+#else
+	string cfgPath   = "";
+	string pagesPath = cfgPath;
+	pagesPath.append("PAGES\\");
+	strncpy(REL_PATH, pagesPath.c_str(), MAX_PATH - 1);
+	mkdir(cfgPath.c_str(),S_IRWXU|S_IRGRP|S_IXGRP);
+	cfgPath.append("otpnitro.ini");
 #endif
 
 	// Open file
 	ifstream ifcfg;
 	ifcfg.open(cfgPath.c_str());
 
-	if (!ifcfg.is_open())
+	if (!ifcfg.is_open()) {
+		saveConfig();
 		return;
+	}
 
 	unsigned pos1;
 	string line, key, value;
@@ -114,12 +123,14 @@ Config::Config(void)
 void	Config::saveConfig(void) {
 
 	// Unix and windows path
-#ifdef __unix__
+#if	!defined(__DJGPP__) && defined(__unix__)
 	string cfgPath = getenv("HOME");
 	cfgPath.append("/.otpnitro/otpnitro.ini");
-#else
+#elif	_WIN32
 	string cfgPath = getenv("APPDATA");
 	cfgPath.append("\\otpnitro\\otpnitro.ini");
+#else
+	string cfgPath = "otpnitro.ini";
 #endif
 
 	// Fill config

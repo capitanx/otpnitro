@@ -24,7 +24,8 @@ ifndef CXX
 endif
 
 ifndef CXXFLAGS
-	CXXFLAGS = -O3 -Wall -Wextra -pedantic -pipe -fno-strict-aliasing -ffast-math -funroll-loops
+	CXXFLAGS = -s -O3 -Wall -Wextra -pedantic -fno-strict-aliasing -ffast-math -funroll-loops
+#	OPTCXXFLAGS = -pipe
 endif
 CXXFLAGS += -I.
 
@@ -116,6 +117,10 @@ clean:
 
 doc:
 	doxygen doc/doxygen.conf
+
+dos: $(MODULES)
+	$(CXX) $(CXXFLAGS) otpnitro.cpp $(MODULES) $(EXTRAS) -o $(EXENAME)
+	$(CXX) $(CXXFLAGS) base24.cpp   $(MODULES) $(EXTRAS) -o $(BASNAME)
 
 windows: all
 

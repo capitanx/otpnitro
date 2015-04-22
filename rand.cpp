@@ -102,7 +102,7 @@ int Rand::t_rand() {
 	unsigned char crnd;
 
 	if(fdev < 0) {
-#ifdef WIN32
+#ifdef _WIN32
 		HCRYPTPROV     hCryptProv;
 		if (!::CryptAcquireContext(&hCryptProv, 0, 0, PROV_RSA_FULL,  CRYPT_VERIFYCONTEXT|CRYPT_SILENT))
 			return(rand());
