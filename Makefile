@@ -59,6 +59,9 @@ ifdef COMSPEC
 	EXTRAS  =
 	INSTALL = echo TODO: OS/2 INSTALL
 	STRIPCM = ar cr otpnitro.a *.o | echo
+ifdef winbootdir
+	CXXFLAGS += -DWIN9X
+endif
 else
 	RM = rm -f otpnitro
 	LIBNAME = libotpnitro.so

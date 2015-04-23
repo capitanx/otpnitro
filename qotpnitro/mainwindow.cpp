@@ -100,7 +100,7 @@ void MainWindow::refreshBooks()
     QStringList pageItems = pageString.split("\n");
     cbBook->clear();
     cbBook->addItems(pageItems);
-    cbBook->removeItem(pageItems.length() -1);
+    cbBook->removeItem(pageItems.count() -1);
     delete page;
 }
 

@@ -15,6 +15,7 @@
 #include <page.h>
 #include <config.h>
 
+#include <QRegExpValidator>
 #include <QMessageBox>
 #include <QApplication>
 #include <QTimer>

@@ -28,7 +28,7 @@ burnDialog::burnDialog(QWidget *parent) :
     QStringList pageItems = pageString.split("\n");
     ui->cbBook->clear();
     ui->cbBook->addItems(pageItems);
-    ui->cbBook->removeItem(pageItems.length() -1);
+    ui->cbBook->removeItem(pageItems.count() -1);
     delete page;
 
 }
