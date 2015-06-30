@@ -1,7 +1,7 @@
 Package: qotpnitro
 Architecture: #ARCH#
 Maintainer: capi_x <capi_x@haibane.org>
-Depends: debconf (>= 0.5.00), otpnitro (>= 0.4), libqt5-gui (>= 5.0.0)
+Depends: debconf (>= 0.5.00), otpnitro (>= 0.4), libqt5gui5 (>= 5.0.0)
 Priority: optional
 Version: #VERSION#-1#RELEASE#0
 Description: A secure One Time Pad implementation GUI.
