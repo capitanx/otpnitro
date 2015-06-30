@@ -185,7 +185,7 @@ debian: all
 	cp base24                 packages/debian/otpnitro/usr/bin
 	cp libotpnitro.so         packages/debian/otpnitro/usr/lib
 	chmod 755                 packages/debian/otpnitro/usr/bin/*
-	chmod 755                 packages/debian/otpnitro/usr/bin/*
+	chmod 755                 packages/debian/otpnitro/usr/lib/*
 	packages/debian/build.sh  packages/debian/otpnitro/DEBIAN/control
 	fakeroot dpkg-deb --build packages/debian/otpnitro otpnitro_$(shell packages/debian/build.sh --all).deb
 	mv -f packages/debian/otpnitro/DEBIAN/control.orig packages/debian/otpnitro/DEBIAN/control
