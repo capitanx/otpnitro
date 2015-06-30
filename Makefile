@@ -38,6 +38,10 @@ ifdef ANAL
 	CXXFLAGS += -DDEBUG
 endif
 
+ifdef Apple_PubSub_Socket_Render
+	CXXFLAGS += -mmacosx-version-min=10.4
+endif
+
 ifdef SystemRoot
 	RM = cmd /c del /Q otpnitro.exe
 	LIBNAME = otpnitro.dll

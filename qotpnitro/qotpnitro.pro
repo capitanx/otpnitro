@@ -20,6 +20,7 @@ mac:OSX_RESOURCES.files = Contents/Resources/qotpnitro.icns ../libotpnitro.so
 mac:OSX_RESOURCES.path = Contents/Resources
 mac:QMAKE_BUNDLE_DATA = OSX_BUNDLE OSX_RESOURCES
 mac:QMAKE_POST_LINK = install_name_tool -change libotpnitro.so @executable_path/../Resources/libotpnitro.so qotpnitro.app/Contents/MacOS/qotpnitro; macdeployqt qotpnitro.app
+QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.5
 
 LIBS += -L.. -lotpnitro
 

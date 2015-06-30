@@ -48,6 +48,7 @@ Config::Config(void)
 	pagesPath.append("/PAGES/");
 	strncpy(REL_PATH, pagesPath.c_str(), MAX_PATH - 1);
 	mkdir(cfgPath.c_str(), S_IRWXU|S_IRGRP|S_IXGRP);
+	mkdir(pagesPath.c_str(), S_IRWXU|S_IRGRP|S_IXGRP);
 	cfgPath.append("/otpnitro.ini");
 #elif __OS2__
 	string cfgPath = getenv("HOME");
@@ -56,6 +57,7 @@ Config::Config(void)
 	pagesPath.append("\\PAGES\\");
 	strncpy(REL_PATH, pagesPath.c_str(), MAX_PATH - 1);
 	mkdir(cfgPath.c_str(), 0777);
+	mkdir(pagesPath.c_str(), 0777);
 	cfgPath.append("\\otpnitro.ini");
 #elif !defined(WIN9X) && defined(_WIN32)
 	string cfgPath = getenv("APPDATA");
@@ -64,20 +66,21 @@ Config::Config(void)
 	pagesPath.append("\\PAGES\\");
 	strncpy(REL_PATH, pagesPath.c_str(), MAX_PATH - 1);
 	mkdir(cfgPath.c_str());
+	mkdir(pagesPath.c_str());
 	cfgPath.append("\\otpnitro.ini");
 #elif WIN9X
 	string cfgPath   = "";
 	string pagesPath = cfgPath;
 	pagesPath.append("PAGES\\");
 	strncpy(REL_PATH, pagesPath.c_str(), MAX_PATH - 1);
-	mkdir(cfgPath.c_str());
+	mkdir(pagesPath.c_str());
 	cfgPath.append("otpnitro.ini");
 #else
 	string cfgPath   = "";
 	string pagesPath = cfgPath;
 	pagesPath.append("PAGES\\");
 	strncpy(REL_PATH, pagesPath.c_str(), MAX_PATH - 1);
-	mkdir(cfgPath.c_str(),S_IRWXU|S_IRGRP|S_IXGRP);
+	mkdir(pagesPath.c_str(),S_IRWXU|S_IRGRP|S_IXGRP);
 	cfgPath.append("otpnitro.ini");
 #endif
 
