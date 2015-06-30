@@ -10,10 +10,10 @@
 "prefix":"/usr/local",
 "flatsize":"144",
 "deps":{
-    "pkg":{"origin":"lang/python27","version":"2.7"},
+	"pkg":{"origin":"lang/python27","version":"2.7"},
 },
 "files":{
-    "/usr/local/lib/python2.7/site-packages/_otpnitro.so":"#SHA256PYSO#","/usr/local/lib/python2.7/site-packages/_otpnitro.so",
-	"/usr/local/lib/python2.7/site-packages/otpnitro.py":"#SHA256PYLIB#","/usr/local/lib/python2.7/site-packages/otpnitro.py"
+	"/usr/local/lib/python2.7/site-packages/_otpnitro.so":"#SHA256PYSO#",
+	"/usr/local/lib/python2.7/site-packages/otpnitro.py":"#SHA256PYLIB#",
 }
 }

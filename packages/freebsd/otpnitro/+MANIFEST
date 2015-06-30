@@ -10,11 +10,11 @@
 "prefix":"/usr/local",
 "flatsize":"144",
 "deps":{
-    "pkg":{"origin":"ports-mgmt/pkg","version":"1.2"},
+	"pkg":{"origin":"ports-mgmt/pkg","version":"1.2"},
 },
 "files":{
-    "/usr/local/bin/otpnitro":"#SHA256OTPNITRO#","/usr/local/bin/otpnitro",
-	"/usr/local/bin/base24":"#SHA256BASE64#","/usr/local/bin/base24",
-    "/usr/local/lib/libotpnitro.so":"#SHA256LIBOTPNITRO#","/usr/local/lib/libotpnitro.so"
+	"/usr/local/bin/otpnitro":"#SHA256OTPNITRO#",
+	"/usr/local/bin/base24":"#SHA256BASE64#",
+	"/usr/local/lib/libotpnitro.so":"#SHA256LIBOTPNITRO#",
 }
 }

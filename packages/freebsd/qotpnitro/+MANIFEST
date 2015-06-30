@@ -10,16 +10,16 @@
 "prefix":"/usr/local",
 "flatsize":"218",
 "deps":{
-    "pkg":{"origin":"ports-mgmt/pkg","version":"1.2"},
-    "otpnitro":{"origin":"security/otpnitro","version":"#VERSION#"},
-    "qt4-gui":{"origin":"x11-toolkits/qt4-gui","version":"4.0"}
+	"pkg":{"origin":"ports-mgmt/pkg","version":"1.2"},
+	"otpnitro":{"origin":"security/otpnitro","version":"#VERSION#"},
+	"qt5-gui":{"origin":"x11-toolkits/qt5-gui","version":"5.0"}
 },
 "files":{
-    "/usr/local/bin/qotpnitro":"#SHA256QOTPNITRO#","/usr/local/bin/qotpnitro",
-    "/usr/local/share/qotpnitro/main_icon_16.png":"#SHA256ICON16#","/usr/local/share/qotpnitro/main_icon_16.png",
-    "/usr/local/share/qotpnitro/main_icon_32.png":"#SHA256ICON32#","/usr/local/share/qotpnitro/main_icon_32.png",
-    "/usr/local/share/qotpnitro/main_icon_48.png":"#SHA256ICON48#","/usr/local/share/qotpnitro/main_icon_48.png",
-    "/usr/local/share/qotpnitro/main_icon_48.png":"#SHA256ICON64#","/usr/local/share/qotpnitro/main_icon_64.png",
-    "/usr/local/share/applications/OTPNitro.desktop":"#SHA256DESKTOP","/usr/local/share/applications/OTPNitro.desktop"
+    "/usr/local/bin/qotpnitro":"#SHA256QOTPNITRO#",
+    "/usr/local/share/qotpnitro/main_icon_16.png":"#SHA256ICON16#",
+    "/usr/local/share/qotpnitro/main_icon_32.png":"#SHA256ICON32#",
+    "/usr/local/share/qotpnitro/main_icon_48.png":"#SHA256ICON48#",
+    "/usr/local/share/qotpnitro/main_icon_48.png":"#SHA256ICON64#",
+    "/usr/local/share/applications/OTPNitro.desktop":"#SHA256DESKTOP",
 }
 }
