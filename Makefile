@@ -184,6 +184,8 @@ debian: all
 	cp otpnitro               packages/debian/otpnitro/usr/bin
 	cp base24                 packages/debian/otpnitro/usr/bin
 	cp libotpnitro.so         packages/debian/otpnitro/usr/lib
+	chmod 755                 packages/debian/otpnitro/usr/bin/*
+	chmod 755                 packages/debian/otpnitro/usr/bin/*
 	packages/debian/build.sh  packages/debian/otpnitro/DEBIAN/control
 	fakeroot dpkg-deb --build packages/debian/otpnitro otpnitro_$(shell packages/debian/build.sh --all).deb
 	mv -f packages/debian/otpnitro/DEBIAN/control.orig packages/debian/otpnitro/DEBIAN/control
@@ -192,6 +194,7 @@ debian-python: bindings
 	mkdir -p                  packages/debian/python-otpnitro/usr/lib/python2.7/dist-packages
 	cp bindings/otpnitro.py   packages/debian/python-otpnitro/usr/lib/python2.7/dist-packages
 	cp bindings/_otpnitro.so  packages/debian/python-otpnitro/usr/lib/python2.7/dist-packages
+	chmod 755                 packages/debian/python-otpnitro/usr/lib/python2.7/dist-packages/*
 	packages/debian/build.sh  packages/debian/python-otpnitro/DEBIAN/control
 	fakeroot dpkg-deb --build packages/debian/python-otpnitro python-otpnitro_$(shell packages/debian/build.sh --all).deb
 	mv -f packages/debian/python-otpnitro/DEBIAN/control.orig packages/debian/python-otpnitro/DEBIAN/control
@@ -202,6 +205,7 @@ debian-gui: debian debian-python
 	mkdir -p                  packages/debian/qotpnitro/usr/bin
 	cp qotpnitro/qotpnitro    packages/debian/qotpnitro/usr/bin
 	strip                     packages/debian/qotpnitro/usr/bin/qotpnitro
+	chmod 755                 packages/debian/qotpnitro/usr/bin/*
 	packages/debian/build.sh  packages/debian/qotpnitro/DEBIAN/control
 	fakeroot dpkg-deb --build packages/debian/qotpnitro qotpnitro_$(shell packages/debian/build.sh --all).deb
 	mv -f packages/debian/qotpnitro/DEBIAN/control.orig packages/debian/qotpnitro/DEBIAN/control
