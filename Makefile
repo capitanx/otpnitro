@@ -218,9 +218,10 @@ haiku:
 	mkdir -p           packages/haiku/otpnitro/lib/x86/
 	cp *.h             packages/haiku/otpnitro/develop/headers/otpnitro/
 	cp -fr doc         packages/haiku/otpnitro/apps/otpnitro/
-	cp base24 otpnitro packages/haiku/otpnitro/bin/
+	cp base24          packages/haiku/otpnitro/bin/base24-x86
+	cp otpnitro        packages/haiku/otpnitro/bin/otpnitro-x86
 	cp libotpnitro.so  packages/haiku/otpnitro/lib/x86/
-	package create -C  packages/haiku/otpnitro  otpnitro-$(VERSION)-x86_gcc2.hpkg
+	package create -C  packages/haiku/otpnitro  otpnitro_x86-$(VERSION)-x86_gcc2.hpkg
 
 haiku-gui: haiku
 	cd qotpnitro && qmake-x86 QMAKE_CC=gcc-x86 QMAKE_CXX=g++-x86 QMAKE_LINK=g++-x86
@@ -229,10 +230,10 @@ haiku-gui: haiku
 	xres -o qotpnitro/qotpnitro qotpnitro/qotpnitro.rsrc
 	mimeset -f qotpnitro/qotpnitro
 	mkdir -p               packages/haiku/qotpnitro/bin/
-	cp qotpnitro/qotpnitro packages/haiku/qotpnitro/bin/
+	cp qotpnitro/qotpnitro packages/haiku/qotpnitro/bin/qotpnitro-x86
 	mkdir -p               packages/haiku/qotpnitro/data/deskbar/menu/Applications/
-	ln -f -s /boot/home/config/bin/qotpnitro packages/haiku/qotpnitro/data/deskbar/menu/Applications/OTPNitro
-	package create -C  packages/haiku/qotpnitro qotpnitro-$(VERSION)-x86_gcc2.hpkg
+	ln -f -s /bin/qotpnitro-x86 packages/haiku/qotpnitro/data/deskbar/menu/Applications/OTPNitro
+	package create -C  packages/haiku/qotpnitro qotpnitro_x86-$(VERSION)-x86_gcc2.hpkg
 	
 os2:
 	set CXX=g++ && make

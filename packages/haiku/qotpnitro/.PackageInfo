@@ -1,15 +1,24 @@
-name		qotpnitro
+name		qotpnitro_x86
 version		0.5.2-1
 architecture	x86_gcc2
 
-summary		"A secure One Time Pad implementation."
+summary		"A secure One Time Pad implementation (GUI)."
 description	"QT OTP Nitro is a secure One Time Pad GUI to use on computers."
 
 packager	"capi_x <capi_x@haibane.org>"
 vendor		"capi_x <capi_x@haibane.org>"
 copyrights	"optnitro - GPLv3 - Copyright 2014-2015 - capi_x"
-licenses	"MIT"
+
+licenses {
+        "GNU GPL v3"
+}
 
 provides {
-	cmd:qotpnitro
+	qotpnitro_x86 = 0.5.2
+	cmd:qotpnitro = 0.5.2
+}
+
+requires {
+	libqt4_x86 >= 4.8
+	otpnitro_x86 == 0.5.2
 }
