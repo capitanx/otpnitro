@@ -133,7 +133,7 @@ Config::Config(void)
 void	Config::saveConfig(void) {
 
 	// Unix and windows path
-#if	!defined(__DJGPP__) && defined(__unix__)
+#if	!defined(__DJGPP__) && (defined(__unix__) || defined(__APPLE__) || defined(__HAIKU__))
 	string cfgPath = getenv("HOME");
 	cfgPath.append("/.otpnitro/otpnitro.ini");
 #elif !defined(WIN9X) && defined(_WIN32)
