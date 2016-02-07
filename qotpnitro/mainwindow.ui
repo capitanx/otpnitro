@@ -39,7 +39,7 @@
      <x>0</x>
      <y>0</y>
      <width>572</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -96,6 +96,27 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>LeftToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionOpen"/>
+   <addaction name="actionSave"/>
+   <addaction name="actionClear"/>
+   <addaction name="separator"/>
+   <addaction name="actionCrypt"/>
+   <addaction name="actionDecrypt"/>
+   <addaction name="actionEncode"/>
+   <addaction name="separator"/>
+   <addaction name="actionRefresh_books"/>
+   <addaction name="actionGenerate_book"/>
+  </widget>
   <action name="actionClear">
    <property name="icon">
     <iconset resource="icons.qrc">
