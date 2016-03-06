@@ -8,47 +8,48 @@
 ## CLI Usage
 
 * Generate OTP pages on the "TST" book:
-	```
+```
 	C:\> .\otpnitro.exe -g -r TST
 	OTP Nitro 0.1
 	-------------
 	[I] Generating OTP: TST. OK
-	```
+```
+
 	
 * Encrypt message:
-	```
+```
 	C:\> otpnitro.exe -e -s CPX -r TST -m "ESTO ES UNA PRUEBA"
 	OTP Nitro 0.1
 	-------------
 	[I] Encrypted msg:
 	TST DE CPX 11 = RHJQG AKZQV RUMKV IYHJY YQYVT =
-	```
+```
 	
 * Decrypt message:
-	```
+```
 	C:\> otpnitro.exe -d -p 11 -s CPX -r TST -m "RHJQG AKZQV RUMKV IYHJY YQYVT"
 	OTP Nitro 0.1
 	-------------
 	[I] Decrypted msg:
 	TST DE CPX 11 = ESTO ES UNA PRUEBA =
-	```
+```
 	
 * Decrypt formated message:
-	```
+```
 	C:\> otpnitro.exe -d -f "TST DE CPX 11 = RHJQG AKZQV RUMKV IYHJY YQYVT ="
 	OTP Nitro 0.1
 	-------------
 	[I] Decrypted msg:
 	TST DE CPX 11 = ESTO ES UNA PRUEBA =
-	```
+```
 	
 * Burn a page:
-	```
+```
 	C:\> otpnitro.exe -b -p 11 -r TST
 	OTP Nitro 0.1
 	-------------
 	[I] Burn page 11. OK
-	```
+```
 
 ## GUI Usage
 
@@ -115,7 +116,7 @@
 	This program is under the GPLv3 license.
 
 6. **Authors**
-	* [@capi_x][@capi_x] <capi_x.AT.haibane.org>
+	* [@capi_x][@capi_x] *capi_x.AT.haibane.org*
 
 7. **Acknowledges**
 	* [@Mario_vilas][@Mario_vilas] - Thanks for GUI and crypto testing.
@@ -246,15 +247,15 @@ The API documentation is located here:
 
 
 
-[OneTimePad]: <https://en.wikipedia.org/wiki/One-time_pad>
-[@capi_x]: <https://twitter.com/capi_x>
-[@Mario_vilas]: <https://twitter.com/mario_vilas>
-[@sha0coder]: <https://twitter.com/sha0coder>
-[@AloneInTheShell]: <https://twitter.com/AloneInTheShell>
-[MinGW]: <http://sourceforge.net/projects/mingw/files/>
-[Upp]: <http://www.ultimatepp.org>
-[UppEnviroment]: <http://www.ultimatepp.org/www$uppweb$download$en-us.html>
-[homepage]: <https://code.haibane.org/crypto/otpnitro>
-[GPLv3]: <http://www.gnu.org/licenses/gpl-3.0.txt>
-[SWIG]: <http://www.swig.org/>
+[OneTimePad]: https://en.wikipedia.org/wiki/One-time_pad
+[@capi_x]: https://twitter.com/capi_x
+[@Mario_vilas]: https://twitter.com/mario_vilas
+[@sha0coder]: https://twitter.com/sha0coder
+[@AloneInTheShell]: https://twitter.com/AloneInTheShell
+[MinGW]: http://sourceforge.net/projects/mingw/files/
+[Upp]: http://www.ultimatepp.org
+[UppEnviroment]: http://www.ultimatepp.org/www$uppweb$download$en-us.html
+[homepage]: https://code.haibane.org/crypto/otpnitro
+[GPLv3]: http://www.gnu.org/licenses/gpl-3.0.txt
+[SWIG]: http://www.swig.org/
 
