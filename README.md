@@ -8,48 +8,47 @@
 ## CLI Usage
 
 * Generate OTP pages on the "TST" book:
-```
+
+	```
 	C:\> .\otpnitro.exe -g -r TST
 	OTP Nitro 0.1
-	-------------
 	[I] Generating OTP: TST. OK
-```
-
+	```
 	
 * Encrypt message:
-```
+
+	```
 	C:\> otpnitro.exe -e -s CPX -r TST -m "ESTO ES UNA PRUEBA"
 	OTP Nitro 0.1
-	-------------
 	[I] Encrypted msg:
 	TST DE CPX 11 = RHJQG AKZQV RUMKV IYHJY YQYVT =
-```
+	```
 	
 * Decrypt message:
-```
+
+	```
 	C:\> otpnitro.exe -d -p 11 -s CPX -r TST -m "RHJQG AKZQV RUMKV IYHJY YQYVT"
 	OTP Nitro 0.1
-	-------------
 	[I] Decrypted msg:
 	TST DE CPX 11 = ESTO ES UNA PRUEBA =
-```
+	```
 	
 * Decrypt formated message:
-```
+
+	```
 	C:\> otpnitro.exe -d -f "TST DE CPX 11 = RHJQG AKZQV RUMKV IYHJY YQYVT ="
 	OTP Nitro 0.1
-	-------------
 	[I] Decrypted msg:
 	TST DE CPX 11 = ESTO ES UNA PRUEBA =
-```
+	```
 	
 * Burn a page:
-```
+
+	```
 	C:\> otpnitro.exe -b -p 11 -r TST
 	OTP Nitro 0.1
-	-------------
 	[I] Burn page 11. OK
-```
+	```
 
 ## GUI Usage
 
