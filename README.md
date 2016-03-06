@@ -1,53 +1,50 @@
-=========
-OTP Nitro
-=========
-
+# OTP Nitro
 
 About
 -----
-``OTP Nitro`` is a secure `One Time Pad`_ implementation to use on computers or as assistant on manual operations.
+*OTP Nitro* is a secure [One Time Pad][OneTimePad] implementation to use on computers or as assistant on manual operations.
 
 
 CLI Usage
 ---------
-* Generate OTP pages on the "TST" book::
-	
+* Generate OTP pages on the "TST" book:
+	```
 	C:\> .\otpnitro.exe -g -r TST
 	OTP Nitro 0.1
 	-------------
 	[I] Generating OTP: TST. OK 
-
-* Encrypt message::
-
+    ```
+* Encrypt message:
+    ```
 	C:\> otpnitro.exe -e -s CPX -r TST -m "ESTO ES UNA PRUEBA"
 	OTP Nitro 0.1
 	-------------
 	[I] Encrypted msg:
 	TST DE CPX 11 = RHJQG AKZQV RUMKV IYHJY YQYVT =
-
-* Decrypt message::
-
+    ```
+* Decrypt message:
+    ```
 	C:\> otpnitro.exe -d -p 11 -s CPX -r TST -m "RHJQG AKZQV RUMKV IYHJY YQYVT"
 	OTP Nitro 0.1
 	-------------
 	[I] Decrypted msg:
 	TST DE CPX 11 = ESTO ES UNA PRUEBA =
-
-* Decrypt formated message::
-
+    ```
+* Decrypt formated message:
+    ```
 	C:\> otpnitro.exe -d -f "TST DE CPX 11 = RHJQG AKZQV RUMKV IYHJY YQYVT ="
 	OTP Nitro 0.1
 	-------------
 	[I] Decrypted msg:
 	TST DE CPX 11 = ESTO ES UNA PRUEBA =
-
-* Burn a page::
-
+    ```
+* Burn a page:
+    ```
 	C:\> otpnitro.exe -b -p 11 -r TST
 	OTP Nitro 0.1
 	-------------
 	[I] Burn page 11. OK
-
+    ```
 
 GUI Usage
 ---------
@@ -68,13 +65,12 @@ GUI Usage
 		The recipient is anyone who have the same book than you used to crypt the message and you must identify yourself as sender in the from field. The IDs usually have very short names, from 3 to 5 characters.
 
 	d) **Formatted message**
-		To have a send/receive standar format, please use this one::
-
-			<BOOK> DE <FROM> <PAGE> = <MESSAGE> =
-
-		**Example**::
-
-			TST DE CPX 2 = QSZBO IGFIY NVTVY BFXCB KROAP =
+		To have a send/receive standar format, please use this one:
+		
+            <BOOK> DE <FROM> <PAGE> = <MESSAGE> =
+	**Example**:
+		
+		    TST DE CPX 2 = QSZBO IGFIY NVTVY BFXCB KROAP =
 
 3) **Operations**
 	In this chapter we describe the basic operations.
@@ -116,12 +112,12 @@ GUI Usage
 	This program is under the GPLv3 license.
 
 6) **Authors**
-	* `@capi_x`_ <capi_x@haibane.org>
+	* [@capi_x][@capi_x] <capi_x.AT.haibane.org>
 
 7) **Acknowledges**
-	* `@Mario_vilas`_     - Thanks for GUI and crypto testing.
-	* `@sha0coder`_       - Thanks for CLI and GUI testing.
-	* `@AloneInTheShell`_ - Thanks for CLI and LIB testing.
+	* [@Mario_vilas][@Mario_vilas] - Thanks for GUI and crypto testing.
+	* [@sha0coder][@sha0coder] - Thanks for CLI and GUI testing.
+	* [@AloneInTheShell][@AloneInTheShell] - Thanks for CLI and LIB testing.
 
 
 CLI compile guide
@@ -129,31 +125,31 @@ CLI compile guide
 
 1) **Generic**::
 
-	make
+    	make
 
 2) **Debian**::
 
-	make debian
+    	make debian
 
 2) **FreeBSD**::
 
-	CXX=clang++ gmake freebsd
+    	CXX=clang++ gmake freebsd
 
 3) **Haiku**::
 
-	make haiku
+    	make haiku
 
 4) **OS/2**::
 
-	make os2
+    	make os2
 
 5) **Windows**::
 
-	make windows
+    	make windows
 	
 6) **DOS**::
 
-	make dos
+    	make dos
 
 
 GUI compile guide 
@@ -161,56 +157,56 @@ GUI compile guide
 
 1) **Generic**::
 
-	cd qotpnitro && qmake && make
+	    cd qotpnitro && qmake && make
 
 2) **Debian**::
 
-	make debian-gui
+	    make debian-gui
 
 2) **FreeBSD**::
 
-	CXX=clang++ gmake freebsd-gui
+	    CXX=clang++ gmake freebsd-gui
 
 3) **Haiku**::
 
-	make haiku-gui
+	    make haiku-gui
 
 4) **OS/2**::
 
-	make os2-gui
+        make os2-gui
 
-5) **Windows**::
+5) **Windows**:
 
-	make windows-gui
+        make windows-gui
 
 
 Bindings
 --------
-``OTP Nitro`` supports bindings to other languages using SWIG_
+*OTP Nitro* supports bindings to other languages using [SWIG][SWIG]
 
 1) **Python**
-	a) **Compile**::
+	a) **Compile**:
 
 		make bindings
 
-	b) **Generic Compile**::
+	b) **Generic Compile**:
 
 		make python-otpnitro
 	
-	c) **Debian Install**::
+	c) **Debian Install**:
 
 		make debian-python
 
-	d) **FreeBSD Install**::
+	d) **FreeBSD Install**:
 
 		make freebsd-python
 
-	e) **PIP Install**::
+	e) **PIP Install**:
 	
 		pip install otpnitro
 
 	f) **Usage**
-		Once installed::
+		Once installed:
 
 			>> import otpnitro
 			>> page = otpnitro.Page()
@@ -221,8 +217,8 @@ API
 ---
 The API documentation is located here:
 
-* `HTML <http://www.haibane.org/doc/otpnitro/index.html>`_
-* `PDF <http://www.haibane.org/doc/otpnitro.pdf>`_
+* [HTML](http://www.haibane.org/doc/otpnitro/index.html)
+* [PDF](http://www.haibane.org/doc/otpnitro.pdf)
 
 Features
 --------
@@ -231,7 +227,7 @@ Features
 * Decrypt messages
 * Burn pages (secure delete)
 * Automatic text format (header)
-* GUI using `Ultimate++`_
+* GUI using [Ultimate++][Upp]
 * API and library
 * Bindings
 
@@ -244,18 +240,18 @@ TODO
 
 License
 -------
-``OTP Nitro`` is released under the GPLv3_ license.
+*OTP Nitro* is released under the [GPLv3][GPLv3] license.
 
 
 
-.. _`One Time Pad`: https://en.wikipedia.org/wiki/One-time_pad
-.. _`@capi_x`: https://twitter.com/capi_x
-.. _`@Mario_vilas`: https://twitter.com/mario_vilas
-.. _`@sha0coder`: https://twitter.com/sha0coder
-.. _`@AloneInTheShell`: https://twitter.com/AloneInTheShell
-.. _MinGW: http://sourceforge.net/projects/mingw/files/
-.. _`Ultimate++`: http://www.ultimatepp.org
-.. _`U++ enviroment`: http://www.ultimatepp.org/www$uppweb$download$en-us.html
-.. _homepage: https://code.haibane.org/crypto/otpnitro
-.. _GPLv3: http://www.gnu.org/licenses/gpl-3.0.txt
-.. _SWIG: http://www.swig.org/
+[OneTimePad]: <https://en.wikipedia.org/wiki/One-time_pad>
+[@capi_x]: <https://twitter.com/capi_x>
+[@Mario_vilas]: <https://twitter.com/mario_vilas>
+[@sha0coder]: <https://twitter.com/sha0coder>
+[@AloneInTheShell]: <https://twitter.com/AloneInTheShell>
+[MinGW]: <http://sourceforge.net/projects/mingw/files/>
+[Upp]: <http://www.ultimatepp.org>
+[UppEnviroment]: <http://www.ultimatepp.org/www$uppweb$download$en-us.html>
+[homepage]: <https://code.haibane.org/crypto/otpnitro>
+[GPLv3]: <http://www.gnu.org/licenses/gpl-3.0.txt>
+[SWIG]: <http://www.swig.org/>
