@@ -229,7 +229,7 @@ The API documentation is located here:
 * Decrypt messages
 * Burn pages (secure delete)
 * Automatic text format (header)
-* GUI using [Ultimate++][Upp]
+* GUI using [Qt][Qt]
 * API and library
 * Bindings
 
@@ -252,7 +252,7 @@ The API documentation is located here:
 [@sha0coder]: https://twitter.com/sha0coder
 [@AloneInTheShell]: https://twitter.com/AloneInTheShell
 [MinGW]: http://sourceforge.net/projects/mingw/files/
-[Upp]: http://www.ultimatepp.org
+[Qt]: https://www.qt.io/
 [UppEnviroment]: http://www.ultimatepp.org/www$uppweb$download$en-us.html
 [homepage]: https://code.haibane.org/crypto/otpnitro
 [GPLv3]: http://www.gnu.org/licenses/gpl-3.0.txt
