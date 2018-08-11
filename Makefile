@@ -29,6 +29,10 @@ ifndef CXXFLAGS
 endif
 CXXFLAGS += -I.
 
+ifdef DJGPP
+	CXXFLAGS = -march=i386
+endif
+
 ifdef DEBUG
 	CXXFLAGS += -ggdb
 endif

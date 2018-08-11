@@ -38,7 +38,7 @@ Page::Page(void)
  * @param id ID of a valid book
  * @return dirpath
  */
-string	Page::dirPath(string id)
+string Page::dirPath(string id)
 {
 	string dirpath = REL_PATH;
 	dirpath.append(id);
@@ -73,7 +73,7 @@ int	Page::genPath(string id)
  * @param id   Book ID
  * @return filepath
  */
-string	Page::filePath(int page, string id)
+string Page::filePath(int page, string id)
 {
 	char pagetxt[10];
 	sprintf(pagetxt,"%i",page);
@@ -90,7 +90,7 @@ string	Page::filePath(int page, string id)
  * @param id   Book ID
  * @return (bool) true == ok
  */
-bool	Page::burn(int page, string id)
+bool Page::burn(int page, string id)
 {
 	// Open file
 	ifstream ifpage;
@@ -135,7 +135,9 @@ int	Page::next(string id)
 	path.append("/").append(id);
 	if( (pDIR = opendir(path.c_str())) != 0 ){
 		while((entry = readdir(pDIR)) != 0 ){
-			if( (strcmp(entry->d_name, ".") != 0) && (strcmp(entry->d_name, "..") != 0) ) {
+			if( (strcmp(entry->d_name, ".") != 0) &&
+			    (strcmp(entry->d_name, "..") != 0) ) {
+				
 				filename = entry->d_name;
 				break;
 			}
@@ -187,7 +189,7 @@ int	Page::last(string id)
     return pgn;
 }
 
-bool	Page::write(int page, string id, string ciphertext)
+bool Page::write(int page, string id, string ciphertext)
 {
 	// Write PAGE
 	ofstream fpage;
@@ -204,7 +206,7 @@ bool	Page::write(int page, string id, string ciphertext)
  * @param id Book ID
  * @return ciphertext
  */
-string	Page::read(int page, string id)
+string Page::read(int page, string id)
 {
 	// Read PAGE
 	ifstream fpage;
@@ -234,7 +236,7 @@ int	Page::getLength(int page, string id)
  * @brief Generate ciphertext page using the Rand class
  * @return ciphertext
  */
-string	Page::get()
+string Page::get()
 {
 	string ciphtext;
 	Rand * rnd = new Rand;
@@ -251,15 +253,16 @@ string	Page::get()
  * @param id New book ID
  * @return (bool) true == ok
  */
-bool	Page::generate(string id)
+bool Page::generate(string id)
 {
     // Create new dir
     genPath(id);
 
     int pagenum = 0;
 
-    if (this->last(id) >= 0)
+    if (this->last(id) >= 0) {
         pagenum = this->last(id);
+	}
 
 	for (; pagenum < MAX_PAGES; pagenum++) {
 		clock_t goal = 1 + clock();
@@ -274,7 +277,7 @@ bool	Page::generate(string id)
  * @brief Returns a list of valid books
  * @return files
  */
-string	Page::list()
+string Page::list()
 {
 	string files;
 	DIR *pDIR;
@@ -283,7 +286,11 @@ string	Page::list()
 	if( (pDIR = opendir(path.c_str())) != 0 ){
 		struct dirent *entry;
 		while((entry = readdir(pDIR)) != 0 ){
-			if( (strcmp(entry->d_name, ".") != 0) && (strcmp(entry->d_name, "..") != 0) && (strcmp(entry->d_name, ".dummy") != 0) && (strcmp(entry->d_name, ".DS_Store") != 0) ) {
+			if( (strcmp(entry->d_name, ".") != 0)  &&
+			    (strcmp(entry->d_name, "..") != 0) &&
+			    (strcmp(entry->d_name, ".dummy") != 0) &&
+			    (strcmp(entry->d_name, ".DS_Store") != 0) ) {
+				
 				files.append(entry->d_name);
 				files.append("\n");
 				continue;

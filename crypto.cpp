@@ -20,7 +20,9 @@
  * @param from Character to be replaced
  * @param to Replace character
  */
-void Crypto::replaceAll(std::string& str, const std::string& from, const std::string& to)
+void Crypto::replaceAll(std::string& str,
+						const std::string& from,
+						const std::string& to)
 {
 	if(from.empty())
 		return;
@@ -38,7 +40,8 @@ void Crypto::replaceAll(std::string& str, const std::string& from, const std::st
  * @param out The ciphered text to sum(26)
  * @return The crypted string
  *
- * This function also remove the newline chars and replace all spaces to the "JQ" from the original text before to be crypted
+ * This function also remove the newline chars and replace all spaces to the
+ * "JQ" from the original text before to be crypted
  */
 string Crypto::encrypt(string in, string out)
 {
@@ -84,7 +87,8 @@ string Crypto::encrypt(string in, string out)
  * @param out The ciphered text to sum(26)
  * @return The decrypted string
  *
- * This function also replaces all "JQ" ocurrences from the decrypted text to spaces
+ * This function also replaces all "JQ" ocurrences from the decrypted text to
+ * spaces
  */ 
 string Crypto::decrypt(string crypted, string out)
 {

@@ -23,14 +23,19 @@
 #endif
 
 /*!
- * @brief The Rand constructor generate a new random seed and try to open /dev/random
+ * @brief The Rand constructor generate a new random seed and try to open
+ * /dev/random
  * @return Rand object
  */
 Rand::Rand()
 {
 	Config *cfg = new Config;
-	fdev = open(cfg->getRndDev(), O_RDONLY);
-	delete  cfg;
+	if (strcmp(cfg->getRndDev(),"system") == 0) {
+		fdev = -1;
+	} else {
+		fdev = open(cfg->getRndDev(), O_RDONLY);
+	}
+	delete cfg;
 
 	srand((unsigned int)this->genSeed());
 
@@ -62,6 +67,17 @@ unsigned long Rand::getTicks()
 	struct timeval usecs;
 	gettimeofday(&usecs, NULL);
 	return usecs.tv_usec;
+#elif __MSDOS__ || __DJGPP__
+	unsigned int hi,lo,cm;
+	unsigned long tsc;
+	asm volatile ("movb $0x88, %ah");
+	asm volatile ("int $0x15" : "=b"(cm));
+	
+	asm volatile ("movb $0x00, %ah");
+	asm volatile ("int $0x1A" : "=c"(lo), "=d"(hi));
+
+	tsc = (unsigned long)((lo*hi)^cm);
+	return tsc;
 #else
 	unsigned int hi,lo;
 	unsigned long tsc;
@@ -94,7 +110,8 @@ void Rand::setSeed(float a)
 }
 
 /*!
- * @brief Tries to find a /dev/random and return a byte, if not uses the rand() function or rand_s() in Windows
+ * @brief Tries to find a /dev/random and return a byte, if not uses the
+ * rand() function or rand_s() in Windows
  * @return (int)rand
  */
 
@@ -174,7 +191,7 @@ char Rand::getLetter()
  * @param a number len
  * @return (int)rnd
  */
-int  Rand::getNumber(int a)
+int Rand::getNumber(int a)
 {
 	return t_rand() % a+1;
 }

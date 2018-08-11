@@ -130,7 +130,7 @@ Config::Config(void)
  * @brief Save the config to the default PATH \n
  * If the config file doesnt exist it will create it with default values
  */
-void	Config::saveConfig(void) {
+void Config::saveConfig(void) {
 
 	// Unix and windows path
 #if	!defined(__DJGPP__) && (defined(__unix__) || defined(__APPLE__) || defined(__HAIKU__))
@@ -162,7 +162,7 @@ void	Config::saveConfig(void) {
 /*!
  * @brief Returns the current RND device
  */
-char *  Config::getRndDev()
+char * Config::getRndDev()
 {
 	return RND_DEV;
 }
@@ -179,7 +179,7 @@ char *	Config::getPath()
  * @brief Returns the max PATH length
  * @return MAX_CHARS
  */
-int		Config::getChars()
+int Config::getChars()
 {
 	return MAX_CHARS;
 }
@@ -188,7 +188,7 @@ int		Config::getChars()
  * @brief Returns the number of generated pages
  * @return MAX_PAGES
  */
-int		Config::getPages()
+int	Config::getPages()
 {
 	return MAX_PAGES;
 }
@@ -196,7 +196,7 @@ int		Config::getPages()
 /*!
  * @brief Set a new RND device
  */
-void    Config::setRndDev( char * rnd )
+void Config::setRndDev( char * rnd )
 {
 	strncpy(RND_DEV, rnd,  MAX_PATH - 1);
 }
@@ -205,7 +205,7 @@ void    Config::setRndDev( char * rnd )
 /*!
  * @brief Set a new PATH to be used
  */
-void	Config::setPath( char * path )
+void Config::setPath( char * path )
 {
 	strncpy(REL_PATH, path, MAX_PATH - 1);
 }
@@ -214,7 +214,7 @@ void	Config::setPath( char * path )
  * @brief Set the max PATH length
  * @param chars MAX_CHARS (int)
  */
-void	Config::setChars(int chars)
+void Config::setChars(int chars)
 {
 	MAX_CHARS = chars;
 }
@@ -223,7 +223,7 @@ void	Config::setChars(int chars)
  * @brief Set the num of pages to be generated
  * @param pages MAX_PAGES (int)
  */
-void	Config::setPages(int pages)
+void Config::setPages(int pages)
 {
 	MAX_PAGES = pages;
 }
